@@ -1,8 +1,8 @@
-"""Build sdl_units_map.html: Leaflet map of Basin Plan surface water SDL resource units.
+"""Build index.html: Leaflet map of Basin Plan surface water SDL resource units.
 
 Source: MDBA Library 'Surface Water SDL Resource Units' (CC BY 4.0).
 Units that appear in the 2026 review EWR results are highlighted.
-Rivers: HydroRIVERS v1.0 (HydroSHEDS) clipped to the basin by build_rivers.py.
+Rivers: HydroRIVERS v1.0 (HydroSHEDS) clipped to the basin.
 Gauges: parameter sheet gauges located via BoM Water Data Online only (sheet coords ignored),
 split by whether they appear in the model outputs.
 """
@@ -12,15 +12,15 @@ import pandas as pd
 from flow_regime_mappings import regimes_for
 from shapely.geometry import shape, mapping
 
-HERE = __import__("pathlib").Path(__file__).parent
+HERE = __import__("pathlib").Path(__file__).resolve().parent.parent  # repo root
 norm = lambda s: "".join(c for c in s.lower() if c.isalnum())
 
-reviewed = pd.read_csv(HERE / "all_ecological_objective_comparison_frequency.csv",
+reviewed = pd.read_csv(HERE / "data/ewr_results/ecological_objective_frequency.csv",
                        usecols=["SWSDLName", "PlanningUnitName"])
 in_review = {norm(n): sorted(g.PlanningUnitName.unique())
              for n, g in reviewed.groupby("SWSDLName")}
 
-gj = json.load(open(HERE / "sdl_resource_units/surface_water_sdl_resource_units.geojson"))
+gj = json.load(open(HERE / "data/boundaries/sdl_resource_units.geojson"))
 for f in gj["features"]:
     p = f["properties"]
     p["planning_units"] = in_review.get(norm(p["SWSDLName"]), [])
@@ -29,13 +29,13 @@ for f in gj["features"]:
     f["geometry"] = mapping(shape(f["geometry"]).simplify(0.005, preserve_topology=True))
 
 # --- gauges: parameter sheet x BoM Water Data Online x model outputs -------------
-param = pd.read_csv(HERE.parent / "py_ewr/parameter_metadata/parameter_sheet.csv", dtype=str)
-bom = pd.read_csv(HERE / "bom_gauges/bom_wdo_station_list.csv", dtype=str)
+param = pd.read_csv(HERE / "data/parameters/parameter_sheet.csv", dtype=str)
+bom = pd.read_csv(HERE / "data/bom_gauges/bom_station_list.csv", dtype=str)
 for c in ("station_latitude", "station_longitude"):
     bom[c] = pd.to_numeric(bom[c], errors="coerce")
 bom = bom.dropna(subset=["station_latitude"]).drop_duplicates("station_no").set_index("station_no")
 model_gauges = set()
-for f in HERE.glob("*.csv"):
+for f in (HERE / "data/ewr_results").glob("*.csv"):
     cols = [c for c in ("Gauge", "Multigauge") if c in pd.read_csv(f, nrows=0).columns.str.strip()]
     for c in cols:
         model_gauges |= set(pd.read_csv(f, usecols=[c], dtype=str)[c].dropna())
@@ -46,7 +46,7 @@ for col in ("Gauge", "Multigauge", "WeirpoolGauge"):
     for gid, g in param.dropna(subset=[col]).groupby(col):
         rows[gid] = pd.concat([rows[gid], g]) if gid in rows else g
 
-ref = pd.read_csv(HERE.parent / "py_ewr/parameter_metadata/objective_reference.csv", dtype=str)
+ref = pd.read_csv(HERE / "data/parameters/objective_reference.csv", dtype=str)
 ref_pair = ref.drop_duplicates(["LTWPShortName", "EcoObj"]).set_index(["LTWPShortName", "EcoObj"])
 ref_any = ref.drop_duplicates("EcoObj").set_index("EcoObj")
 
@@ -65,7 +65,7 @@ def pipeline_regimes(code, state, fallback=()):
 # The model outputs report the lake-level EWRs (CLLMM1c-4c) under A4260527 (Tauwitchere); the FIRM site list (MILANG, measurand 35),
 # SiteID_MDBA and the parameter sheet put them on A4260524 (Milang). Re-key the results to A4260524.
 REKEY = {"A4260527": "A4260524"}
-fr_raw = pd.read_csv(HERE / "all_frequency_raw.csv", usecols=["Gauge", "EWR", "SWSDLName", "Policy", "ClimateModel", "FR"], dtype={"Gauge": str})
+fr_raw = pd.read_csv(HERE / "data/ewr_results/frequency_raw.csv", usecols=["Gauge", "EWR", "SWSDLName", "Policy", "ClimateModel", "FR"], dtype={"Gauge": str})
 fr_raw["Gauge"] = fr_raw.Gauge.replace(REKEY)
 POLICIES = ["Without Development", "Pre Basin Plan", "Basin plan 2024", "Basin plan full implementation"]
 CLIMATES = ["Historical Climate", "Warmer and Wetter 1.5 C", "Warmer and Drier 1.5 C", "Warmer and Much Drier 1.5 C",
@@ -94,7 +94,7 @@ def etp_rating(wod, pbp, scn, B=0.01):
                          [0.0, B - scn, (pbp - scn) / pbp], default=(pbp - scn) / np.abs(pbp - wod))
 
 
-etp_raw = pd.read_csv(HERE / "all_interevent_comparison_ewr_level.csv", dtype={"Gauge": str},
+etp_raw = pd.read_csv(HERE / "data/ewr_results/interevent_ewr.csv", dtype={"Gauge": str},
                       usecols=lambda c: c.strip() in {"PlanningUnitName", "SWSDLName", "Gauge", "EWR", "Policy", "ClimateModel",
                                                       "ETP", "ETP_PBP_Hist", "ETP_WOD_Hist", "Rating_ETP"})
 etp_raw.columns = etp_raw.columns.str.strip()
@@ -124,7 +124,7 @@ def etp_for(gid, code, sdl=None):
 
 # EWRs actually assessed in the initial SDL assessment = (gauge, EWR) pairs in the model outputs, with the objective,
 # ecological theme and flow regime the MDBA pipeline attached to them.
-assessed = pd.read_csv(HERE / "all_frequency_raw.csv", dtype=str,
+assessed = pd.read_csv(HERE / "data/ewr_results/frequency_raw.csv", dtype=str,
                        usecols=["Gauge", "EWR", "EcoObj", "Target", "FlowRegime", "SWSDLName"]).drop_duplicates(["Gauge", "EWR", "EcoObj", "SWSDLName"])
 assessed["Gauge"] = assessed.Gauge.replace(REKEY)
 ASSESSED = {g: v for g, v in assessed.groupby("Gauge")}
@@ -132,9 +132,9 @@ for gid in ASSESSED.keys() - rows.keys():       # in the model outputs but absen
     rows[gid] = param.iloc[0:0]
 rows.setdefault("A4260527", param.iloc[0:0])     # Tauwitchere Barrage: BoM station, no EWRs of its own
 
-# Only EWRs evaluated by these handlers in py_ewr/parameter_metadata/ewr_calc_config.json go in the diagram.
+# Only EWRs evaluated by these handlers in data/parameters/ewr_calc_config.json go in the diagram.
 HANDLERS = {"flow_handle", "lowflow_handle"}
-calc_config = json.load(open(HERE.parent / "py_ewr/parameter_metadata/ewr_calc_config.json"))
+calc_config = json.load(open(HERE / "data/parameters/ewr_calc_config.json"))
 key_handler = {k: h for h, keys in calc_config.items() for k in keys}
 
 
@@ -261,12 +261,12 @@ if no_bom:
           "| proxy-placed:", sorted(set(no_bom) & set(PROXY_LOC)))
 
 # --- SDL-unit view: the MDBA pipeline's own planning-unit x objective ratings (FRsp rating and mean ETP rating) --------------
-pu_fr = pd.read_csv(HERE / "all_ecological_objective_comparison_frequency.csv",
+pu_fr = pd.read_csv(HERE / "data/ewr_results/ecological_objective_frequency.csv",
                     usecols=["PlanningUnitName", "SWSDLName", "EcoObj", "Target", "Policy", "ClimateModel", "Rating_Frsp"])
-pu_et = pd.read_csv(HERE / "all_interevent_comparison_EcoObj_level.csv",
+pu_et = pd.read_csv(HERE / "data/ewr_results/interevent_ecological_objective.csv",
                     usecols=["PlanningUnitName", "SWSDLName", "EcoObj", "Target", "Policy", "ClimateModel", "Rating_ETP_mean"])
 if FIX_ETP_RULE:   # planning unit x objective mean ETP rating = mean of the EWR ratings (as the pipeline's notebook 11 does), with the corrected rule
-    _ew = pd.read_csv(HERE / "all_interevent_comparison_ewr_level.csv", dtype={"Gauge": str},
+    _ew = pd.read_csv(HERE / "data/ewr_results/interevent_ewr.csv", dtype={"Gauge": str},
                       usecols=lambda c: c.strip() in {"PlanningUnitName", "SWSDLName", "EcoObj", "Target", "Policy", "ClimateModel", "EWR", "Gauge", "ETP", "ETP_PBP_Hist", "ETP_WOD_Hist"})
     _ew.columns = _ew.columns.str.strip()
     _ew["Rating_ETP_mean"] = etp_rating(_ew.ETP_WOD_Hist, _ew.ETP_PBP_Hist, _ew.ETP)
@@ -275,7 +275,7 @@ if FIX_ETP_RULE:   # planning unit x objective mean ETP rating = mean of the EWR
 for d_ in (pu_fr, pu_et):
     d_["scn"] = d_.Policy.map(POLICIES.index) * len(CLIMATES) + d_.ClimateModel.map(CLIMATES.index)
 # Flows & Connectivity theme: the MDBA's planning-unit x flow-regime FRsp rating (FR only; its ETP is not published as a rating)
-pu_fc = pd.read_csv(HERE / "all_flows_connectivity_comparison_frequency.csv",
+pu_fc = pd.read_csv(HERE / "data/ewr_results/flows_connectivity_frequency.csv",
                     usecols=["PlanningUnitName", "SWSDLName", "FlowRegime", "Policy", "ClimateModel", "Rating_FRsp"]).rename(
     columns={"FlowRegime": "EcoObj", "Rating_FRsp": "Rating_Frsp"})
 pu_fc["Target"] = "Flows & Connectivity"
@@ -285,8 +285,8 @@ for d_ in (pu_fc,):
 pu_fr["scn"] = pu_fr.Policy.map(POLICIES.index) * len(CLIMATES) + pu_fr.ClimateModel.map(CLIMATES.index)
 csv_name = {norm(n): n for n in pu_fr.SWSDLName.unique()}
 # MDBA assessment units: SS7 (Campaspe / Coliban) and SS11 (SA Murray: channel + floodplain / Coorong, Lower Lakes & Murray Mouth) are assessed in two parts
-PROC = json.load(open(HERE / "mdba_grades/process_data.json"))
-MODN = json.load(open(HERE / "mdba_grades/moderation_notes.json"))
+PROC = json.load(open(HERE / "data/mdba_grades/process_data.json"))
+MODN = json.load(open(HERE / "data/mdba_grades/moderation_notes.json"))
 def assessment_units(code, pus):
     if code == "SS11":
         return [("SS11a", [i for i, p in enumerate(pus) if "Coorong" not in p]), ("SS11b", [i for i, p in enumerate(pus) if "Coorong" in p])]
@@ -316,12 +316,12 @@ for f in gj["features"]:
     desc = [str(ref_any.at[o, "Objective"]) if o in ref_any.index and isinstance(ref_any.at[o, "Objective"], str) else "" for o in objs]   # objective text for tooltips / level 3
     SDLD[nm] = {"code": code, "ass": ass, "pus": pus, "objs": objs, "desc": desc, "theme": [str(theme[o]).replace("Other species", "Other Species") for o in objs],
                 "fr": table(a, "Rating_Frsp"), "et": table(b, "Rating_ETP_mean")}
-pu_raw = pd.read_csv(HERE / "all_frequency_raw.csv", dtype=str, usecols=["PlanningUnitName", "Gauge", "EWR", "SWSDLName"]).drop_duplicates()
+pu_raw = pd.read_csv(HERE / "data/ewr_results/frequency_raw.csv", dtype=str, usecols=["PlanningUnitName", "Gauge", "EWR", "SWSDLName"]).drop_duplicates()
 pu_raw["Gauge"] = pu_raw.Gauge.replace(REKEY)
 PUINFO = {pu: {"g": sorted(set(v.Gauge)), "n": len(v), "s": v.SWSDLName.iat[0]} for pu, v in pu_raw.groupby("PlanningUnitName")}
 print(len(SDLD), "SDL units with planning-unit ratings;", sum(len(v["pus"]) for v in SDLD.values()), "planning units")
 
-html = open(HERE / "sdl_units_map.template.html").read().replace(
+html = open(HERE / "templates/map_template.html").read().replace(
     "__DATA__", json.dumps(gj, separators=(",", ":"))).replace(
     "__GAUGES__", json.dumps(gauges, separators=(",", ":"))).replace(
     "__SDLD__", json.dumps(SDLD, separators=(",", ":"))).replace(
@@ -329,6 +329,6 @@ html = open(HERE / "sdl_units_map.template.html").read().replace(
     "__PROC__", json.dumps(PROC, separators=(",", ":"))).replace(
     "__MODN__", json.dumps(MODN, separators=(",", ":"))).replace(
     "__SCEN__", json.dumps({"policies": POLICIES, "climates": CLIMATES})).replace(
-    "__RIVERS__", (HERE / "sdl_resource_units/hydrorivers_mdb_strahler3_plus.geojson").read_text())
-open(HERE / "sdl_units_map.html", "w").write(html)
+    "__RIVERS__", (HERE / "data/boundaries/rivers.geojson").read_text())
+open(HERE / "index.html", "w").write(html)
 print(len(html) // 1024, "KB;", sum(f["properties"]["in_review"] for f in gj["features"]), "units in review data")
