@@ -1,0 +1,722 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Basin SDL resource units</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
+<style>
+html,body,#map{height:100%;margin:0;font-family:system-ui,sans-serif}
+.legend{background:#fff;padding:8px 10px;border-radius:6px;box-shadow:0 1px 4px #0004;font-size:12px;line-height:1.6}
+.legend i{display:inline-block;width:12px;height:12px;margin-right:6px;vertical-align:-1px;border:1px solid #0006}
+.legend b{display:block;margin-bottom:2px}
+.upset{overflow:auto;max-height:70vh}
+select{-webkit-appearance:none;appearance:none;font:500 12.5px system-ui,sans-serif;color:#1f2937;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23566' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 9px center;border:1px solid #c5ccd6;border-radius:7px;padding:5px 26px 5px 10px;cursor:pointer;box-shadow:0 1px 2px rgba(15,23,42,.06);transition:border-color .12s,box-shadow .12s;max-width:100%}
+select:hover{border-color:#7f95b5}select:focus{outline:none;border-color:#2f6db5;box-shadow:0 0 0 3px rgba(47,109,181,.18)}
+.ctl{margin:8px 0 4px;display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center}.ctl label{font-size:11.5px;font-weight:600;color:#4b5563;display:flex;align-items:center;gap:6px}
+.crumbs{display:flex;align-items:stretch;gap:6px;flex-wrap:wrap;margin:2px 0 4px}.sep{align-self:center;color:#9aa7b8;font-size:20px}
+.crumb{border:1px solid #c5ccd6;border-radius:9px;padding:4px 11px 5px;background:#fff;cursor:pointer;display:flex;flex-direction:column;gap:1px;min-width:96px;max-width:280px}.crumb:hover{border-color:#1f4e8c;background:#f4f8fd}
+.crumb .cap{font-size:9.5px;letter-spacing:.07em;text-transform:uppercase;color:#6b7280}.crumb .nm{font-size:12.5px;color:#1f2937}.crumb small{color:#6b7280}
+.crumb select{border:0;box-shadow:none;background-color:transparent;padding:0 20px 0 0;font-weight:600;font-size:12.5px;background-position:right 2px center}.crumb select:focus{box-shadow:none}
+.seg{display:inline-flex;border:1px solid #c5ccd6;border-radius:7px;overflow:hidden;margin-top:3px;background:#fff}.segb{border:0;background:#fff;padding:5px 11px;font:600 12px system-ui,sans-serif;color:#374151;cursor:pointer}.segb+.segb{border-left:1px solid #c5ccd6}.segb:hover{background:#eef3fa}.segb.on{background:#2f6db5;color:#fff}
+.crumb.multi{cursor:default}.crumb.multi:hover{border-color:#c5ccd6;background:#fff}.opensdl{float:right;margin-left:14px;font-size:10px;letter-spacing:0;text-transform:none;color:#1f4e8c;cursor:pointer;font-weight:600}.opensdl:hover{text-decoration:underline}
+.crumb.off{background:#f4f6f9;border-style:dashed;cursor:default}.crumb.off:hover{background:#f4f6f9;border-color:#c5ccd6}.crumb.off .nm{color:#9aa3b0}
+.crumb.on .seg{border-color:#7f9ac4}
+.crumb.on{background:#1f3a5f;border-color:#1f3a5f}.crumb.on:hover{background:#27487a}.crumb.on .cap{color:#b9c8de}.crumb.on .nm,.crumb.on small,.crumb.on select{color:#fff}.crumb.on select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23fff' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}.crumb.on select option{color:#1f2937}
+.upset text{font:10px system-ui,sans-serif;fill:#222}
+.upset .hd{font-size:11px;fill:#555}
+.leaflet-popup-content{margin:10px 12px}
+.puhl{background:#fff4e6;border:1px solid #e8590c;padding:0 3px;font:600 10px system-ui;box-shadow:none}
+.puhl:before{display:none}
+</style></head><body><div id="map"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+<script>
+const DATA = __DATA__;
+const GAUGES = __GAUGES__;
+const RIVERS = __RIVERS__;
+const SCEN = __SCEN__;
+const POL_L={"Without Development":"Without development","Pre Basin Plan":"Pre Basin Plan","Basin plan 2024":"Basin Plan 2024","Basin plan full implementation":"Full implementation"};
+const CLI_L={"Historical Climate":"Historical","Warmer and Wetter 1.5 C":"Warmer, wetter 1.5°C","Warmer and Drier 1.5 C":"Warmer, drier 1.5°C","Warmer and Much Drier 1.5 C":"Warmer, much drier 1.5°C","Hotter and Wetter 2.0 C":"Hotter, wetter 2°C","Hotter and Drier 2.0 C":"Hotter, drier 2°C","Hotter and Much Drier 2.0 C":"Hotter, much drier 2°C"};
+const SDLD = __SDLD__, PUINFO = __PUINFO__, PROC = __PROC__, MODN = __MODN__;   // PROC: MDBA condition / confidence / published grades / final likelihoods per assessment unit (mdba_grades/)
+//   // planning-unit x objective ratings per SDL unit (MDBA pipeline); gauges per planning unit
+const BPFI=SCEN.policies.indexOf("Basin plan full implementation"), BP24=SCEN.policies.indexOf("Basin plan 2024");
+let POLICY=BPFI, CLIM=0;   // default Basin plan full implementation. Without Development / Pre Basin Plan are baselines only, not selectable
+// policy menu: BP2024 and BPFI only; BP2024 has historical climate only, climate scenarios belong to BPFI
+function scenarioMenus(sp,sc){
+  sp.innerHTML=[BPFI,BP24].map(i=>`<option value="${i}">${esc(POL_L[SCEN.policies[i]]||SCEN.policies[i])}</option>`).join("");
+  const fill=()=>{ const all=+sp.value===BPFI; if(!all) CLIM=0;
+    sc.innerHTML=SCEN.climates.map((x,i)=>all||i===0?`<option value="${i}">${esc(CLI_L[x]||x)}</option>`:"").join(""); sc.value=CLIM; sc.disabled=!all;
+    sc.title=all?"":"Climate scenarios are only available for full implementation"; };
+  sp.value=POLICY; fill(); return fill; }   // selected scenario for the frequency-ratio bars
+const colours = {NSW:"#4e79a7",VIC:"#59a14f",QLD:"#e15759",SA:"#f28e2b",ACT:"#b07aa1"};
+const map = L.map("map").fitBounds([[-39,138],[-24.5,153]]);
+const ESRI="Tiles &copy; Esri, HERE, Garmin, OpenStreetMap contributors | SDL units: MDBA (CC BY 4.0) | Rivers: HydroSHEDS | Gauges: BoM";
+const gray=L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}",{maxZoom:16,attribution:ESRI}).addTo(map);
+const topo=L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}",{maxZoom:19,attribution:ESRI});
+map.createPane("labels").style.zIndex=650; map.getPane("labels").style.pointerEvents="none";
+const grayLabels=L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}",{maxZoom:16,pane:"labels"}).addTo(map);
+map.on("baselayerchange",e=>{ fillScale=e.layer===topo?0.3:1; units.setStyle(style); if(e.layer===topo) map.removeLayer(grayLabels); else grayLabels.addTo(map); });
+const esc = s => String(s).replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+let fillScale=1;
+const style = f => ({color:"#333",weight:1,fillColor:colours[f.properties.StateID]||"#888",
+  fillOpacity:(f.properties.in_review?0.6:0.2)*fillScale,dashArray:f.properties.in_review?null:"4",
+  interactive:clickable(f)});
+// South Australia: only the SA Murray unit (its three assessments: Coorong/Lower Lakes/Murray Mouth, River Murray Channel, River Murray Floodplain)
+// is clickable; the other SA units (not in the review results) are drawn but non-interactive so they don't get in the way
+function clickable(f){ const p=f.properties; return !(p.StateID==="SA" && !p.in_review); }
+const units = L.geoJSON(DATA,{style,onEachFeature:(f,l)=>{
+  const p=f.properties;
+  if(!clickable(f)) return;
+  l.bindTooltip(esc(p.SWSDLName));
+  l.bindPopup(()=>SDLD[p.SWSDLName]?sdlPopup(p):`<b>${esc(p.SWSDLName)}</b> (${esc(p.SWSDLID)}, ${esc(p.StateID)})<br>Not in the 2026 review results`,{autoPanPaddingTopLeft:[70,20],autoPanPaddingBottomRight:[20,20],maxWidth:innerWidth-60,minWidth:260});
+  l.on({mouseover:e=>e.target.setStyle({weight:3}),mouseout:e=>e.target.setStyle({weight:1})});
+}}).addTo(map);
+
+// Barwon-Darling is a thin river corridor under other units: add an invisible wide hit-layer on top so it is easy to hover and click
+units.eachLayer(l=>{ const p=l.feature.properties; if(!/barwon.?darling/i.test(p.SWSDLName)||!clickable(l.feature)) return;
+  const hit=L.geoJSON(l.feature,{style:{color:"#000",weight:22,opacity:0,fill:true,fillOpacity:0,lineCap:"round",lineJoin:"round"}}).addTo(map);
+  hit.eachLayer(x=>{ x.bindTooltip(esc(p.SWSDLName),{sticky:true});
+    x.on({click:e=>{ L.DomEvent.stopPropagation(e); l.openPopup(e.latlng); }, mouseover:()=>l.setStyle({weight:3}), mouseout:()=>l.setStyle({weight:1})}); }); });
+
+const TCOL = {"Flows & Connectivity":"#8c6bb1","Native Fish":"#4e79a7","Waterbirds":"#f28e2b","Native Vegetation":"#59a14f","Ecosystem Functions":"#76b7b2","Other Species":"#b07aa1","Other species":"#b07aa1"};
+const FR_OK=0.9;   // an EWR 'succeeds' when its frequency ratio is at least 0.9 (MDBA SDL assessment, FRsp)
+const mixc=(a,b,x)=>a.map((v,i)=>Math.round(v+(b[i]-v)*x));
+const rate=s=>`rgb(${s<.5?mixc([209,73,91],[233,162,59],s/.5):mixc([233,162,59],[42,157,74],(s-.5)/.5)})`;   // 0 red -> .5 amber -> 1 green
+const REG_ABBR={"Cease to flow":"CF","Very low flow":"VF","Baseflow":"BF","Fresh":"F","Small fresh":"SF","Large fresh":"LF","Bankfull":"BK","Bankfull flow":"BK","Overbank":"OB","Overbank small":"OB-S","Overbank large":"OB-L",
+  "Low overbank flow":"OB low","Low to moderate overbank flow":"OB low-mod","Moderate overbank flow":"OB mod","Moderate to large overbank flow":"OB mod-lg","Annabranch connection":"AC","Wetland inundation":"WL","Wetland Large Fresh":"W-LF",
+  "Nesting support flow":"Nest","High lake level fill":"HLLF","Mid level lake fill":"MLLF","Low level lake fill":"LLLF","Very high level fill":"VHLL","lower lakes":"Lakes","coorong":"Coorong","Annual Barrage flow":"Barrage 1y","three yearly barrage flows":"Barrage 3y","excluded":"Excl.","Unmapped":"–"};
+const THEME_ABBR={"Flows & Connectivity":"FC","Native Fish":"NF","Waterbirds":"WB","Native Vegetation":"NV","Ecosystem Functions":"EF","Other Species":"OS","Unclassified":"?"};
+// every flow regime the EWR_analysis_pipeline mapping can give, small -> large (then wetland / lake / barrage groups)
+const REG_ORDER=["Cease to flow","Very low flow","Baseflow","Fresh","Small fresh","Large fresh","Bankfull","Bankfull flow","Annabranch connection","Overbank","Overbank small","Overbank large",
+  "Low overbank flow","Low to moderate overbank flow","Moderate overbank flow","Moderate to large overbank flow","Wetland inundation","Wetland Large Fresh","Nesting support flow",
+  "High lake level fill","Mid level lake fill","Low level lake fill","Very high level fill","lower lakes","coorong","Annual Barrage flow","three yearly barrage flows","excluded","Unmapped"];
+const THEME_ORDER=["Flows & Connectivity","Ecosystem Functions","Waterbirds","Native Fish","Native Vegetation","Other Species","Unclassified"];   // MDBA report order
+const uniq = a => [...new Set(a)];
+// Build the columns/rows to draw, optionally grouped (flow regime for codes, ecological theme for objectives).
+// --- MDBA SDL assessment (Surface Water Technical Methods, s4.6): FRsp rating vs Pre Basin Plan (PBP) and Without Development (WoD)
+const BUF=0.05;
+function frspRating(s,p,w){                                   // Figure 19; s, p, w = FRsp of scenario, PBP, WoD (0..1)
+  if(p<BUF && w<BUF) return s;
+  if(w<p*(1+BUF) || (s>0 && s<p)) return s/p-1;
+  return (s-p)/Math.abs(w-p);
+}
+const CATS=[                                                  // Table 11 (change in %, lower bound inclusive)
+  {min:60,  l:"Significant improvement from PBP towards WoD", c:"#2166ac", dk:1},
+  {min:40,  l:"Major improvement from PBP towards WoD",       c:"#4393c3", dk:1},
+  {min:20,  l:"Moderate improvement from PBP towards WoD",    c:"#92c5de"},
+  {min:5,   l:"Minor improvement from PBP towards WoD",       c:"#d1e5f0"},
+  {min:-5,  l:"PBP maintained",                               c:"#eeeeee"},
+  {min:-20, l:"Minor decline from PBP",                       c:"#fddbc7"},
+  {min:-40, l:"Moderate decline from PBP",                    c:"#f4a582"},
+  {min:-60, l:"Major decline from PBP",                       c:"#d6604d", dk:1},
+  {min:-Infinity, l:"Significant decline from PBP",           c:"#b2182b", dk:1}];
+const sgn = p => (p>0?"+":"")+Math.round(p)+"%";
+const catOf = pct => CATS.find(k=>pct>=k.min) || CATS[CATS.length-1];
+const divc = x => { const g=[221,221,221]; return `rgb(${x<0?mixc(g,[178,24,43],-x):mixc(g,[33,102,172],x)})`; };   // -1 red .. 0 grey .. +1 blue
+const CHG={gained:"#2f6db5", lost:"#d1495b", heldMet:"#3d3d3d", heldUnmet:"#c4c4c4"};
+
+let THEME_ONLY=null;   // set while drawing a theme-specific matrix: only that theme's objectives, and only the EWRs that feed them
+function layout(mx){
+  const nC=mx.codes.length, nO=mx.objs.length;
+  // columns: flow regimes small -> large; a collapsed regime is one aggregated column, otherwise one column per EWR (sheet order)
+  const cols=[];
+  REG_ORDER.forEach(rg=>{ const ids=mx.codes.map((c,i)=>mx.reg[i].includes(rg)&&(!THEME_ONLY||mx.cells[i].some(o=>mx.info[o][1]===THEME_ONLY))?i:-1).filter(i=>i>=0);   /* an EWR the pipeline puts in several regimes appears in each */ if(!ids.length) return;
+    if(COLL_REG.has(rg)&&ids.length>1) cols.push({label:rg, codes:ids, reg:rg, grp:true});   // a regime with a single EWR is always shown as that EWR
+    else ids.forEach(i=>cols.push({label:mx.codes[i], codes:[i], reg:rg, grp:false})); });
+  // rows: eco themes in report order, objectives by id within a theme; a collapsed theme is one aggregated row
+  const rows=[], themes=THEME_ORDER.concat(uniq(mx.info.map(d=>d[1])).filter(x=>!THEME_ORDER.includes(x))).filter(x=>!THEME_ONLY||x===THEME_ONLY); if(!THEME_ONLY) LAST_THEMES=themes;
+  themes.forEach(th=>{ const ids=mx.info.map((d,i)=>d[1]===th?i:-1).filter(i=>i>=0); if(!ids.length) return;
+    if(COLL_THEME.has(th)&&!THEME_ONLY) rows.push({label:th, objs:ids, theme:th, grp:true});
+    else ids.sort((a,b)=>mx.objs[a].localeCompare(mx.objs[b],undefined,{numeric:true})).forEach(i=>rows.push({label:mx.objs[i], objs:[i], theme:th, desc:mx.info[i][0], grp:false})); });
+  const NCL=SCEN.climates.length, sc=POLICY*NCL+CLIM, PB=SCEN.policies.indexOf("Pre Basin Plan")*NCL, WD=SCEN.policies.indexOf("Without Development")*NCL;
+  const modeE=METRIC==='etp', fr=(i,k)=>mx.fr[i][k], mean=v=>{v=v.filter(x=>x!=null); return v.length?v.reduce((p,q)=>p+q,0)/v.length:null;};
+  // top bars: mean EWR frequency ratio per column for the scenario, with PBP / WoD reference ticks
+  cols.forEach(c=>{c.objSet=new Set(c.codes.flatMap(i=>mx.cells[i]));
+    c.fr=mean(c.codes.map(i=>modeE?mx.etp[i][sc]:fr(i,sc))); c.pb=mean(c.codes.map(i=>modeE?mx.ep[i]:fr(i,PB))); c.wd=mean(c.codes.map(i=>modeE?mx.ew[i]:fr(i,WD))); c.er=mean(c.codes.map(i=>mx.er[i][sc]));
+    const both3=i=>fr(i,sc)!=null&&fr(i,PB)!=null;   // EWRs that cross the 0.9 target relative to PBP: counted, never judged from an aggregated mean
+    c.up=c.codes.filter(i=>both3(i)&&fr(i,sc)>=FR_OK&&fr(i,PB)<FR_OK).length; c.dn=c.codes.filter(i=>both3(i)&&fr(i,sc)<FR_OK&&fr(i,PB)>=FR_OK).length;});
+  const cell = cols.map(c=>rows.map(r=>c.codes.reduce((n,i)=>n+mx.cells[i].filter(o=>r.objs.includes(o)).length,0)));
+  // per ecological objective: FRsp for scenario / PBP / WoD over EWRs that have results in all three, then the rating
+  const objSt = mx.objs.map((_,o)=>{
+    const ids=mx.codes.map((c,i)=>i).filter(i=>mx.cells[i].includes(o)&&fr(i,sc)!=null&&fr(i,PB)!=null&&fr(i,WD)!=null);
+    if(!ids.length) return null;
+    const f=k=>ids.filter(i=>fr(i,k)>=FR_OK).length/ids.length, s=f(sc), p=f(PB), w=f(WD);
+    return {s,p,w,r:frspRating(s,p,w),n:ids.length};});
+  // ETP: the MDBA pipeline's own EWR-level rating (Rating_ETP), averaged over the EWRs mapped to each objective
+  const objEt = mx.objs.map((_,o)=>{
+    const ids=mx.codes.map((c,i)=>i).filter(i=>mx.cells[i].includes(o)&&mx.er[i][sc]!=null);
+    if(!ids.length) return null;
+    const m=f=>ids.reduce((a,i)=>a+f(i),0)/ids.length;
+    return {s:m(i=>mx.etp[i][sc]), p:m(i=>mx.ep[i]), w:m(i=>mx.ew[i]), r:m(i=>mx.er[i][sc]), n:ids.length};});
+  // rows: an objective rating (combined = average of its FR and ETP ratings where both exist, otherwise the one that does), or a
+  // theme = the mean of its objectives' combined ratings; the FR / ETP strips of a theme are the separate means
+  rows.forEach(r=>{
+    const agg=arr=>{const m=arr.filter(Boolean); if(!m.length) return null; const avg=k=>m.reduce((a,b)=>a+b[k],0)/m.length; return {s:avg('s'),p:avg('p'),w:avg('w'),r:avg('r'),n:m.reduce((a,b)=>a+b.n,0)};};
+    r.fr=agg(r.objs.map(o=>objSt[o])); r.et=agg(r.objs.map(o=>objEt[o]));
+    const use=METRIC==='fr'?[r.fr]:METRIC==='etp'?[r.et]:[r.fr,r.et], have=use.filter(Boolean);
+    const per=r.objs.map(o=>{const v=(METRIC==='fr'?[objSt[o]]:METRIC==='etp'?[objEt[o]]:[objSt[o],objEt[o]]).filter(Boolean); return v.length?v.reduce((a,b)=>a+b.r,0)/v.length:null;}).filter(v=>v!=null);
+    r.rating=per.length?per.reduce((a,b)=>a+b,0)/per.length:null;});   // objective = mean of FR and ETP ratings, then theme = mean of its objectives
+  // cells: gained / lost / held against PBP, per (EWR, objective) link
+  const cs = cols.map(c=>rows.map(r=>{const o={g:0,l:0,hm:0,hu:0,n:0}; c.codes.forEach(i=>mx.cells[i].forEach(ob=>{ if(!r.objs.includes(ob)) return;
+      if(modeE){ const e=mx.er[i][sc]; if(e==null) return; o.n++; if(e>=0.05)o.g++; else if(e<=-0.05)o.l++; else o.hm++; return; }   // ETP: improved / worse / ~unchanged vs PBP
+      const a=fr(i,sc), b=fr(i,PB); if(a==null||b==null) return; o.n++; const ms=a>=FR_OK, mp=b>=FR_OK;
+      if(ms&&!mp)o.g++; else if(!ms&&mp)o.l++; else if(ms)o.hm++; else o.hu++;})); return o;}));
+  cols.forEach((c,ci)=>{c.n=uniq(rows.flatMap((r,ri)=>cell[ci][ri]?r.objs:[])).length;});
+  rows.forEach((r,ri)=>{r.n=cols.reduce((n,c,ci)=>n+(cell[ci][ri]?c.codes.filter(i=>mx.cells[i].some(o=>r.objs.includes(o))).length:0),0);});
+  return {cols, rows, cell, cs, nC, nO};
+}
+function upset(mx){
+  if(!mx.objs.length) return `<i>No EWRs with ecological objectives for this gauge.</i>`;
+  const modeE=METRIC==='etp', both=METRIC==='both';
+  const L_=layout(mx), cols=L_.cols, rows=L_.rows, nR=rows.length, nCol=cols.length;
+  if(!nR||!nCol) return `<i>No EWRs at this gauge feed the ${esc(THEME_ONLY||"")} objectives.</i>`;
+  const C=cols.some(c=>c.grp)||rows.some(r=>r.grp)?22:20, lab=Math.max(...rows.map(r=>r.label.length))*6.3+8, barW=METRIC==='fr'?200:modeE?70:152, top=126+(modeE&&cols.some(c=>!c.grp)?34:0)+(!modeE&&cols.some(c=>c.up||c.dn)?12:0), bandH=15, PH=76;
+    const clabel = c => c.grp?`${c.label.length>17?c.label.slice(0,16)+"…":c.label} (${c.codes.length})`:c.label;
+  const labH=Math.max(...cols.map(c=>clabel(c).length))*6+10, my=top+bandH+labH;   // FR bars on top, then code labels, then the matrix
+  const x0=barW+lab+4, W=x0+nCol*C+6, H=my+nR*C+6;
+  const maxFR=modeE?1:Math.min(2,Math.max(1.25,Math.ceil(Math.max(...cols.flatMap(c=>[c.fr,c.pb,c.wd]).filter(v=>v!=null),0)*4)/4)), maxCell=Math.max(...L_.cell.flat()), showN = maxCell>1;
+  const base=top-18, fy=v=>base-Math.min(v,maxFR)/maxFR*PH;   // value labels sit in the strip between the baseline and the flow-regime bands
+  const f2=v=>v.toFixed(2), sgn=p=>(p>0?"+":"")+Math.round(p)+"%";
+  const EX=78;   // room right of the matrix for the expand / collapse buttons
+  let s=`<svg width="${W+EX}" height="${H}" viewBox="0 0 ${W+EX} ${H}">`;
+  const pctTxt=p=>p>999?">+999%":p<-999?"<-999%":sgn(p), chipOf=(x0_,w_,y,rt,txtPad=3.5)=>{const pct=rt*100, k=catOf(pct);
+    return {k, svg:`<rect x="${x0_}" y="${y+2}" width="${w_}" height="${C-4}" rx="3" fill="${k.c}" stroke="#0002"/><text x="${x0_+w_/2}" y="${y+C/2+txtPad}" text-anchor="middle" style="font-size:9.5px;fill:${k.dk?"#fff":"#222"}">${pctTxt(pct)}</text>`};};
+  rows.forEach((r,ri)=>{const y=my+ri*C, cy=y+C/2, col=TCOL[r.theme]||"#888", src=modeE?r.et:r.fr;
+    const tip = r.grp ? `${r.label}: ${r.objs.map(i=>mx.objs[i]).join(", ")}` : `${r.label} (${r.theme}): ${r.desc||"no description"}`;
+    let info="no model results for the selected metric", chip=`<text x="23" y="${cy+3.5}" text-anchor="middle" style="fill:#999">n/a</text>`, strip="";
+    if(r.rating!=null){const c=chipOf(2,42,y,r.rating), k=c.k; chip=c.svg;
+      const parts=[]; if(r.fr&&METRIC!=='etp') parts.push(`FR ${sgn(r.fr.r*100)}`); if(r.et&&METRIC!=='fr') parts.push(`ETP ${sgn(r.et.r*100)}`);
+      info=`${parts.join(", ")} → ${sgn(r.rating*100)}: ${k.l}${r.grp?" (mean of objective ratings, each the average of FR and ETP)":""}${both?" (average of FR and ETP)":""}`;
+      if(both){ const f=r.fr&&chipOf(50,38,y,r.fr.r), e=r.et&&chipOf(92,38,y,r.et.r);
+        strip=(f?f.svg:`<text x="69" y="${cy+3.5}" text-anchor="middle" style="fill:#aaa">FR n/a</text>`)+(e?e.svg:`<text x="111" y="${cy+3.5}" text-anchor="middle" style="fill:#aaa">ETP n/a</text>`); }
+      else if(src&&modeE){ info+=` | ETP scenario ${f2(src.s)}, PBP ${f2(src.p)}, WoD ${f2(src.w)}`; }   // ETP: the score chip only (the mean of the EWR ratings behind this row)
+      else if(src){ const xa=78, xb=barW-52, ok=Math.abs(src.w-src.p)>1e-9, t=ok?(src.s-src.p)/(src.w-src.p):0.5, tc=Math.max(-0.05,Math.min(1.05,t)), X=xa+tc*(xb-xa), right=tc<0.5, halo="paint-order:stroke;stroke:#fff;stroke-width:2.6px";   // FR: share of EWRs meeting 0.9, PBP -> WoD
+        info+=` | FRsp scenario ${f2(src.s)}, PBP ${f2(src.p)}, WoD ${f2(src.w)}${ok?"":" (PBP and WoD are equal: no room to improve)"}`;
+        strip=`<line x1="${xa}" x2="${xb}" y1="${cy}" y2="${cy}" stroke="#c9d1dc" stroke-width="2"/>`+
+          `<circle cx="${xa}" cy="${cy}" r="3.6" fill="#fff" stroke="#e07b00" stroke-width="2"/><text x="${xa-6}" y="${cy+3}" text-anchor="end" style="font-size:8.5px;font-weight:600;fill:#b45f00">${f2(src.p)}</text>`+
+          `<rect x="${xb-3.5}" y="${cy-3.5}" width="7" height="7" fill="#00796b"/><text x="${xb+7}" y="${cy+3}" style="font-size:8.5px;font-weight:600;fill:#00796b">${f2(src.w)}</text>`+
+          `<rect x="${X-4.2}" y="${cy-4.2}" width="8.4" height="8.4" transform="rotate(45 ${X} ${cy})" fill="${ok?k.c:"#fff"}" stroke="#111" stroke-width="1.5"/>`+
+          `<text x="${right?X+8:X-8}" y="${cy+3}" text-anchor="${right?"start":"end"}" style="font-size:8.5px;font-weight:700;${halo}">${f2(src.s)}</text>`; }}
+    const sep = ri>0&&rows[ri-1].theme!==r.theme ? `<line x1="0" x2="${W}" y1="${y}" y2="${y}" stroke="#8a8a8a"/>` : "";   // divider between themes
+    s+=`<g><title>${esc(tip)} — ${esc(info)}</title>`+
+       `<rect x="0" y="${y}" width="${W}" height="${C}" fill="${ri%2?"#f4f4f4":"#fff"}"/>`+sep+chip+strip+
+       `<text x="${barW+6}" y="${cy+3.5}">${esc(r.label)}</text></g>`;});
+  const spreadBar=(c,x)=>{   // ETP column centred on PBP: improving (lower ETP) is up, declining (higher ETP) is down; WoD and the scenario sit at their real distance from PBP
+    const t0=base-PH, mid=(t0+base)/2, half=PH/2-6;
+    let o=`<line x1="${x}" x2="${x}" y1="${t0}" y2="${base}" stroke="#c9d1dc" stroke-width="2"/>`;
+    if(c.fr==null||c.pb==null) return o+`<text x="${x}" y="${mid+3}" text-anchor="middle" style="font-size:7px;fill:#999">n/a</text>`;
+    const R=Math.max(Math.abs(c.pb-(c.wd==null?c.pb:c.wd)),Math.abs(c.pb-c.fr),1e-9), Y=v=>mid-(c.pb-v)/R*half, ys=Y(c.fr), d=c.pb-c.fr,
+      col="#444";   // neutral: direction is shown by the green / red zones and the rating chip
+    if(c.wd!=null) o+=`<line x1="${x-9}" x2="${x+9}" y1="${Y(c.wd)}" y2="${Y(c.wd)}" stroke="#fff" stroke-width="5"/><line x1="${x-9}" x2="${x+9}" y1="${Y(c.wd)}" y2="${Y(c.wd)}" stroke="#00796b" stroke-width="2.5"/>`;
+    return o+`<rect x="${x-3}" y="${Math.min(ys,mid)}" width="6" height="${Math.abs(mid-ys)}" fill="${col}" opacity="0.45"/>`+
+      `<line x1="${x-9}" x2="${x+9}" y1="${mid}" y2="${mid}" stroke="#e07b00" stroke-width="2.5"/>`+
+      `<rect x="${x-4.4}" y="${ys-4.4}" width="8.8" height="8.8" transform="rotate(45 ${x} ${ys})" fill="${col}" stroke="#111" stroke-width="1.4"/>`; };
+  const frShapes=(c,x)=>{   // FR column on the fixed axis, all aligned on the column: PBP line (orange), WoD line (teal), scenario diamond; the arrow above marks a move above (blue) or below (red) 0.9 relative to PBP; a collapsed regime shows how many of its EWRs do
+    if(c.fr==null) return `<rect x="${x-9.5}" y="${base+3}" width="19" height="11" rx="2.5" fill="#fff" stroke="#bbb" stroke-dasharray="2 2"/><text x="${x}" y="${base+11.5}" text-anchor="middle" style="font-size:7px;fill:#999">n/a</text>`;
+    const ln=(v,col,h)=>v==null?"":`<line x1="${x-h}" x2="${x+h}" y1="${fy(v)}" y2="${fy(v)}" stroke="#fff" stroke-width="5"/><line x1="${x-h}" x2="${x+h}" y1="${fy(v)}" y2="${fy(v)}" stroke="${col}" stroke-width="2.6"/>`;
+    const t0_=base-PH, tri=(n,yy,col,upw)=>{ if(!n) return ""; const tx=c.grp?x-4:x, y=yy, d=upw?`M${tx-4} ${y+3.5}L${tx+4} ${y+3.5}L${tx} ${y-3.5}Z`:`M${tx-4} ${y-3.5}L${tx+4} ${y-3.5}L${tx} ${y+3.5}Z`;
+      return `<path d="${d}" fill="${col}"/>`+(c.grp?`<text x="${x+2}" y="${y+3}" style="font-size:8px;font-weight:700;fill:${col}">${n}</text>`:""); };
+    const ind=tri(c.up,t0_-27,CHG.gained,true)+tri(c.dn,t0_-18,CHG.lost,false);   // blue ▲ = moves above 0.9, red ▼ = drops below 0.9; a collapsed regime shows how many of its EWRs do
+    return ln(c.pb,"#e07b00",9)+ln(c.wd,"#00796b",6)+`<rect x="${x-4.4}" y="${fy(c.fr)-4.4}" width="8.8" height="8.8" transform="rotate(45 ${x} ${fy(c.fr)})" fill="#444" stroke="#fff" stroke-width="1.2"/>`+ind; };
+  const B_=0.01, scI=POLICY*SCEN.climates.length+CLIM, flags=[];
+  const ruleOf=i=>{ const p=mx.ep[i], w=mx.ew[i], v=mx.etp[i][scI]; if(p==null||v==null) return "norm";   // which of the MDBA's four Rating_ETP rules applies
+    if(p<B_&&v<B_) return "tiny"; if(w!=null&&p<B_&&w<B_) return "tiny2";
+    if(w!=null&&w>p*(1-B_)&&p!==0) return "wod"; if(v>p&&p!==0) return "scn"; return "norm"; };
+  const narr=(i,k)=>{ const p=mx.ep[i], w=mx.ew[i], v=mx.etp[i][scI], r=mx.er[i][scI], code=mx.codes[i], pct=r==null?"n/a":pctTxt(r*100);
+    if(k==="wod") return `${code}: WoD ETP (${f2(w)}) is no better than PBP (${f2(p)}), so there is no improving range up to WoD. It is rated against PBP alone: (PBP − scenario) ÷ PBP = (${f2(p)} − ${f2(v)}) ÷ ${f2(p)} = ${pct}. ETP ${v>p?"rose":"fell"} from PBP, so this scenario is ${v>p?"declining":"improving"}.`;
+    if(k==="scn") return `${code}: scenario ETP (${f2(v)}) is above PBP (${f2(p)}), so it is declining and is rated against PBP alone: (PBP − scenario) ÷ PBP = ${pct}.`;
+    if(k==="tiny") return `${code}: PBP and scenario ETP are both near zero (below 0.01), so the rating is set to 0.`;
+    return `${code}: PBP and WoD ETP are both near zero (below 0.01), so there is no range; rating = 0.01 − scenario ETP = ${pct}.`; };
+  const etpChip=(c,x)=>{   // ETP column: the EWR's rating vs PBP as a percentage, in the colours of the ETP dots (better / worse / little change)
+    if(c.grp||c.er==null) return "";   // only per-EWR ratings: a collapsed flow-regime column has no rating of its own (the ETP score averages EWR ratings per objective)
+    const t0=base-PH, k=c.er>=0.05?CHG.gained:c.er<=-0.05?CHG.lost:CHG.heldMet, i=c.codes[0], rk=ruleOf(i), amber=rk==="wod", msg=rk==="norm"?"":narr(i,rk);
+    if(msg) flags.push({k:rk,msg});
+    return `<g${msg?` class="etpn" data-k="${rk}" data-n="${esc(msg)}" style="cursor:pointer"`:""}>${msg?`<title>Click for why this rating needed a special rule</title>`:""}<rect x="${x-C/2+2}" y="${t0-60}" width="${C-4}" height="38" rx="3" fill="${k}"${amber?` stroke="#f2a900" stroke-width="2.2"`:""}/><text transform="translate(${x+3},${t0-41}) rotate(-90)" text-anchor="middle" style="font-size:8.5px;font-weight:700;fill:#fff">${pctTxt(c.er*100)}</text>`+
+      (msg?`<circle cx="${x}" cy="${t0-16}" r="4.6" fill="${amber?"#f2a900":"#8a94a3"}"/><text x="${x}" y="${t0-13.2}" text-anchor="middle" style="font-size:8px;font-weight:700;fill:#fff">${amber?"!":"i"}</text>`:"")+`</g>`; };
+  cols.forEach((c,ci)=>{const x=x0+ci*C+C/2, hit=rows.map((r,ri)=>L_.cell[ci][ri]>0), idx=hit.map((h,i)=>h?i:-1).filter(i=>i>=0);
+    s+=`<g><title>${esc(clabel(c))}${c.grp?": "+c.codes.map(i=>mx.codes[i]).join(", "):""} — ${modeE?"ETP":"FR"} scenario ${c.fr==null?"n/a":f2(c.fr)}, PBP ${c.pb==null?"n/a":f2(c.pb)}, WoD ${c.wd==null?"n/a":f2(c.wd)} — ${c.n} objective${c.n==1?"":"s"}${c.n?": "+[...c.objSet].map(i=>mx.objs[i]).sort().join(", "):""}</title>`+
+       `<rect x="${x-C/2}" y="${top}" width="${C}" height="${bandH+labH+nR*C}" fill="transparent"/>`+
+       (modeE?spreadBar(c,x)+etpChip(c,x):frShapes(c,x));
+    if(idx.length>1) s+=`<line x1="${x}" x2="${x}" y1="${my+idx[0]*C+C/2}" y2="${my+idx[idx.length-1]*C+C/2}" stroke="#999" stroke-width="2"/>`;
+    rows.forEach((r,ri)=>{const v=L_.cell[ci][ri], q=L_.cs[ci][ri], cy=my+ri*C+C/2;
+      if(!v){ s+=`<circle cx="${x}" cy="${cy}" r="3.2" fill="#e4e4e4"/>`; return; }
+      if(!q.n){ s+= (c.grp||r.grp)?`<circle cx="${x}" cy="${cy}" r="${C/2-2}" fill="#fff" stroke="#888" stroke-width="1.5"/><text x="${x}" y="${cy+3.3}" text-anchor="middle" style="font-size:9px;fill:#888">${v}</text>`
+                         :`<circle cx="${x}" cy="${cy}" r="4.4" fill="#fff" stroke="#888" stroke-width="1.5"/>`; return; }
+      if((c.grp||r.grp)){ s+=`<circle cx="${x}" cy="${cy}" r="${C/2-2}" fill="${divc((q.g-q.l)/q.n)}" stroke="#0003"/><text x="${x}" y="${cy+3.3}" text-anchor="middle" style="font-size:9px;fill:${Math.abs(q.g-q.l)/q.n>0.5?"#fff":"#222"}">${v}</text>`; }
+      else { const k=q.g?"gained":q.l?"lost":q.hm?"heldMet":"heldUnmet"; s+=`<circle cx="${x}" cy="${cy}" r="4.8" fill="${CHG[k]}"/>`; }});
+    s+=`<text transform="translate(${x+3.5},${my-4}) rotate(-90)">${esc(clabel(c))}</text></g>`;});
+  // clickable group bands: flow regimes above the code labels, ecological themes beside the objective labels
+  for(let i=0;i<nCol;){ let j=i; while(j+1<nCol&&cols[j+1].reg===cols[i].reg) j++;
+    const rg=cols[i].reg, single=j===i&&!cols[i].grp, closed=COLL_REG.has(rg)&&!single, bx=x0+i*C+1, bw=(j-i+1)*C-2;   // single: one EWR in the regime, nothing to expand or collapse
+    s+=`<g${single?"":` class="tog" data-k="reg" data-v="${esc(rg)}" style="cursor:pointer"`}><title>${esc(rg)}${single?"":` — click to ${closed?"expand into EWRs":"collapse into one column"}`}</title>`+
+       `<rect x="${bx}" y="${top}" width="${bw}" height="${bandH-2}" rx="3" fill="${closed?"#9fb3cc":"#dde5ef"}" stroke="#8aa0bd"/>`+
+       `<text x="${bx+bw/2}" y="${top+bandH-5}" text-anchor="middle" style="font-size:${bw<34?8:9}px;font-weight:600">${bw<34||single?"":(closed?"▸ ":"▾ ")}${esc((REG_ABBR[rg]||rg).slice(0,bw<34?4:12))}</text></g>`; i=j+1; }
+  for(let i=0;i<nR;){ let j=i; while(j+1<nR&&rows[j+1].theme===rows[i].theme) j++;
+    const th=rows[i].theme, closed=COLL_THEME.has(th)&&!THEME_ONLY, by=my+i*C+1, bh=(j-i+1)*C-2, bx=barW-13;
+    s+=`<g${THEME_ONLY?"":` class="tog" data-k="theme" data-v="${esc(th)}" style="cursor:pointer"`}><title>${esc(th)}${THEME_ONLY?"":` — click to ${closed?"expand into objectives":"collapse into one row"}`}</title>`+
+       `<rect x="${bx}" y="${by}" width="14" height="${bh}" rx="3" fill="${TCOL[th]||"#888"}" opacity="${closed?1:0.55}" stroke="#0004"/>`+
+       `<text transform="translate(${bx+10.5},${by+bh/2}) rotate(-90)" text-anchor="middle" style="font-size:9px;font-weight:600;fill:#fff">${THEME_ONLY?"":(closed?"▸ ":"▾ ")}${esc(THEME_ABBR[th]||th)}</text></g>`; i=j+1; }
+  const gv=modeE?[]:[...new Set([0,0.9,maxFR])];
+  s=s.replace(/(<svg[^>]*>)/,`$1<rect x="${x0-2}" y="${base-PH-14}" width="${W-x0-2}" height="${PH+14+14}" rx="3" fill="#f3f6fa"/>`+(modeE?`<rect x="${x0-2}" y="${base-PH-14}" width="${W-x0-2}" height="${PH/2+14}" fill="#e6f3e8"/><rect x="${x0-2}" y="${base-PH/2}" width="${W-x0-2}" height="${PH/2+14}" fill="#fbe7e3"/><line x1="${x0-2}" x2="${W-4}" y1="${base-PH/2}" y2="${base-PH/2}" stroke="#e07b00" stroke-width="1" stroke-dasharray="3 3"/>`:"")+gv.map(v=>`<line x1="${x0-2}" x2="${W-4}" y1="${fy(v)}" y2="${fy(v)}" stroke="#d5dce6"/><text x="${x0-5}" y="${fy(v)+3}" text-anchor="end" style="font-size:8.5px;fill:#555">${v}</text>`).join("")+
+    `<text transform="translate(${x0-26},${base-PH/2}) rotate(-90)" text-anchor="middle" style="font-size:9px;font-weight:700;fill:#333">${modeE?"ETP vs PBP":"FR (achieved ÷ target)"}</text>`);
+  const lg=(x,y,sw,t)=>sw+`<text x="${x+16}" y="${y+4}" style="font-size:9px">${t}</text>`, ly=base-PH;
+  const gl_=(k,c)=>`<g fill="${c}" stroke="${{p:"#e07b00",w:"#00796b",s:"#111"}[k]}" stroke-width="${k==="s"?1.2:2}">${k==="p"?`<circle cx="8" cy="0" r="3.4"/>`:k==="w"?`<rect x="4.7" y="-3.3" width="6.6" height="6.6"/>`:`<rect x="4.8" y="-3.2" width="6.4" height="6.4" transform="rotate(45 8 0)"/>`}</g>`;
+  s+=(modeE?lg(2,ly,`<rect x="4.5" y="${ly-1.5}" width="7" height="7" transform="rotate(45 8 ${ly+2})" fill="#bbb" stroke="#111"/>`,"scenario")+
+       lg(2,ly+14,`<line x1="1" x2="15" y1="${ly+14}" y2="${ly+14}" stroke="#e07b00" stroke-width="2.5"/>`,"PBP (Pre Basin Plan)")+
+       lg(2,ly+28,`<line x1="1" x2="15" y1="${ly+28}" y2="${ly+28}" stroke="#00796b" stroke-width="2.5"/>`,"WoD (Without Development)")
+     :lg(2,ly,`<line x1="1" x2="15" y1="${ly}" y2="${ly}" stroke="#e07b00" stroke-width="2.5"/>`,"PBP (Pre Basin Plan)")+
+       lg(2,ly+14,`<line x1="3" x2="13" y1="${ly+14}" y2="${ly+14}" stroke="#00796b" stroke-width="2.5"/>`,"WoD (Without Development)")+
+       lg(2,ly+28,`<rect x="4.8" y="${ly+24.8}" width="6.4" height="6.4" transform="rotate(45 8 ${ly+28})" fill="#444"/>`,"selected scenario"));
+
+  s+=(modeE?"":`<line x1="${x0}" x2="${W-6}" y1="${fy(FR_OK)}" y2="${fy(FR_OK)}" stroke="#555" stroke-width="1.2" stroke-dasharray="4 3"/>`)+
+     `<text class="hd" x="2" y="${my-6}">${both?"Combined":modeE?"ETP score":"FR"}</text>${both?`<text class="hd" x="62" y="${my-6}">FR</text><text class="hd" x="104" y="${my-6}">ETP</text>`:modeE?"":`<circle cx="53" cy="${my-9}" r="3.4" fill="#fff" stroke="#e07b00" stroke-width="2"/><text x="58" y="${my-6}" style="font-size:9px">PBP</text><rect x="79" y="${my-13}" width="7" height="7" fill="#00796b"/><text x="88" y="${my-6}" style="font-size:9px">WoD</text><rect x="113" y="${my-12}" width="7" height="7" transform="rotate(45 116.5 ${my-8.5})" fill="#aaa" stroke="#111"/><text x="122" y="${my-6}" style="font-size:9px">scn</text>`}${[["fr","FR",2,40],["etp","ETP",46,44],["both","Combined",94,62]].map(([v,l,x,w])=>`<g class="met" data-v="${v}" style="cursor:pointer"><title>${v==="both"?"Combined: average of the FR and ETP ratings (bars and dots show FR)":"Show "+l+" results"}</title><rect x="${x}" y="${top-28}" width="${w}" height="18" rx="9" fill="${METRIC===v?"#2b3a55":"#fff"}" stroke="#2b3a55"/><text x="${x+w/2}" y="${top-15.5}" text-anchor="middle" style="font-size:10px;font-weight:600;fill:${METRIC===v?"#fff":"#2b3a55"}">${l}</text></g>`).join("")}`+
+     [["exp","Expand all"],["col","Collapse all"]].map(([v,l],i)=>`<g class="xall" data-v="${v}" style="cursor:pointer"><title>${v==="exp"?"Expand every flow regime and ecological theme":"Collapse every flow regime and ecological theme"}</title><rect x="${W+4}" y="${base-PH-14+i*22}" width="70" height="17" rx="8.5" fill="#fff" stroke="#2b3a55"/><text x="${W+39}" y="${base-PH-2+i*22}" text-anchor="middle" style="font-size:9.5px;font-weight:600;fill:#2b3a55">${l}</text></g>`).join("")+`</svg>`;
+  return s;
+}
+function xallBtns(x,y){   // Expand all / Collapse all pills, drawn inside an svg at (x, y)
+  return [["exp","Expand all","Expand every ecological theme"],["col","Collapse all","Collapse every ecological theme"]].map(([v,l,t],i)=>`<g class="xall" data-v="${v}" style="cursor:pointer"><title>${t}</title><rect x="${x}" y="${y+i*22}" width="70" height="17" rx="8.5" fill="#fff" stroke="#2b3a55"/><text x="${x+35}" y="${y+12+i*22}" text-anchor="middle" style="font-size:9.5px;font-weight:600;fill:#2b3a55">${l}</text></g>`).join(""); }
+let LAST_THEMES=[];   // ecological themes of the gauge being drawn (for expand / collapse all)
+let KEY_OPEN=false;   // dot key under the gauge matrix: minimised by default
+let COLL_REG=new Set(REG_ORDER), COLL_THEME=new Set(THEME_ORDER), METRIC="both";   // default: every regime and theme collapsed;   // METRIC: fr | etp | both (default: combined)
+function gaugePopup(g){
+  const el=document.createElement("div");
+  el.style.font="12px system-ui";
+  el.innerHTML=`<div class="crumbs"></div>`+
+    `<div class="ctl"><label>Policy <select class="sp"></select></label><label>Climate <select class="sc"></select></label></div>`+
+    `<div class="puflow" style="display:none;font-size:11.5px;color:#4b5563;margin:2px 0 4px"></div>`+
+    `<div style="margin:3px 0"><small id="cap"></small></div><div class="upset"></div><div class="dotlg" style="display:none;justify-content:flex-end;flex-wrap:wrap;gap:3px 12px;font-size:11.5px;margin:4px 2px 0;color:#222"></div>`+
+    `<details style="margin-top:4px;font-size:11.5px;max-width:560px"><summary style="cursor:pointer">How to read this</summary>`+
+    `<p style="margin:3px 0">Rows are objectives by theme, columns are EWRs by flow regime (click a band to expand). <b>Combined</b> = average of FR and ETP, each the change from Pre Basin Plan towards Without Development (MDBA Table 11 colours).</p>`+
+    `<p style="margin:3px 0">Top panel: <b>FR (top)</b>: PBP ●, WoD ■ and scenario ◆ on one axis, green if the FR target (0.9, dashed) is achieved, red if not; <b>ETP (top)</b>: each column is centred on PBP (orange): up (green) is improving, i.e. lower ETP, down (red) is declining; WoD (teal) and the scenario ◆ sit at their real distance from PBP, and an expanded EWR shows its rating vs PBP as a percentage (click a percentage with a badge to see why a special rule applied: amber ! = WoD is no better than PBP). <b>Left</b>: FR rows show PBP → WoD; ETP rows show the ETP score (the mean of the EWR ratings).</p></details>`;
+  const q=s=>el.querySelector(s), sp=q(".sp"), sc=q(".sc"), box=q(".upset"), cap=q("#cap"), dlg=q(".dotlg");
+  const dot=(c,t,ring)=>`<span style="white-space:nowrap"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;vertical-align:-1px;margin-right:4px;${ring?`border:1.5px solid ${c}`:`background:${c}`}"></span>${t}</span>`;
+  const drawKey=()=>{ dlg.innerHTML=`<button type="button" class="kt" title="${KEY_OPEN?"Minimise":"Show"} the dot key" style="border:0;background:none;font:600 11.5px system-ui;cursor:pointer;padding:0;color:#1f4e8c">${KEY_OPEN?"Key ▾":"Key ▸"}</button>`+(KEY_OPEN?dotKey():"");
+    dlg.querySelector(".kt").onclick=e=>{ e.stopPropagation(); KEY_OPEN=!KEY_OPEN; drawKey(); relayout(); }; };
+  const dotKey=()=>METRIC==="etp"
+    ?`<b>Dot vs Pre Basin Plan:</b>`+dot(CHG.gained,"better (less time beyond MRIP)")+dot(CHG.lost,"worse")+dot(CHG.heldMet,"little change")+dot("#999","no result",1)
+    :`<b>Dot = EWR meets its target (FR ≥ 0.9):</b>`+dot(CHG.gained,"gained vs PBP")+dot(CHG.lost,"lost vs PBP")+dot(CHG.heldMet,"met both")+dot(CHG.heldUnmet,"not met either")+dot("#999","no result",1);
+  const fillSc=scenarioMenus(sp,sc);
+  let SDLSEL=g.sdls&&g.sdls.length?(SDL_CHOICE[g.id]||g.sdl):null;
+  const pusAll=GPU[g.id]||[], flow=q(".puflow"), nrm=s=>String(s).toLowerCase().replace(/[^a-z0-9]/g,"");
+  let pus=[], view=VIEW_PREF, pu=null;
+  const setPUs=()=>{ pus=SDLSEL?pusAll.filter(p=>(PUINFO[p]||{}).s===SDLSEL):pusAll; pu=LAST_PU&&pus.includes(LAST_PU)?LAST_PU:(PU_CHOICE[g.id]&&pus.includes(PU_CHOICE[g.id])?PU_CHOICE[g.id]:pus[0]); if(!pus.length&&view==="pu") view="gauge"; };
+  // breadcrumb: SDL unit > planning unit > gauge. Each level is its own box; the current level is filled. Only the dropdowns inside a box change that level's choice.
+  const gotoSDL=()=>{ const nm=SDLSEL||g.sdl||(pu&&PU2[pu]&&PU2[pu].sdl)||""; NEXT_VT="table"; units.eachLayer(l=>{ if(nrm(l.feature.properties.SWSDLName)===nrm(nm)) l.openPopup(); }); };
+  const drawCrumbs=()=>{ const cr=q(".crumbs"), sdlNm=SDLSEL||g.sdl||(pu&&PU2[pu]&&PU2[pu].sdl)||"", st=(SDLSEL&&g.sdlState&&g.sdlState[SDLSEL])||g.state;
+    const multi=!!(g.sdls&&g.sdls.length), short=s=>s.replace("New South Wales","NSW").replace("Victorian","Vic").replace("Queensland","Qld").replace(" Watercourse","");
+    const own=multi?g.sdls:[sdlNm].filter(Boolean), others=Object.keys(SDLD).sort().filter(n=>!own.some(o=>nrm(o)===nrm(n)));
+    const sdlSel=`<select class="sdlsel" title="Pick any SDL unit${multi?" (this gauge serves several: objectives, EWRs and results come from the one you pick)":""}">`+(own.length?`<optgroup label="This gauge">${own.map(x=>`<option value="${esc(x)}"${x===sdlNm?" selected":""}>${esc(x)}</option>`).join("")}</optgroup>`:"")+`<optgroup label="Other SDL units">${others.map(n=>`<option value="${esc(n)}">${esc(n)}</option>`).join("")}</optgroup></select>`;
+    const puSel=pus.length>1?`<select class="pusel">${pus.map(p=>`<option value="${esc(p)}"${p===pu?" selected":""}>${esc(p)}</option>`).join("")}</select>`:`<span class="nm">${esc(pu||"–")}</span>`;
+    cr.innerHTML=`<div class="crumb${multi?" multi":""}" data-l="sdl" title="${multi?"Pick an SDL unit":"Go to the SDL unit view"}"><span class="cap">SDL unit${multi?` <a class="opensdl" title="Open this SDL unit's view">open ↗</a>`:""}</span>${sdlSel}</div><span class="sep">›</span>`+
+      (pus.length?`<div class="crumb${view==="pu"?" on":""}" data-l="pu" title="Planning-unit view"><span class="cap">Planning unit</span>${puSel}</div><span class="sep">›</span>`:"")+
+      `<div class="crumb${view==="gauge"?" on":""}" data-l="gauge" title="Gauge view"><span class="cap">Gauge</span><span class="nm"><b>${esc(g.id)}</b> ${esc(g.name)} <small>· ${esc(st)}</small></span></div>`;
+    cr.onclick=e=>{ if(e.target.closest("select")) return;
+      const cb=e.target.closest(".crumb"); if(!cb) return; e.stopPropagation(); const l=cb.dataset.l;
+      if(l==="sdl"&&cb.classList.contains("multi")&&!e.target.closest(".opensdl")) return;
+      if(l==="sdl") gotoSDL(); else { view=l; render(); relayout(); if(view==="pu") fitPU(); } };
+    const ss=cr.querySelector(".sdlsel"); if(ss) ss.onchange=()=>{ const v=ss.value; if(multi&&g.sdls.includes(v)){ if(v!==SDLSEL){ SDLSEL=v; SDL_CHOICE[g.id]=SDLSEL; setPUs(); highlightGauges(g.id,pu); render(); relayout(); } } else if(!own.includes(v)) openSDL(v,"table"); };
+    const ps=cr.querySelector(".pusel"); if(ps) ps.onchange=()=>{ pu=ps.value; PU_CHOICE[g.id]=pu; highlightGauges(g.id,pu); render(); relayout(); if(view==="pu") fitPU(); }; };
+  setPUs();
+  const render=()=>{
+    VIEW_PREF=view; if(view==="pu") LAST_PU=pu;
+    drawCrumbs();
+    if(view==="pu"&&pu){ const inf=PUINFO[pu]||{g:[],n:0}; flow.style.display="flex";
+      flow.innerHTML=`${inf.g.length} gauge${inf.g.length==1?"":"s"} · ${inf.n} EWRs`+(inf.g.length>1?` — click a gauge's column header to select it. Orange rings on the map mark them; the planning-unit column pools all their EWRs.`:"");
+      const twin=samePUs(g.id,pu);
+      cap.textContent=twin.length?`Same ratings as ${twin.join(", ")} (the same EWRs feed each).`:"";
+      dlg.style.display="none"; box.innerHTML=puSvg(g,pu); return; }
+    flow.style.display="none"; dlg.style.display="flex"; drawKey();
+    const vmx=SDLSEL&&g.mxs?g.mxs[SDLSEL]:g.mx;
+    cap.textContent=`${vmx.codes.length} EWRs · ${vmx.objs.length} objectives`+(g.model?"":" · no model results (EWR-to-objective mapping only)");
+    box.innerHTML=upset(vmx);};
+  const fitPU=()=>{ const ids=(PUINFO[pu]||{g:[]}).g, ll=GAUGES.filter(x=>ids.includes(x.id)).map(x=>[x.lat,x.lon]); if(ll.length<2) return;
+    const b=L.latLngBounds(ll); if(!map.getBounds().contains(b)) map.fitBounds(b.pad(0.5),{maxZoom:map.getZoom(),animate:false}); };   // zoom out only if some of the unit's gauges are off-screen
+  const relayout=()=>{const pp=map._popup; if(pp&&pp._container){pp._updateLayout(); pp._updatePosition(); pp._adjustPan();}};   // relayout only: popup.update() would re-run this content function
+  box.onclick=e=>{const en=e.target.closest(".etpn"); if(en){ e.stopPropagation(); let m=box.querySelector(".etpmsg"); const same=m&&m.dataset.n===en.dataset.n;
+      if(m) m.remove(); if(!same){ m=document.createElement("div"); m.className="etpmsg"; m.dataset.n=en.dataset.n; m.style.cssText="max-width:380px;font-size:11px;line-height:1.35;margin:5px 2px 0;padding:5px 8px;border-left:3px solid "+(en.dataset.k==="wod"?"#f2a900":"#8a94a3")+";background:#f7f7f4;color:#222"; m.textContent=en.dataset.n; box.appendChild(m); } relayout(); return; }
+    const g_=e.target.closest(".tog,.met,.gh,.xall"); if(!g_) return; e.stopPropagation();   // the redraw detaches the clicked node, so Leaflet would otherwise treat this as a map click and close the popup
+    if(g_.classList.contains("xall")){ if(g_.dataset.v==="exp"){ COLL_REG.clear(); COLL_THEME.clear(); } else { REG_ORDER.forEach(r=>COLL_REG.add(r)); LAST_THEMES.forEach(t=>COLL_THEME.add(t)); } render(); relayout(); return; }
+    if(g_.classList.contains("gh")){ const id=g_.dataset.v, ng=GAUGES.find(x=>x.id===id), pp=map._popup;
+      if(ng&&id!==g.id&&pp){ PU_CHOICE[id]=pu; LAST_PU=pu; VIEW_PREF="pu"; if(ng.sdls&&ng.sdls.length&&(PUINFO[pu]||{}).s) SDL_CHOICE[id]=PUINFO[pu].s;
+        pp.setContent(gaugePopup(ng)); highlightGauges(id,pu); } return; }   // click through to another gauge in this planning unit
+    if(g_.classList.contains("met")){ METRIC=g_.dataset.v; render(); relayout(); return; }
+     const S_=g_.dataset.k==="reg"?COLL_REG:COLL_THEME, v=g_.dataset.v; S_.has(v)?S_.delete(v):S_.add(v); render(); relayout();};
+  const onChange=()=>{POLICY=+sp.value; CLIM=+sc.value; fillSc(); CLIM=+sc.value; render(); relayout();};
+  [sp,sc].forEach(e=>e.onchange=onChange); render();
+  return el;
+}
+
+// ---- SDL unit view: planning units (columns) x objectives (rows) -> SDL unit column; theme rows = mean of objectives ----------------
+let PU_HL=null;
+const median_=a=>{a=a.filter(v=>v!=null&&isFinite(v)).sort((x,y)=>x-y); const n=a.length; return n?(n%2?a[(n-1)/2]:(a[n/2-1]+a[n/2])/2):null;};
+const mean_=a=>{a=a.filter(v=>v!=null&&isFinite(v)); return a.length?a.reduce((x,y)=>x+y,0)/a.length:null;};
+function sdlTable(d){                                         // rating tables [objective][planning unit .. , SDL unit] for FR and ETP
+  const sc=POLICY*SCEN.climates.length+CLIM, R={};
+  ["fr","et"].forEach(k=>{R[k]=d.objs.map((_,o)=>{const row=d[k][o].map(a=>a[sc]); row.push(median_(row)); return row;});});   // SDL unit = median over planning units
+  const nc=d.pus.length+1, obj=(o,c)=>METRIC==="fr"?R.fr[o][c]:METRIC==="etp"?R.et[o][c]:mean_([R.fr[o][c],R.et[o][c]]);
+  const theme=(ids,c)=>mean_(ids.map(o=>obj(o,c)));   // objective = mean of FR and ETP, then theme = mean of its objectives
+  return {R,nc,obj,theme};
+}
+let SHOW_PUS=false;   // all-themes tab: planning-unit columns are hidden until asked for
+function sdlSvg(d,asm,forceOpen,hidePU){
+  const wrapN=(t,n)=>{ const w=String(t).split(/\s+/), out=[]; let cur=""; w.forEach(x=>{ if((cur+" "+x).trim().length>n&&cur){ out.push(cur); cur=x; } else cur=(cur+" "+x).trim(); }); if(cur) out.push(cur); return out; };
+  const showPU=!hidePU, T=sdlTable(d), nP=d.pus.length, cw=Math.max(36,Math.ceil(d.pus.reduce((m,p)=>Math.max(m,wrapN(p,20).length),1)*11.5+8)), ch=19, gap=10;
+  const themes=THEME_ORDER.concat(uniq(d.theme).filter(x=>!THEME_ORDER.includes(x))).filter(th=>d.theme.includes(th));
+  const lines=[]; themes.forEach(th=>{const ids=d.objs.map((_,i)=>d.theme[i]===th?i:-1).filter(i=>i>=0).sort((a,b)=>d.objs[a].localeCompare(d.objs[b],undefined,{numeric:true}));
+    if(forceOpen){ ids.forEach(i=>lines.push({th, o:i, ids:[i]})); lines.push({th, theme:true, ids}); } else { lines.push({th, theme:true, ids}); if(!COLL_THEME.has(th)) ids.forEach(i=>lines.push({th, o:i, ids:[i]})); } });
+  const puLines=p=>{ const l=wrapN(p,20), inf=PUINFO[p]||{g:[]}; l[l.length-1]+=` · ${inf.g.length}g`; return l; };   // full name, wrapped; gauge count on the last line
+  const maxL=Math.max(...d.pus.map(p=>puLines(p).length)), LS=11.5, lab=Math.max(...d.objs.map(o=>o.length),...themes.map(x=>x.length+5),8)*6.2+14, bandW=16, left=bandW+lab+4;
+  const CATW=130, colX=c=>c===nP?left:left+cw+CATW+gap+c*cw, labH=Math.max(14,...d.pus.map(p=>Math.max(...puLines(p).map(l=>l.length))))*5.4+8, top=4+labH;
+  const W=showPU?colX(Math.max(nP-1,0))+cw+6:left+cw+CATW+24, H=top+lines.length*ch+6, f2=v=>v.toFixed(2);   // CATW: room right of the SDL unit column for the theme category name
+  LAST_THEMES=themes;
+  const EX=forceOpen?0:78, W2=W+EX, AV=Math.max(320,innerWidth-110), k_=Math.min(1,AV/W2);   // wider than the screen: scale the whole graph down so it fits the popup; EX = room for the expand / collapse buttons
+  let s=`<svg width="${W2*k_}" height="${H*k_}" viewBox="0 0 ${W2} ${H}">`;
+  if(showPU) d.pus.forEach((p,c)=>{const x=colX(c)+cw/2, inf=PUINFO[p]||{g:[],n:0};
+    s+=`<g class="pu" data-v="${esc(p)}" style="cursor:pointer"><title>${esc(p)} — ${inf.g.length} gauge${inf.g.length==1?"":"s"} (${esc(inf.g.join(", "))}), ${inf.n} EWR${inf.n==1?"":"s"}. Click to open its gauge-scale view.</title>`+
+       `<rect x="${colX(c)}" y="${top-labH}" width="${cw-2}" height="${labH}" fill="transparent"/>`+
+       puLines(p).map((ln,k)=>`<text transform="translate(${colX(c)+9+k*LS},${top-4}) rotate(-90)" style="font-size:10px">${esc(ln)}</text>`).join("")+`</g>`;});
+  s+=`<text x="${colX(nP)+cw/2}" y="${top-8}" text-anchor="middle" style="font-size:11px;font-weight:700">SDL unit</text>`;
+  lines.forEach((ln,li)=>{const y=top+li*ch, isT=ln.theme, col=TCOL[ln.th]||"#888", closed=!forceOpen&&COLL_THEME.has(ln.th);
+    const label=isT?`${ln.th} (${ln.ids.length})`:d.objs[ln.o];
+    s+=`<rect x="0" y="${y}" width="${W}" height="${ch}" fill="${isT?"#eceff3":(li%2?"#f7f7f7":"#fff")}"/>`+
+       (isT?`<line x1="0" x2="${W}" y1="${y}" y2="${y}" stroke="#8a8a8a"/>`:"")+
+       `<g class="tog" data-v="${esc(ln.th)}" style="cursor:pointer"><title>${esc(ln.th)} — click to ${closed?"expand into objectives":"collapse to the theme row"}</title>`+
+       `<rect x="0" y="${y+1}" width="${bandW}" height="${ch-2}" rx="3" fill="${col}" opacity="${isT?1:0.5}"/>`+
+       (isT?`<text x="${bandW/2}" y="${y+ch/2+3}" text-anchor="middle" style="font-size:9px;font-weight:700;fill:#fff">${closed?"▸":"▾"}</text>`:"")+`</g>`+
+       `<text x="${bandW+4}" y="${y+ch/2+3.5}" style="${isT?"font-weight:700":"fill:#222"}" dx="${isT?0:6}">${esc(label)}</text>`;
+    for(let c=showPU?0:nP;c<=nP;c++){
+      const v=isT?T.theme(ln.ids,c):T.obj(ln.o,c), x=colX(c), cn=c===nP?"SDL unit":d.pus[c];
+      if(isT&&c<nP){ if(c===0) s+=`<text x="${x+4}" y="${y+ch/2+3.8}" style="font-size:10.5px;font-style:italic;fill:#6b7280">${forceOpen?"= mean of the objectives above":closed?"(expand to see)":"= mean of its objectives below"}</text>`; continue; }   // no planning-unit theme values: the SDL value is not an average of them
+      if(v==null){ s+=`<rect x="${x+2}" y="${y+3}" width="${cw-6}" height="${ch-6}" rx="3" fill="none" stroke="#ccc" stroke-dasharray="2 2"/>`; continue; }
+      const k=catOf(v*100), txt=v*100>999?">+999":v*100<-999?"<-999":Math.round(v*100)+"%";
+      let tip=`${cn} · ${isT?ln.th+" (mean of objectives)":d.objs[ln.o]}: ${sgn(v*100)} — ${k.l}`;
+      if(!isT&&METRIC!=="etp"&&T.R.fr[ln.o][c]!=null) tip+=` | FR ${sgn(T.R.fr[ln.o][c]*100)}`;
+      if(!isT&&METRIC!=="fr"&&T.R.et[ln.o][c]!=null) tip+=` | ETP ${sgn(T.R.et[ln.o][c]*100)}`;
+      const ref=isT&&c<nP;   // theme row, planning-unit cell: this unit's mean of its own objectives, shown for reference only
+      if(ref) tip+=" — reference only: the SDL value is the mean of the objectives' medians, not an average of these";
+      s+=`<g${ref?` opacity=".4"`:""}><title>${esc(tip)}</title><rect x="${x+1}" y="${y+2}" width="${cw-4}" height="${ch-4}" rx="3" fill="${k.c}" stroke="${c===nP?"#222":"#0002"}" stroke-width="${c===nP?1.3:1}"/>`+
+         `<text x="${x+cw/2-1}" y="${y+ch/2+3.3}" text-anchor="middle" style="font-size:9.5px;font-weight:${isT||c===nP?700:400};fill:${k.dk?"#fff":"#222"}">${txt}</text></g>`+
+         (c===nP&&isT?`<text x="${x+cw+4}" y="${y+ch/2+3.8}" style="font-size:10.5px;font-weight:700;fill:#222">${esc(k.l.replace(/ from PBP( towards WoD)?/,""))}</text>`:"")+
+         (c===nP&&!isT?`<text x="${x+cw+6}" y="${y+ch/2+3.6}" style="font-size:10.5px;font-style:italic;fill:#6b7280">${showPU?"◂ median of:":`median of ${nP} planning units`}</text>`:"");}
+  });
+  if(!forceOpen) s+=xallBtns(W+4,4);
+  return s+"</svg>";
+}
+// ---- MDBA assessment process: monitoring condition + confidence, modelled flow improvement -> rubric default -> final moderated likelihood ----
+let RUBRIC_OPEN=false;
+function viewOf(d,a){                                         // d restricted to one assessment unit's planning units (SS7a/b, SS11a/b)
+  if(!a||a.pus.length===d.pus.length) return d;
+  const pick=arr=>arr.map(row=>a.pus.map(i=>row[i])), fr=pick(d.fr), et=pick(d.et);
+  const keep=d.objs.map((_,o)=>[...fr[o],...et[o]].some(c=>c.some(v=>v!=null)));
+  return {...d,pus:a.pus.map(i=>d.pus[i]),objs:d.objs.filter((_,o)=>keep[o]),desc:(d.desc||[]).filter((_,o)=>keep[o]),theme:d.theme.filter((_,o)=>keep[o]),fr:fr.filter((_,o)=>keep[o]),et:et.filter((_,o)=>keep[o])};
+}
+const CONDS=["Very Poor","Poor","Moderate","Good","Very Good"], CCOL={"Very Poor":"#b5392b","Poor":"#e0833a","Moderate":"#f2d04e","Good":"#9ccc65","Very Good":"#43a047"};
+const LIKS=["Very unlikely","Unlikely","About as likely as not","More likely than not","Likely","Very likely"], LCOL=["#b5562a","#efc7b0","#ffffff","#c7e1f2","#63aedd","#21455c"];
+const FI_ROWS=["Significant Decline","Major Decline","Moderate Decline","Minor Decline","PBP Maintained","Minor Improvement","Moderate Improvement","Major Improvement","Significant Improvement"];   // rubric rows, top to bottom
+// MDBA SDL assessment, Technical Methods Figure 6: identifier by flow-improvement grade (rows) x monitoring condition (cols: Very Poor..Very Good)
+const RUBRIC=[[9,9,6,5,5],[9,9,6,5,5],[9,8,5,4,4],[8,8,4,3,3],[8,8,3,2,2],[8,4,3,2,2],[7,7,2,1,1],[7,7,2,1,1],[7,7,2,1,1]];
+// Figure 7: default statement and confidence for each identifier (li = nearest step on the six-point likelihood scale)
+const RUBSTMT={1:["Flows highly likely to support the theme","High",5],2:["Flows likely to support the theme","High",4],3:["Flows more likely than not to support the theme","Medium",3],
+  4:["Flows about as likely as not to support the theme","Low",2],5:["Flows unlikely to support the theme","Low",1],6:["Flows very unlikely to support the theme","Low",0],
+  7:["Flows likely to support the theme; condition likely affected by a non-flow driver","Low",4],8:["Flows unlikely to support the theme; condition may also be affected by a non-flow driver","Medium",1],
+  9:["Flows very unlikely to support the theme","High",0]};
+const CONFN={"High":3,"Medium":2,"Moderate":2,"Low":1,"Data deficient":0,"NA":null};
+const confDots=c=>{ const n=CONFN[c]; return n==null?"":`<span title="${esc(c)} confidence" style="letter-spacing:1px;color:#222">${"●".repeat(n)}<span style="color:#999">${"○".repeat(3-n)}</span></span> `; };
+const chipH=(t,bg,fg,tip)=>`<span title="${esc(tip||t)}" style="display:inline-block;padding:1px 7px;border-radius:3px;background:${bg};color:${fg||"#222"};border:1px solid #0002;white-space:nowrap">${esc(t)}</span>`;
+const normFI=g=>{ if(!g) return -1; const x=String(g).toLowerCase().replace("signficant","significant").replace("maintained","maintained"); return FI_ROWS.findIndex(r=>r.toLowerCase()===x); };
+let MODSEL=null;   // theme whose moderation note is open
+function procRows(dv,a){
+  const u=PROC[a.code]; if(!u) return null;
+  const T=sdlTable(dv), nP=dv.pus.length, polKey=POLICY===BPFI?"BPFI":"BP2024", loe=POLICY===BPFI?"LoE2":"LoE1", climate=CLIM>0;
+  const scn=SCEN.climates[CLIM], themes=THEME_ORDER.filter(t=>u.themes[t]);
+  const ourFI=th=>{ const ids=dv.objs.map((_,i)=>dv.theme[i]===th?i:-1).filter(i=>i>=0); return mean_(ids.map(o=>mean_([T.R.fr[o][nP],T.R.et[o][nP]]))); };
+  const rows=themes.map(th=>{ const t=u.themes[th], g=t.cond.g, assessed=g&&!/not assessed|^na$/i.test(g);
+    const v=ourFI(th), pubG=climate?(t.pub.LoE3||{})[scn]:t.pub[polKey];
+    const cat=v==null?null:catOf(v*100), calcIdx=cat?8-CATS.indexOf(cat):-1, pubIdx=normFI(pubG);
+    const fi=pubIdx>=0?pubIdx:calcIdx, usedPub=pubIdx>=0, differs=calcIdx>=0&&pubIdx>=0&&calcIdx!==pubIdx;   // the rubric always uses the MDBA published grade when there is one
+    const ci=CONDS.findIndex(c=>c.toLowerCase()===String(g).toLowerCase()), id=assessed&&fi>=0&&ci>=0?RUBRIC[fi][ci]:null, def=id?RUBSTMT[id]:null;
+    const fin=!climate&&t.final?t.final[loe]:null, li=fin&&fin.likelihood?LIKS.indexOf(fin.likelihood):-1;
+    const moderated=!!(def&&fin&&li>=0&&(def[2]!==li||def[1]!==fin.confidence));
+    return {th,t,g,assessed,v,cat,calcIdx,pubIdx,fi,usedPub,differs,pubG,ci,id,def,fin,li,moderated}; });
+  return {u,rows,loe,climate,scn,polKey};
+}
+// note shown when a moderated theme's asterisk is clicked: rubric default -> MDBA final, with the Appendix B reasons for the unit
+function modNote(dv,a){
+  if(!MODSEL) return ""; const P=procRows(dv,a); if(!P) return ""; const r=P.rows.find(x=>x.th===MODSEL); if(!r||!r.moderated) return "";
+  const n=MODN[a.code]||{general:[],unit:"",loe:""};
+  return `<div class="modnote" style="margin:6px 0;padding:6px 8px;background:#fff8e6;border:1px solid #e6c36a;border-radius:4px;font-size:11.5px;max-width:900px">`+
+    `<b>${esc(r.th)} — moderated.</b> Flow improvement used: <b>${r.fi>=0?esc(FI_ROWS[r.fi]):"n/a"}</b>${r.differs?` (calculated here: ${esc(FI_ROWS[r.calcIdx])})`:""}. `+
+    `Rubric default (${P.loe}): <b>${esc(LIKS[r.def[2]])}</b>, ${esc(r.def[1])} confidence → moderated to <b>${esc(r.fin.likelihood)}</b>, ${esc(r.fin.confidence)} confidence.`+
+    `<div style="margin-top:4px;max-height:170px;overflow:auto;color:#333"><i>MDBA science-synthesis moderation notes for this unit (Technical Methods, Appendix B):</i>`+
+    n.general.map(g=>`<br>• <b>${esc(g.title)}:</b> ${esc(g.text)}`).join("")+(n.unit?`<br>• ${esc(n.unit)}`:"")+(n.loe?`<br>• ${esc(n.loe)}`:"")+
+    `</div><small style="color:#666">Appendix B moderates the <i>likelihood that flows support the theme</i> (and monitoring confidence); it does not publish a moderated flow-improvement category.</small></div>`;
+}
+// ---- Likelihood view: level 1 = likelihood plot (like the MDBA table), level 2 = how the score is calculated, level 3 = flow improvement logic ----
+function etpMsg(c,en){   // click on an ETP rating that needed a special rule: one short explanation under the plot (click again to close)
+  let m=c.querySelector(".etpmsg"); const same=m&&m.dataset.n===en.dataset.n; if(m) m.remove();
+  if(!same){ m=document.createElement("div"); m.className="etpmsg"; m.dataset.n=en.dataset.n; m.style.cssText="max-width:380px;font-size:11px;line-height:1.35;margin:5px 2px 0;padding:5px 8px;border-left:3px solid "+(en.dataset.k==="wod"?"#f2a900":"#8a94a3")+";background:#f7f7f4;color:#222"; m.textContent=en.dataset.n; c.appendChild(m); } }
+const DRILL={};   // theme -> {pu, gid}: the nested planning-unit / gauge view open inside a theme card of the likelihood tab
+function drillHtml(th){
+  const d=DRILL[th]; if(!d||!d.pu) return "";
+  const inf=PUINFO[d.pu]||{g:[]}, gid=d.gid&&inf.g.includes(d.gid)?d.gid:null, gg=gid&&GAUGES.find(x=>x.id===gid), link="color:#1f4e8c;font-weight:600;cursor:pointer";
+  const mx=gg&&(gg.mxs&&gg.mxs[inf.s]?gg.mxs[inf.s]:gg.mx);
+  let mh=""; if(gid){ THEME_ONLY=th; try{ mh=upset(mx); } finally{ THEME_ONLY=null; } }
+  return `<div class="drill" data-th="${esc(th)}" style="margin-top:10px;padding:8px 10px;background:#f4f7fb;border-left:4px solid ${TCOL[th]||"#888"};border-radius:4px">`+
+    `<div style="font-size:12px;margin-bottom:5px"><b>${esc(th)}</b> › <a class="dpu" data-th="${esc(th)}" style="${link}">${esc(d.pu)}</a>${gid?` › <b>${esc(gid)}</b> ${esc(gg.name||"")}`:""} &nbsp; <a class="dopen" data-pu="${esc(d.pu)}" data-g="${esc(gid||"")}" style="${link}">open in the full ${gid?"gauge":"planning-unit"} view ↗</a> &nbsp; <a class="dclose" data-th="${esc(th)}" style="${link}">close ✕</a></div>`+
+    `<div style="overflow:auto">${puSvg({id:gid||""},d.pu,{theme:th,gh:"gd"})}</div>`+
+    (gid?`<div class="drillg" data-th="${esc(th)}" style="margin-top:8px;overflow:auto"><div style="font-size:11.5px;color:#6b7280;margin-bottom:2px">Gauge ${esc(gid)}: its EWRs and the ${esc(th)} objectives they feed</div>${mh}</div>`
+         :`<div style="font-size:11px;color:#6b7280;margin-top:3px">Click a gauge column header to see its EWRs for this theme.</div>`)+`</div>`;
+}
+let LAST_PROC_THEMES=[];   // themes of the likelihood table being drawn (for expand / collapse all)
+let EXP2=new Set(), EXP3=new Set(), EXP4=new Set();   // EXP2: theme open (one at a time); EXP3: flow improvement logic; EXP4: planning-unit columns
+function themeView(dv,th){                                    // dv restricted to one theme's objectives
+  const keep=dv.objs.map((_,o)=>dv.theme[o]===th);
+  return {...dv,objs:dv.objs.filter((_,o)=>keep[o]),desc:(dv.desc||[]).filter((_,o)=>keep[o]),theme:dv.theme.filter((_,o)=>keep[o]),fr:dv.fr.filter((_,o)=>keep[o]),et:dv.et.filter((_,o)=>keep[o])};
+}
+function procHtml(dv,a){
+  const P=procRows(dv,a); if(!P) return `<i>The MDBA's published assessment grades do not cover this SDL unit (it is not in the 2026 review's modelled results). Use the Flow improvement tab.</i>`;
+  const {rows,loe,climate,scn}=P, dark=li=>li>=4;
+  const confB=c=>{ const n=CONFN[c]; return n==null?"":`<div style="margin-top:3px;color:#444;font-size:12px;white-space:nowrap"><span style="letter-spacing:1px">${"●".repeat(n)}<span style="color:#bbb">${"○".repeat(3-n)}</span></span> ${esc(c)}</div>`; };
+  const chip=(t,bg,fg,tip,muted)=>`<span title="${esc(tip||t)}" style="display:inline-block;padding:2px 8px;border-radius:5px;background:${bg};color:${fg||"#222"};border:1px solid #0002;font-weight:600;white-space:nowrap;${muted?"opacity:.55;":""}">${esc(t)}</span>`;
+  const lab=(t,on)=>`<div style="font-size:10.5px;font-weight:${on?700:500};color:${on?"#1f3a5f":"#6b7280"};margin-bottom:1px">${t}</div>`;
+  const gradeChip=(i,muted)=>{ const c=CATS[8-i]; return chip(FI_ROWS[i],c.c,c.dk?"#fff":"#222",FI_ROWS[i],muted); };
+  const likChip=(li,muted,tip)=>chip(LIKS[li],LCOL[li],dark(li)?"#fff":"#222",tip,muted);
+  const sty=`<style>.lk{border-collapse:collapse;font-size:13px;width:100%;min-width:600px;max-width:1000px;table-layout:fixed;background:#fff;color:#222}.lk th{padding:6px 4px;font-size:12px;font-weight:400;text-align:center;color:#222;vertical-align:bottom}.lk th.ttl{font-size:14px;font-weight:600;color:#2b5b8a;border-top:1.5px solid #222;border-bottom:1px solid #999;padding:8px}.lk td{padding:0;border-bottom:1px solid #222}.lk td.th{padding:10px 8px;font-weight:400;cursor:pointer;text-align:center;font-size:13px}.lk td.lo{text-align:center;font-size:12px;color:#444}.lk td.c{height:46px;text-align:center}.lk td.cf{padding:6px 8px;text-align:center;white-space:nowrap;font-size:15px;letter-spacing:2px}.lk tr.hd2 th{position:sticky;top:0;background:#fff;z-index:2;border-bottom:1px solid #222}.lk tr.lkrow:hover td{filter:brightness(.96)}.lk tr.lkrow:hover td.th{background:#e8f0fa;text-decoration:underline}.l3{border-collapse:collapse;font-size:12.5px;width:100%}.l3 th{text-align:left;font-weight:600;padding:5px 8px;border-bottom:1.5px solid #888;color:#374151}.l3 td{padding:4px 8px;border-bottom:1px solid #e3e8ef;vertical-align:top}.steps{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:10px 12px;align-items:start}@media (max-width:640px){.steps{grid-template-columns:1fr}.steps .arr{display:none}}
+.card{padding:12px 14px;background:#f7f9fc;border-left:5px solid #1f3a5f;overflow-x:auto}.card a{cursor:pointer}.ast{color:#d11;font-weight:800;font-size:17px;margin-left:2px}</style>`;
+  const noFinal=!climate&&rows.some(r=>r.def&&!(r.fin&&r.fin.likelihood));
+  LAST_PROC_THEMES=rows.map(r=>r.th);
+  const pillB="border:1px solid #2b3a55;background:#fff;color:#2b3a55;border-radius:9px;font:600 11px system-ui;padding:2px 9px;margin-left:6px;cursor:pointer";
+  let h=`<div style="margin:2px 0 8px;font-size:12.5px;color:#6b7280"><span style="float:right;margin-left:12px;white-space:nowrap"><button type="button" class="xallp" data-v="exp" style="${pillB}">Expand all</button><button type="button" class="xallp" data-v="col" style="${pillB}">Collapse all</button></span>${climate?"Climate scenario: the rubric default is shown (the MDBA publishes final likelihoods for historical climate only). ":noFinal?"The MDBA's final likelihoods could not be read for this assessment, so the rubric default is shown. ":""}Click a theme to see how its score is calculated.</div>`+
+    `<table class="lk"><colgroup><col style="width:150px"><col style="width:62px">${LIKS.map(()=>`<col>`).join("")}<col style="width:96px"></colgroup>`+
+    `<tr><th></th><th></th><th class="ttl" colspan="7">The <i>likelihood</i> that the pattern and volume of flow will support the objectives for each ecological theme</th></tr>`+
+    `<tr class="hd2"><th style="font-weight:600;color:#2b5b8a;font-size:13px;text-align:center;vertical-align:middle">Theme</th><th>Line of enquiry</th>${LIKS.map(l=>`<th>${l.replace("About as likely as not","About as likely as not").replace("More likely than not","More likely than not")}</th>`).join("")}<th>Confidence</th></tr>`;
+  rows.forEach(r=>{
+    const open=EXP2.has(r.th), final=!climate&&r.fin&&r.fin.likelihood, li=final?r.li:(r.def?r.def[2]:-1), cf=final?r.fin.confidence:(climate?"":r.def?r.def[1]:"");
+    const cells=LIKS.map((l,i)=>{ let mark="";
+      if(li===i) mark=`<span style="display:inline-block;width:14px;height:14px;border-radius:50%;background:${dark(i)?"#fff":"#000"}"></span>`;
+      else if(final&&r.moderated&&r.def&&r.def[2]===i) mark=`<span title="Rubric default before moderation" style="display:inline-block;width:13px;height:13px;border-radius:50%;border:2px dashed ${dark(i)?"#fff":"#444"}"></span>`;
+      return `<td class="c" style="background:${LCOL[i]}">${mark}</td>`; }).join("");
+    const cdots=n=>n==null?"":"●".repeat(n)+`<span style="color:#fff;text-shadow:0 0 0 #000;-webkit-text-stroke:1px #000">${"●".repeat(3-n)}</span>`;
+    h+=`<tr class="lkrow"><td class="th exp2" data-v="${esc(r.th)}" title="Click to see how this score is calculated"><span style="color:#2b5b8a;font-size:11px">${open?"▾":"▸"}</span> ${esc(r.th)}${r.moderated&&final?`<span class="ast" title="Moderated by the MDBA (see note below the table)">*</span>`:""}</td><td class="lo">${r===rows[0]?(climate?"LoE 3":loe.replace("LoE","LoE ")):""}</td>`+
+      (li>=0?cells:`<td colspan="6" style="text-align:center;color:#888">${r.assessed?"n/a":"Not assessed"}</td>`)+
+      `<td class="cf">${cf?cdots(CONFN[cf]):""}${final&&r.moderated&&r.def&&r.def[1]!==r.fin.confidence?`<div style="font-size:13px;letter-spacing:2px;color:#b5b5b5;font-weight:400;line-height:1.2" title="Greyed dots: the rubric's default confidence before the MDBA moderated it">${"●".repeat(CONFN[r.def[1]])}<span style="-webkit-text-stroke:1px #b5b5b5;color:#fff">${"●".repeat(3-CONFN[r.def[1]])}</span></div>`:""}</td></tr>`;
+    if(open){
+      const cond=r.assessed?chip(r.g,CCOL[r.g]||"#ddd",/Very|Poor/.test(r.g)&&r.g!=="Moderate"?"#fff":"#222","Monitoring condition (June 2024)")+confB(r.t.cond.c):`<span style="color:#888">Not assessed</span>`;
+      const fi=r.differs?`<div style="display:flex;gap:10px;align-items:flex-start"><div>${lab("Calculated",false)}${gradeChip(r.calcIdx,true)}</div><div>${lab("MDBA published",true)}${gradeChip(r.pubIdx,false)}</div></div>`:(r.fi>=0?gradeChip(r.fi,false):`<span style="color:#888">n/a</span>`);
+      let lk=`<span style="color:#888">n/a</span>`;
+      if(r.def&&final&&r.moderated) lk=`<div style="display:flex;gap:10px;align-items:flex-start"><div>${lab("Calculated",false)}${likChip(r.def[2],true,`Rubric identifier ${r.id}`)}${confB(r.def[1])}</div><div>${lab(`<a class="modast" data-v="${esc(r.th)}" style="color:#c2410c;font-weight:700;text-decoration:underline" title="Why the MDBA changed it">Moderated</a>`,true)}${likChip(r.li,false)}${confB(r.fin.confidence)}</div></div>`;
+      else if(r.def&&final) lk=likChip(r.li,false)+confB(r.fin.confidence);
+      else if(r.def) lk=likChip(r.def[2],false,`Rubric identifier ${r.id}`)+(climate?"":confB(r.def[1]))+`<div style="font-size:11px;color:#6b7280;margin-top:3px">rubric default</div>`;
+      const arrow=`<div class="arr" style="align-self:center;color:#9aa7b8;font-size:22px">›</div>`, box=(n,t,body)=>`<div><div style="font-size:11.5px;font-weight:700;color:#1f3a5f;margin-bottom:5px"><span style="display:inline-block;width:18px;height:18px;line-height:18px;text-align:center;border-radius:50%;background:#1f3a5f;color:#fff;margin-right:5px">${n}</span>${t}</div>${body}</div>`;
+      const rubricLine=r.id?`<div style="margin-top:8px;font-size:11.5px;color:#6b7280" title="${esc(RUBSTMT[r.id][0]+" — "+RUBSTMT[r.id][1]+" confidence")}">Rubric: ${esc(FI_ROWS[r.fi])} × ${esc(r.g)} condition → identifier ${r.id}</div>`:"";
+      const e3=EXP3.has(r.th);
+      h+=`<tr><td colspan="9" style="padding:0"><div class="card">${r.assessed?`<div class="steps">${box(1,"Monitoring condition",cond)}${arrow}${box(2,"Flow improvement",fi)}${arrow}${box(3,"Likelihood score",lk)}</div>${rubricLine}`:`<div style="color:#555">Not assessed by the MDBA for this unit: no condition grade, so no likelihood score.</div>`}`+
+        (MODSEL===r.th?modNote(dv,a):"")+
+        `<div style="margin-top:8px"><a class="exp3" data-v="${esc(r.th)}" style="color:#1f4e8c;font-weight:600;font-size:12.5px">${e3?"▾":"▸"} Flow improvement logic</a> &nbsp; <a class="rubtog" style="color:#1f4e8c;font-weight:600;font-size:12.5px">${RUBRIC_OPEN?"▾":"▸"} Rubric (Figure 6)</a></div>`;
+      if(RUBRIC_OPEN){
+        const idc=i=>i<=2?"#cfe6f7":i<=4?"#fff3c4":"#f7d4cf";
+        h+=`<table style="border-collapse:collapse;font-size:12px;margin:6px 0"><tr><th style="padding:3px 6px;text-align:left">Flow improvement ↓ &nbsp; Condition →</th>${CONDS.map(c=>`<th style="padding:3px 8px;background:${CCOL[c]};color:${/Very|Poor/.test(c)&&c!=="Moderate"?"#fff":"#222"}">${c}</th>`).join("")}</tr>`+
+          FI_ROWS.map((fr,ri)=>`<tr><td style="padding:3px 6px;background:${CATS[8-ri].c};color:${CATS[8-ri].dk?"#fff":"#222"}">${fr}</td>${CONDS.map((c,ci)=>{ const id=RUBRIC[ri][ci], here=r.id&&r.fi===ri&&r.ci===ci;
+            return `<td style="padding:3px 8px;text-align:center;background:${here?"#ffd54f":idc(id)};border:1px solid #fff;font-weight:${here?700:400}" title="${esc(RUBSTMT[id][0]+" — "+RUBSTMT[id][1]+" confidence")}">${id}</td>`; }).join("")}</tr>`).join("")+`</table>`+
+          `<div style="font-size:11.5px;max-width:800px;columns:2;column-gap:14px">${Object.entries(RUBSTMT).map(([k,v])=>`<div><b>${k}</b> ${esc(v[0])} <small>(${v[1]} confidence)</small></div>`).join("")}</div>`;
+      }
+      if(e3){
+        const tv=themeView(dv,r.th), T3=sdlTable(tv), nP=tv.pus.length, e4=EXP4.has(r.th);
+        const hasDesc=(tv.desc||[]).some(x=>x), order=tv.objs.map((_,o)=>o).sort((x,y)=>tv.objs[x].localeCompare(tv.objs[y],undefined,{numeric:true}));
+        const pc=v=>{ if(v==null||!isFinite(v)) return `<span style="color:#aaa">–</span>`; const k=catOf(v*100); return chip(sgn(v*100),k.c,k.dk?"#fff":"#222",k.l); };
+        const calcTheme=r.calcIdx>=0?gradeChip(r.calcIdx,r.differs):`<span style="color:#888">n/a</span>`, pubTheme=r.pubIdx>=0?gradeChip(r.pubIdx,false):`<span style="color:#888">n/a</span>`;
+        h+=`<div style="margin-top:10px;padding:10px 12px;background:#fff;border:1px solid #d5dde8;border-radius:5px">`+
+          `<div style="font-size:12.5px;margin-bottom:6px"><b>${esc(r.th)} objectives</b> <span style="color:#6b7280">· FR and ETP averaged; planning units combined by the median; theme = mean of objectives</span></div>`+
+          `<table class="l3"><tr><th>${hasDesc?"Objective":"Flow regime"}</th>${hasDesc?"<th>What it is</th>":""}<th>FR</th><th>ETP</th><th>Flow improvement</th></tr>`+
+          order.map(o=>{ const fr=T3.R.fr[o][nP], et=T3.R.et[o][nP], cm=mean_([fr,et]), d0=(tv.desc&&tv.desc[o])||"", sh=d0.length>120?d0.slice(0,118)+"…":d0;
+            return `<tr><td style="white-space:nowrap;font-weight:600">${esc(tv.objs[o])}</td>${hasDesc?`<td title="${esc(d0)}" style="color:#444;font-size:11.5px">${esc(sh)}</td>`:""}<td>${pc(fr)}</td><td>${pc(et)}</td><td>${pc(cm)}</td></tr>`; }).join("")+`</table>`+
+          `<div style="margin-top:8px"><a class="exp4" data-v="${esc(r.th)}" style="color:#1f4e8c;font-weight:600;font-size:12.5px">${e4?"▾":"▸"} Show planning units (${nP})</a></div>`+
+          (e4?`<div style="margin:6px 0 2px;font-size:11.5px;color:#6b7280">Each SDL value is the <b>median</b> of its row; the theme is the <b>mean</b> of the objectives. Click a planning-unit name to drill into its gauges for this theme.</div><div class="puwrap" data-th="${esc(r.th)}" style="overflow:auto">${sdlSvg(tv,null,true)}</div>${drillHtml(r.th)}`:"")+`</div>`;
+      }
+      h+=`</div></td></tr>`;
+    }
+  });
+  h+=`</table>`;
+  const anyMod=rows.some(r=>r.moderated&&!climate&&r.fin&&r.fin.likelihood);
+  h+=`<div style="margin-top:8px;font-size:11.5px;color:#444;line-height:1.55;max-width:960px">`+
+    `<div><b>Confidence:</b> ●●● high · ●●○ medium · ●○○ low. <b>LoE:</b> 1 = Basin Plan 2024 · 2 = full implementation · 3 = full implementation, future climate.</div>`+
+    (anyMod?`<div><span class="ast" style="margin:0">*</span> <b>Moderated</b> by the MDBA after review (Delphi panel, focus groups, state governments). Dashed ring and greyed dots = the rubric default before moderation; the filled dot is the final result. Open the theme and click “Moderated” for the reasons.</div>`:"")+`</div>`;
+  return sty+h;
+}
+// SDL scale -> gauge scale: open the planning-unit view of one of the planning unit's gauges (its other gauges are shown as columns there)
+function openPU(pu,pick){ const inf=PUINFO[pu]; if(!inf) return; const gid=pick&&GM[pick]?pick:inf.g.find(id=>GM[id]); if(!gid) return;
+  VIEW_PREF=pick?"gauge":"pu"; LAST_PU=pu; PU_CHOICE[gid]=pu; const g=GAUGES.find(x=>x.id===gid); if(g&&g.sdls&&g.sdls.length&&inf.s) SDL_CHOICE[gid]=inf.s; GM[gid].openPopup(); }
+let NEXT_VT=null;   // tab the next SDL popup opens on (set when coming back from the gauge scale)
+function openSDL(name,vt){ if(!name) return; NEXT_VT=vt||null; units.eachLayer(l=>{ if(l.feature.properties.SWSDLName===name) l.openPopup(); }); }   // switch to another SDL unit's popup
+function backToSDL(pu){ const nm=PU2[pu]&&PU2[pu].sdl; if(!nm) return; NEXT_VT="table"; units.eachLayer(l=>{ if(l.feature.properties.SWSDLName===nm) l.openPopup(); }); }
+function sdlPopup(p){
+  const d=SDLD[p.SWSDLName], el=document.createElement("div"); el.style.font="12px system-ui";
+  el.innerHTML=`<div class="crumbs"></div>`+
+    `<div class="ctl"><label>Policy <select class="sp"></select></label><label>Climate <select class="sc"></select></label>`+
+    `<label>Metric <select class="sm"><option value="fr">FR</option><option value="etp">ETP</option><option value="both">Combined</option></select></label></div>`+
+    `<div style="margin:2px 0 6px"><span class="seg"><button type="button" class="vt segb" data-v="process">Likelihood score</button><button type="button" class="vt segb" data-v="table">Flow improvement (all themes)</button></span></div>`+
+    `<div class="aggchips" style="display:flex;flex-wrap:wrap;gap:3px;align-items:center;font-size:11px;margin:2px 0 4px">`+
+    `<span style="background:#e6edf5;border:1px solid #9db0c8;border-radius:3px;padding:1px 6px">① planning unit: gauge EWRs → objective flow improvement</span>▸`+
+    `<span style="background:#cfe0f3;border:1px solid #6f8fb8;border-radius:3px;padding:1px 6px">② SDL unit: median of planning units</span>▸`+
+    `<span style="background:#eceff3;border:1px solid #999;border-radius:3px;padding:1px 6px">③ theme: mean of objectives</span><span style="flex-basis:100%;color:#6b7280">SDL value = mean of the theme's objectives, each the median across planning units.</span></div>`+
+    `<div class="upset"></div>`;
+  const q=s=>el.querySelector(s), sp=q(".sp"), sc=q(".sc"), sm=q(".sm"), box=q(".upset");
+  const fillSc=scenarioMenus(sp,sc); sm.value=METRIC;
+  const vts=[...el.querySelectorAll(".vt")], chips=el.querySelector(".aggchips");
+  let VT=NEXT_VT||(PROC[d.ass[0].code]?"process":"table"), AI=0; NEXT_VT=null;
+  const pill=b=>b.classList.toggle("on",b.dataset.v===VT);
+  // breadcrumb in the same style as the gauge popup: SDL unit (current) > planning unit (pick one to open its gauges) > gauge
+  const drawCrumbs=()=>{ const cr=q(".crumbs"), a=d.ass[AI], dv=viewOf(d,a), multi=d.ass.length>1;
+    const pick=`<select class="sdlpick" title="Switch to any SDL unit">${Object.keys(SDLD).sort().map(n=>`<option value="${esc(n)}"${n===p.SWSDLName?" selected":""}>${esc(n)}</option>`).join("")}</select>`;
+    const nm=pick+(multi?`<span style="display:block;margin-top:3px"><select class="asssel" title="The MDBA assesses this SDL unit in separate parts">${d.ass.map((x,i)=>`<option value="${i}"${i===AI?" selected":""}>${esc(x.name)}</option>`).join("")}</select></span>`:"");
+    cr.innerHTML=`<div class="crumb on" style="cursor:default"><span class="cap">SDL unit</span>${nm}<small style="color:#b9c8de">${esc(p.StateID)} · ${dv.pus.length} planning unit${dv.pus.length==1?"":"s"}</small></div><span class="sep">›</span>`+
+      `<div class="crumb" style="cursor:default"><span class="cap">Planning unit</span><select class="pupick" title="Open a planning unit's gauges"><option value="">Choose to open its gauges…</option>${dv.pus.map(x=>`<option value="${esc(x)}">${esc(x)}</option>`).join("")}</select></div><span class="sep">›</span>`+
+      `<div class="crumb off"><span class="cap">Gauge</span><span class="nm">–</span></div>`;
+    const as_=cr.querySelector(".asssel"); if(as_) as_.onchange=()=>{ AI=+as_.value; render(); relayout(); };
+    const sk_=cr.querySelector(".sdlpick"); if(sk_) sk_.onchange=()=>{ if(sk_.value!==p.SWSDLName) openSDL(sk_.value,VT); };
+    const pk=cr.querySelector(".pupick"); pk.onchange=()=>{ if(pk.value) openPU(pk.value); }; };
+  const smLab=sm.closest("label");
+  const render=()=>{ const a=d.ass[AI], dv=viewOf(d,a); drawCrumbs(); vts.forEach(pill); chips.style.display=VT==="table"?"flex":"none"; smLab.style.display=VT==="table"?"":"none";
+    box.innerHTML=VT==="process"?procHtml(dv,a):sdlSvg(dv);
+    if(VT==="process"&&EXP2.size){ const v=[...EXP2][0], cell=[...box.querySelectorAll(".exp2")].find(x=>x.dataset.v===v); if(cell){ const tr=cell.closest("tr"); box.scrollTop=Math.max(0,tr.offsetTop-70); } } };
+  vts.forEach(b=>b.onclick=()=>{VT=b.dataset.v; render(); relayout();});
+  const relayout=()=>{const pp=map._popup; if(pp&&pp._container){pp._updateLayout(); pp._updatePosition(); pp._adjustPan();}};
+  const hl=pu=>{ if(PU_HL){map.removeLayer(PU_HL); PU_HL=null;} if(!pu) return; const ids=(PUINFO[pu]||{g:[]}).g;
+    PU_HL=L.layerGroup(GAUGES.filter(g=>ids.includes(g.id)).map(g=>L.circleMarker([g.lat,g.lon],{pane:"gauges",radius:10,color:"#e8590c",weight:3,fillOpacity:0,interactive:false}))).addTo(map); };
+  box.onclick=e=>{
+    const keep=fn=>{ e.stopPropagation(); const st=box.scrollTop; fn(); render(); box.scrollTop=st; relayout(); };   // redraw but stay where the reader is
+    const dg=e.target.closest(".drillg");   // theme-specific gauge matrix nested in a theme card
+    if(dg){ const en=e.target.closest(".etpn"), el_=e.target.closest(".met,.xall,.tog");
+      if(en){ e.stopPropagation(); etpMsg(dg,en); relayout(); }
+      else if(el_) keep(()=>{ if(el_.classList.contains("met")){ METRIC=el_.dataset.v; sm.value=METRIC; } else if(el_.classList.contains("xall")){ if(el_.dataset.v==="exp") COLL_REG.clear(); else REG_ORDER.forEach(r=>COLL_REG.add(r)); } else if(el_.dataset.k==="reg"){ const v=el_.dataset.v; COLL_REG.has(v)?COLL_REG.delete(v):COLL_REG.add(v); } });
+      return; }
+    const dc=e.target.closest(".dclose"); if(dc){ keep(()=>{ delete DRILL[dc.dataset.th]; }); return; }
+    const dp=e.target.closest(".dpu"); if(dp){ keep(()=>{ const d=DRILL[dp.dataset.th]; if(d) d.gid=null; }); return; }
+    const dop=e.target.closest(".dopen"); if(dop){ e.stopPropagation(); openPU(dop.dataset.pu,dop.dataset.g||null); return; }
+    const gd=e.target.closest(".gd"); if(gd){ const th=gd.closest(".drill").dataset.th; keep(()=>{ const d=DRILL[th]; if(d) d.gid=gd.dataset.v; }); return; }
+    const pw=e.target.closest(".puwrap"), pun=pw&&e.target.closest(".pu"); if(pun){ keep(()=>{ DRILL[pw.dataset.th]={pu:pun.dataset.v,gid:null}; }); return; }
+    const x2=e.target.closest(".exp2"); if(x2){ e.stopPropagation(); const v=x2.dataset.v; if(EXP2.has(v)) EXP2.clear(); else { EXP2.clear(); EXP2.add(v); } render(); relayout(); return; }
+    const x4=e.target.closest(".exp4"); if(x4){ e.stopPropagation(); const v=x4.dataset.v; EXP4.has(v)?EXP4.delete(v):EXP4.add(v); render(); relayout(); return; }
+    const x3=e.target.closest(".exp3"); if(x3){ e.stopPropagation(); const v=x3.dataset.v; EXP3.has(v)?EXP3.delete(v):EXP3.add(v); render(); relayout(); return; }
+    const ma=e.target.closest(".modast"); if(ma){ e.stopPropagation(); MODSEL=MODSEL===ma.dataset.v?null:ma.dataset.v; render(); relayout(); return; }
+    const sb=e.target.closest(".stgtog"); if(sb){ e.stopPropagation(); STAGES_OPEN=!STAGES_OPEN; render(); relayout(); return; }
+    const rb=e.target.closest(".rubtog"); if(rb){ e.stopPropagation(); RUBRIC_OPEN=!RUBRIC_OPEN; render(); relayout(); return; }
+    const xa=e.target.closest(".xall,.xallp"); if(xa){ e.stopPropagation();
+      if(xa.classList.contains("xallp")){ const all=LAST_PROC_THEMES; if(xa.dataset.v==="exp"){ all.forEach(t=>{ EXP2.add(t); EXP3.add(t); EXP4.add(t); }); } else { EXP2.clear(); EXP3.clear(); EXP4.clear(); } }
+      else if(xa.dataset.v==="exp") COLL_THEME.clear(); else LAST_THEMES.forEach(t=>COLL_THEME.add(t));
+      render(); relayout(); return; }
+    const t_=e.target.closest(".tog,.pu"); if(!t_) return; e.stopPropagation();   // see gaugePopup: the redraw detaches the clicked node
+    if(t_.classList.contains("pu")){ openPU(t_.dataset.v); return; }
+    const v=t_.dataset.v; COLL_THEME.has(v)?COLL_THEME.delete(v):COLL_THEME.add(v); render(); relayout(); };
+  sp.onchange=sc.onchange=sm.onchange=()=>{POLICY=+sp.value; CLIM=+sc.value; fillSc(); CLIM=+sc.value; METRIC=sm.value; render(); relayout();};
+  map.once("popupclose",()=>hl(null));
+  render(); return el;
+}
+
+// ---- planning-unit view of a gauge: its planning unit's other gauges on the map, and how they pool into the unit rating ----------
+const GPU={}, PU2={}, PU_CHOICE={}, SDL_CHOICE={};
+function puSig(pu){ const l=PU2[pu]; if(!l) return null; const d=SDLD[l.sdl], sc=POLICY*SCEN.climates.length+CLIM; return JSON.stringify(d.objs.map((o,i)=>[d.fr[i][l.c][sc],d.et[i][l.c][sc]])); }
+function samePUs(id,pu){ const sg=puSig(pu); return sg==null?[]:(GPU[id]||[]).filter(p=>p!==pu&&puSig(p)===sg); }
+let VIEW_PREF="gauge", LAST_PU=null;   // last tab / planning unit used, so clicking through gauges keeps the same view
+const choosePU=id=>{ const pus=GPU[id]||[]; return LAST_PU&&pus.includes(LAST_PU)?LAST_PU:(PU_CHOICE[id]||pus[0]); };
+Object.entries(PUINFO).forEach(([pu,inf])=>inf.g.forEach(g=>(GPU[g]=GPU[g]||[]).push(pu)));   // gauge -> planning units it belongs to
+Object.entries(SDLD).forEach(([nm,d])=>d.pus.forEach((p,c)=>{PU2[p]={sdl:nm,c};}));            // planning unit -> its SDL unit and column
+let HL=null;
+function clearHL(){ if(HL){map.removeLayer(HL); HL=null;} }
+function highlightGauges(centerId, pu){                       // ring every gauge in the planning unit, dashed links from the clicked gauge
+  clearHL(); if(!pu) return;
+  const ids=(PUINFO[pu]||{g:[]}).g, gs=GAUGES.filter(x=>ids.includes(x.id)), c=gs.find(x=>x.id===centerId), lay=[];
+  gs.forEach(x=>{
+    if(c&&x.id!==centerId) lay.push(L.polyline([[c.lat,c.lon],[x.lat,x.lon]],{pane:"gauges",color:"#e8590c",weight:2,dashArray:"5 4",interactive:false}));
+    lay.push(L.circleMarker([x.lat,x.lon],{pane:"gauges",radius:x.id===centerId?13:10,color:"#e8590c",weight:x.id===centerId?4:3,fillOpacity:0,interactive:false})
+      .bindTooltip(esc(x.id),{permanent:true,direction:"top",className:"puhl",offset:[0,-8]})); });
+  HL=L.layerGroup(lay).addTo(map);
+}
+map.on("popupopen",e=>{ const s=e.popup._source; if(s&&s._gid){ const pus=GPU[s._gid]||[]; highlightGauges(s._gid, choosePU(s._gid)); } });
+map.on("popupclose",clearHL);
+
+function gaugeObjStats(mx){                                   // objective -> FR and ETP stats from one gauge's own EWRs (selected scenario vs PBP / WoD)
+  const NCL=SCEN.climates.length, sc=POLICY*NCL+CLIM, PB=SCEN.policies.indexOf("Pre Basin Plan")*NCL, WD=SCEN.policies.indexOf("Without Development")*NCL, out={};
+  mx.objs.forEach((lab,o)=>{
+    const ids=mx.codes.map((c,i)=>i).filter(i=>mx.cells[i].includes(o));
+    const fi=ids.filter(i=>mx.fr[i][sc]!=null&&mx.fr[i][PB]!=null&&mx.fr[i][WD]!=null); let fr=null;
+    if(fi.length){ const k=K=>fi.filter(i=>mx.fr[i][K]>=FR_OK).length, n=fi.length, ks=k(sc), kp=k(PB), kw=k(WD); fr={n,ks,kp,kw,r:frspRating(ks/n,kp/n,kw/n)}; }
+    const ei=ids.filter(i=>mx.er[i][sc]!=null), et=ei.length?{n:ei.length,r:mean_(ei.map(i=>mx.er[i][sc]))}:null;
+    out[lab]={theme:mx.info[o][1], desc:mx.info[o][0], fr, et}; });
+  return out;
+}
+function puSvg(g, pu, opts={}){
+  const inf=PUINFO[pu]||{g:[]}, ids=inf.g.slice().sort(), gs=ids.map(id=>GAUGES.find(x=>x.id===id)).filter(Boolean);
+  const sc=POLICY*SCEN.climates.length+CLIM, loc=PU2[pu], d=loc&&SDLD[loc.sdl], c=loc&&loc.c;
+  const sts=gs.map(x=>gaugeObjStats(x.mxs&&x.mxs[inf.s]?x.mxs[inf.s]:x.mx));   // a gauge serving several SDL units: use this planning unit's SDL unit
+  const puVal={}; if(d) d.objs.forEach((eo,o)=>{ puVal[eo]={f:d.fr[o][c][sc], e:d.et[o][c][sc], theme:d.theme[o]}; });
+  const combine=(f,e)=>METRIC==="fr"?f:METRIC==="etp"?e:mean_([f,e]);
+  const labels=uniq(sts.flatMap(s=>Object.keys(s)).concat(Object.keys(puVal).filter(k=>puVal[k].f!=null||puVal[k].e!=null)));
+  const themeOf=l=>{ for(const s of sts) if(s[l]) return s[l].theme; return puVal[l]?puVal[l].theme:"Unclassified"; };
+  const descOf=l=>{ for(const s of sts) if(s[l]&&s[l].desc) return s[l].desc; return ""; };
+  // rows: objectives grouped by ecological theme; a collapsed theme is one row = mean of its objectives' (FR+ETP combined) ratings
+  const themeList=opts.theme?[opts.theme]:THEME_ORDER.concat(uniq(labels.map(themeOf)).filter(x=>!THEME_ORDER.includes(x))); if(!opts.theme) LAST_THEMES=themeList;
+  const rows=[]; themeList.forEach(th=>{
+    const ls=labels.filter(l=>themeOf(l)===th).sort((a,b)=>a.localeCompare(b,undefined,{numeric:true})); if(!ls.length) return;
+    if(COLL_THEME.has(th)&&!opts.theme) rows.push({th,ls,grp:true,l:`${th} (${ls.length})`}); else ls.forEach((l,i)=>rows.push({th,ls:[l],grp:false,l,first:i===0})); });
+  const cw=66, ch=21, gap=12, bandW=16, lab=Math.max(...rows.map(r=>r.l.length),6)*6.6+10, left=bandW+lab+4, nG=gs.length;
+  const wrap=(t,n)=>{ const w=String(t).split(/\s+/), out=[]; let cur=""; w.forEach(x=>{ if((cur+" "+x).trim().length>n&&cur){ out.push(cur); cur=x; } else cur=(cur+" "+x).trim(); }); if(cur) out.push(cur); return out; };   // full names, never truncated
+  const WN=13, hl=Math.max(wrap(pu,WN).length,...gs.map(x=>wrap(x.name||"",WN).length)), top=8+(hl+1)*11+8, colX=i=>left+i*cw+(i===nG?gap:0), W=colX(nG)+cw+8, H=top+rows.length*ch+8;
+  const EX=opts.theme?0:78;   // room right of the table for the expand / collapse buttons
+  let s=`<svg width="${W+EX}" height="${H}" viewBox="0 0 ${W+EX} ${H}" style="font-size:11px">`;
+  const head=(i,x,isPU,isThis)=>{ const lines=isPU?wrap(pu,WN):wrap(x.name||"",WN), t=isPU?"Planning unit":x.id;
+    const tx=colX(i)+cw/2-1, link=!isPU&&!isThis;
+    return `<g class="${link?(opts.gh||"gh"):""}" ${link?`data-v="${esc(x.id)}"`:""} style="cursor:${link?"pointer":"default"}"><title>${isPU?esc(pu)+" (MDBA planning-unit flow improvement)":isThis?"This gauge: "+esc(gl_(x)):"Open "+esc(x.id)+" (stays on this planning unit)"}</title>`+
+      `<rect x="${colX(i)}" y="2" width="${cw-2}" height="${top-6}" rx="4" fill="${isPU?"#cfe0f3":isThis?"#fde7d3":"#eef1f5"}" stroke="${isPU?"#6f8fb8":isThis?"#e8590c":"#c5ccd6"}"/>`+
+      `<text x="${tx}" y="14" text-anchor="middle" style="font-size:10.5px;font-weight:700;${link?"fill:#1f4e8c;text-decoration:underline":""}">${isThis?"◉ ":""}${esc(t)}</text>`+
+      lines.map((ln,k)=>`<text x="${tx}" y="${26+k*11}" text-anchor="middle" style="font-size:9px;fill:#444">${esc(ln)}</text>`).join("")+`</g>`; };
+  const gl_=x=>`${x.id}${x.name?" "+x.name:""}`;
+  gs.forEach((x,i)=>{ s+=head(i,x,false,x.id===g.id); }); s+=head(nG,null,true,false);
+  const cellVal=(vals)=>{ const v=mean_(vals); return v; };
+  rows.forEach((r,ri)=>{ const y=top+ri*ch, sep=ri>0&&rows[ri-1].th!==r.th;
+    const tip=r.grp?`${r.th}: ${r.ls.join(", ")} — click to expand`:`${r.l} (${r.th}): ${descOf(r.l)||"no description"}`;
+    s+=`<rect x="0" y="${y}" width="${W}" height="${ch}" fill="${ri%2?"#f7f7f7":"#fff"}"/>`+(sep?`<line x1="0" x2="${W}" y1="${y}" y2="${y}" stroke="#8a8a8a"/>`:"")+
+       `<g${opts.theme?"":` class="tog" data-k="theme" data-v="${esc(r.th)}" style="cursor:pointer"`}><title>${esc(r.th)}${opts.theme?"":` — click to ${r.grp?"expand into objectives":"collapse to the theme row"}`}</title><rect x="0" y="${y+1}" width="${bandW-2}" height="${ch-2}" rx="3" fill="${TCOL[r.th]||"#888"}" opacity="${r.grp?0.9:0.6}"/><text x="${bandW/2-1}" y="${y+ch/2+3.5}" text-anchor="middle" style="font-size:9px;fill:#fff;font-weight:700">${r.grp?"▸":(r.first?"▾":"")}</text></g>`+
+       `<text x="${bandW+2}" y="${y+ch/2+4}" style="font-weight:${r.grp?700:400}"><title>${esc(tip)}</title>${esc(r.l)}</text>`;
+    const K={ks:0,kp:0,kw:0,n:0};
+    const draw=(X,v,tipTxt,isPUcol,isThisG)=>{
+      if(v==null){ s+=`<rect x="${X+2}" y="${y+3}" width="${cw-6}" height="${ch-6}" rx="3" fill="none" stroke="#ccc" stroke-dasharray="2 2"><title>${esc(tipTxt)}: no rating</title></rect>`; return; }
+      const k=catOf(v*100);
+      s+=`<g><title>${esc(tipTxt)} — ${sgn(v*100)}: ${esc(k.l)}</title><rect x="${X+1}" y="${y+2}" width="${cw-4}" height="${ch-4}" rx="3" fill="${k.c}" stroke="${isPUcol?"#222":isThisG?"#e8590c":"#0002"}" stroke-width="${isPUcol?1.5:isThisG?1.6:1}"/>`+
+         `<text x="${X+cw/2-1}" y="${y+ch/2+3.8}" text-anchor="middle" style="font-size:10.5px;${isPUcol?"font-weight:700;":""}fill:${k.dk?"#fff":"#222"}">${Math.abs(v*100)>999?(v>0?">+999":"<-999"):Math.round(v*100)+"%"}</text></g>`; };
+    gs.forEach((x,i)=>{ const vals=r.ls.map(l=>{ const o=sts[i][l]; return o?combine(o.fr?o.fr.r:null,o.et?o.et.r:null):null; });
+      r.ls.forEach(l=>{ const o=sts[i][l]; if(o&&o.fr){ K.ks+=o.fr.ks; K.kp+=o.fr.kp; K.kw+=o.fr.kw; K.n+=o.fr.n; } });
+      let tp=`${x.id} · ${r.l}`; if(!r.grp){ const o=sts[i][r.l]; if(o&&o.fr) tp+=` | FR ${sgn(o.fr.r*100)} (${o.fr.ks} of ${o.fr.n} EWRs meet 0.9; PBP ${o.fr.kp}, WoD ${o.fr.kw})`; if(o&&o.et) tp+=` | ETP ${sgn(o.et.r*100)} (${o.et.n} EWRs)`; }
+      draw(colX(i),cellVal(vals),tp,false,x.id===g.id); });
+    const pvals=r.ls.map(l=>{ const pv=puVal[l]; return pv?combine(pv.f,pv.e):null; });
+    let tp=`${pu} · ${r.l} (MDBA planning-unit rating${r.grp?"; mean of its objectives":""})`;
+    if(!r.grp){ const pv=puVal[r.l]; if(pv){ if(pv.f!=null) tp+=` | FR ${sgn(pv.f*100)}`; if(pv.e!=null) tp+=` | ETP ${sgn(pv.e*100)}`; } if(K.n) tp+=` | pooled over these gauges' EWRs: ${K.ks} of ${K.n} meet 0.9 (PBP ${K.kp}, WoD ${K.kw}) → FR ${sgn(frspRating(K.ks/K.n,K.kp/K.n,K.kw/K.n)*100)}`; }
+    draw(colX(nG),cellVal(pvals),tp,true,false); });
+  if(!opts.theme) s+=xallBtns(W+4,top);
+  return s+"</svg>";
+}
+const model = g => g.model ? "In model outputs" : "Not in model outputs";
+map.createPane("rivers").style.zIndex=401; map.getPane("rivers").style.pointerEvents="none";
+map.createPane("gauges").style.zIndex=420;
+const riverW = o => ({3:0.7,4:1.1,5:1.6,6:2.2}[o] ?? 3);
+const rivers = L.geoJSON(RIVERS,{pane:"rivers",interactive:false,renderer:L.canvas({pane:"rivers"}),
+  style:f=>({color:"#1f78b4",weight:riverW(f.properties.o),opacity:0.85})}).addTo(map);
+const GM={};
+const gl = (isModel) => L.layerGroup(GAUGES.filter(g=>g.model===isModel).map(g=>{
+  const mk=L.circleMarker([g.lat,g.lon],{pane:"gauges",radius:isModel?4.5:3.5,weight:1,color:"#111",
+    fillColor:isModel?"#ffd92f":"#fff",fillOpacity:isModel?0.95:0.7})
+  .bindTooltip(esc(g.id)+(g.name?" – "+esc(g.name):""))
+  .bindPopup(() => gaugePopup(g),{autoPanPaddingTopLeft:[70,20],autoPanPaddingBottomRight:[20,20],maxWidth:Math.min(1000,innerWidth-60),minWidth:Math.min(600,innerWidth-80)});
+  mk._gid=g.id; GM[g.id]=mk; return mk;}));
+const withModel = gl(true).addTo(map), noModel = gl(false).addTo(map);   // gauges without model results are shown too (white dots)
+// No layer / basemap selector: SDL units, rivers and all gauges are always shown.
+// Legend: hidden behind a small button (bottom left), opened on demand.
+const lg=L.control({position:"bottomleft"});
+lg.onAdd=()=>{const d=L.DomUtil.create("div","legend"); L.DomEvent.disableClickPropagation(d);
+  const btn=L.DomUtil.create("button","",d); btn.type="button"; btn.textContent="Legend ▸"; btn.style.cssText="border:0;background:none;font:600 12px system-ui;cursor:pointer;padding:0";
+  const body=L.DomUtil.create("div","",d); body.style.display="none";
+  body.innerHTML="<b>Surface water SDL units</b>"+Object.entries(colours).map(([k,c])=>`<i style="background:${c}"></i>${k}<br>`).join("")+
+    `<i style="background:#ffd92f;border-radius:50%"></i>Gauge in model outputs<br><i style="background:#fff;border:1px solid #111;border-radius:50%"></i>Gauge, no model results<br><i style="background:#1f78b4;height:3px;vertical-align:3px"></i>River (thicker = larger)<br>`+
+    "<small>Solid = in 2026 review EWR results<br>Faded/dashed = not in results</small>";
+  btn.onclick=()=>{const open=body.style.display==="none"; body.style.display=open?"block":"none"; btn.textContent=open?"Legend ▾":"Legend ▸"; body.style.marginTop=open?"4px":"0";};
+  return d};
+lg.addTo(map);
+</script></body></html>

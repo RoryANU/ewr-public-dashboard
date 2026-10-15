@@ -1,0 +1,5065 @@
+{
+ "SS2": {
+  "name": "VIC Murray",
+  "themes": {
+   "Flows & Connectivity": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Medium"
+    },
+    "pub": {
+     "BP2024": "Minor Improvement",
+     "BPFI": "Moderate Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Minor Decline",
+      "Hotter and Much Drier 2.0 C": "Moderate Decline",
+      "Warmer and Drier 1.5 C": "Minor Improvement",
+      "Hotter and Drier 2.0 C": "Minor Improvement",
+      "Warmer and Wetter 1.5 C": "Moderate Improvement",
+      "Hotter and Wetter 2.0 C": "Moderate Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Medium"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "About as likely as not",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "About as likely as not",
+      "confidence": "High"
+     }
+    }
+   },
+   "Ecosystem Functions": {
+    "cond": {
+     "g": "Poor",
+     "c": "Data Deficient"
+    },
+    "pub": {
+     "BP2024": "Minor Improvement",
+     "BPFI": "Moderate Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "PBP Maintained",
+      "Hotter and Much Drier 2.0 C": "Minor Decline",
+      "Warmer and Drier 1.5 C": "PBP Maintained",
+      "Hotter and Drier 2.0 C": "Minor Decline",
+      "Warmer and Wetter 1.5 C": "Minor Improvement",
+      "Hotter and Wetter 2.0 C": "Minor Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Poor",
+      "c": "Low"
+     },
+     "paucity": {
+      "g": "Poor",
+      "c": "Data deficient"
+     },
+     "final": {
+      "g": "Poor",
+      "c": "Data deficient"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "About as likely as not",
+      "confidence": "Low"
+     },
+     "LoE2": {
+      "likelihood": "About as likely as not",
+      "confidence": "Low"
+     }
+    }
+   },
+   "Waterbirds": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Low"
+    },
+    "pub": {
+     "BP2024": "Minor Improvement",
+     "BPFI": "Moderate Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "PBP Maintained",
+      "Hotter and Much Drier 2.0 C": "Moderate Decline",
+      "Warmer and Drier 1.5 C": "PBP Maintained",
+      "Hotter and Drier 2.0 C": "Minor Improvement",
+      "Warmer and Wetter 1.5 C": "Minor Improvement",
+      "Hotter and Wetter 2.0 C": "Moderate Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Low"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Low"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Low"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "High"
+     }
+    }
+   },
+   "Native Fish": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Medium"
+    },
+    "pub": {
+     "BP2024": "PBP Maintained",
+     "BPFI": "Minor Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Minor Decline",
+      "Hotter and Much Drier 2.0 C": "Moderate Decline",
+      "Warmer and Drier 1.5 C": "PBP Maintained",
+      "Hotter and Drier 2.0 C": "PBP Maintained",
+      "Warmer and Wetter 1.5 C": "Minor Improvement",
+      "Hotter and Wetter 2.0 C": "Minor Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Medium"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "About as likely as not",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "About as likely as not",
+      "confidence": "Medium"
+     }
+    }
+   },
+   "Native Vegetation": {
+    "cond": {
+     "g": "Good",
+     "c": "Medium"
+    },
+    "pub": {
+     "BP2024": "Minor Improvement",
+     "BPFI": "Minor Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "PBP Maintained",
+      "Hotter and Much Drier 2.0 C": "Minor Decline",
+      "Warmer and Drier 1.5 C": "PBP Maintained",
+      "Hotter and Drier 2.0 C": "Minor Decline",
+      "Warmer and Wetter 1.5 C": "Minor Improvement",
+      "Hotter and Wetter 2.0 C": "Minor Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Good",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Good",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Good",
+      "c": "Medium"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "High"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "High"
+     }
+    }
+   },
+   "Other Species": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Low"
+    },
+    "pub": {
+     "BP2024": "PBP Maintained",
+     "BPFI": "Minor Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "PBP Maintained",
+      "Hotter and Much Drier 2.0 C": "Minor Decline",
+      "Warmer and Drier 1.5 C": "PBP Maintained",
+      "Hotter and Drier 2.0 C": "PBP Maintained",
+      "Warmer and Wetter 1.5 C": "Minor Improvement",
+      "Hotter and Wetter 2.0 C": "Minor Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Low"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Low"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Low"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     }
+    }
+   }
+  },
+  "result": "It is likely that the SDL reflects an environmentally sustainable level of take for this unit. The Authority\u2019s initial assessment has also identified a risk that environmental outcomes for flows and connectivity, ecosystem functions and native fish are not being met for this Unit. Pattern of flow is the likely leading driver of risk due to the inability to deliver water to the floodplains. The Authority is proposing further work with the Victorian government through 2026 to consider the most appropriate response to address this risk. This will include an examination of flow drivers and constraints to flow to inform the Authority\u2019s recommendation on response."
+ },
+ "SS5": {
+  "name": "Broken",
+  "themes": {
+   "Flows & Connectivity": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Medium"
+    },
+    "pub": {
+     "BP2024": "PBP Maintained",
+     "BPFI": "PBP Maintained",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Minor Improvement",
+      "Hotter and Much Drier 2.0 C": "Minor Improvement",
+      "Warmer and Drier 1.5 C": "Minor Improvement",
+      "Hotter and Drier 2.0 C": "PBP Maintained",
+      "Warmer and Wetter 1.5 C": "Minor Improvement",
+      "Hotter and Wetter 2.0 C": "PBP Maintained"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Medium"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "About as likely as not",
+      "confidence": "Low"
+     },
+     "LoE2": {
+      "likelihood": "About as likely as not",
+      "confidence": "Low"
+     }
+    }
+   },
+   "Ecosystem Functions": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Medium"
+    },
+    "pub": {
+     "BP2024": "Minor Improvement",
+     "BPFI": "Minor Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "PBP Maintained",
+      "Hotter and Much Drier 2.0 C": "Minor Improvement",
+      "Warmer and Drier 1.5 C": "Minor Improvement",
+      "Hotter and Drier 2.0 C": "Minor Improvement",
+      "Warmer and Wetter 1.5 C": "Minor Improvement",
+      "Hotter and Wetter 2.0 C": "Minor Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Medium"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "About as likely as not",
+      "confidence": "Low"
+     },
+     "LoE2": {
+      "likelihood": "About as likely as not",
+      "confidence": "Low"
+     }
+    }
+   },
+   "Waterbirds": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Medium"
+    },
+    "pub": {
+     "BP2024": "PBP Maintained",
+     "BPFI": "PBP Maintained",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Minor Improvement",
+      "Hotter and Much Drier 2.0 C": "Moderate Improvement",
+      "Warmer and Drier 1.5 C": "PBP Maintained",
+      "Hotter and Drier 2.0 C": "PBP Maintained",
+      "Warmer and Wetter 1.5 C": "PBP Maintained",
+      "Hotter and Wetter 2.0 C": "PBP Maintained"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Medium"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Low"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "Low"
+     }
+    }
+   },
+   "Native Fish": {
+    "cond": {
+     "g": "Moderate",
+     "c": "High"
+    },
+    "pub": {
+     "BP2024": "Minor Improvement",
+     "BPFI": "Minor Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "PBP Maintained",
+      "Hotter and Much Drier 2.0 C": "Minor Improvement",
+      "Warmer and Drier 1.5 C": "Minor Improvement",
+      "Hotter and Drier 2.0 C": "Minor Improvement",
+      "Warmer and Wetter 1.5 C": "Minor Improvement",
+      "Hotter and Wetter 2.0 C": "Minor Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "High"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "High"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "High"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "About as likely as not",
+      "confidence": "Low"
+     },
+     "LoE2": {
+      "likelihood": "About as likely as not",
+      "confidence": "Low"
+     }
+    }
+   },
+   "Native Vegetation": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Medium"
+    },
+    "pub": {
+     "BP2024": "PBP Maintained",
+     "BPFI": "PBP Maintained",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "PBP Maintained",
+      "Hotter and Much Drier 2.0 C": "Minor Improvement",
+      "Warmer and Drier 1.5 C": "PBP Maintained",
+      "Hotter and Drier 2.0 C": "PBP Maintained",
+      "Warmer and Wetter 1.5 C": "PBP Maintained",
+      "Hotter and Wetter 2.0 C": "PBP Maintained"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Medium"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Low"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "Low"
+     }
+    }
+   },
+   "Other Species": {
+    "cond": {
+     "g": "Good",
+     "c": "Medium"
+    },
+    "pub": {
+     "BP2024": "PBP Maintained",
+     "BPFI": "PBP Maintained",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "PBP Maintained",
+      "Hotter and Much Drier 2.0 C": "Minor Improvement",
+      "Warmer and Drier 1.5 C": "PBP Maintained",
+      "Hotter and Drier 2.0 C": "PBP Maintained",
+      "Warmer and Wetter 1.5 C": "PBP Maintained",
+      "Hotter and Wetter 2.0 C": "PBP Maintained"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Good",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Good",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Good",
+      "c": "Medium"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Low"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "Low"
+     }
+    }
+   }
+  },
+  "result": "The Authority is confident that the SDL continues to reflect an environmentally sustainable level of take and proposes the SDL is maintained. It is recognised that the extent, nature of and planning for continued monitoring, evaluation and assessment is tailored by the Victorian government for the management of local and site-specific areas of concern to maintain environmental outcomes. It is important that the impacts of a changing climate continue to be actively considered for this Unit."
+ },
+ "SS6": {
+  "name": "Goulburn",
+  "themes": {
+   "Flows & Connectivity": {
+    "cond": {
+     "g": "Good",
+     "c": "Medium"
+    },
+    "pub": {
+     "BP2024": "Minor Improvement",
+     "BPFI": "Minor Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Minor Improvement",
+      "Hotter and Much Drier 2.0 C": "Minor Improvement",
+      "Warmer and Drier 1.5 C": "Minor Improvement",
+      "Hotter and Drier 2.0 C": "Minor Improvement",
+      "Warmer and Wetter 1.5 C": "Minor Improvement",
+      "Hotter and Wetter 2.0 C": "Minor Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Good",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Good",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Good",
+      "c": "Medium"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "About as likely as not",
+      "confidence": "High"
+     },
+     "LoE2": {
+      "likelihood": "About as likely as not",
+      "confidence": "High"
+     }
+    }
+   },
+   "Ecosystem Functions": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Medium"
+    },
+    "pub": {
+     "BP2024": "Moderate Improvement",
+     "BPFI": "Major Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "PBP Maintained",
+      "Hotter and Much Drier 2.0 C": "PBP Maintained",
+      "Warmer and Drier 1.5 C": "Moderate Improvement",
+      "Hotter and Drier 2.0 C": "Moderate Improvement",
+      "Warmer and Wetter 1.5 C": "Major Improvement",
+      "Hotter and Wetter 2.0 C": "Major Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Medium"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "About as likely as not",
+      "confidence": "High"
+     },
+     "LoE2": {
+      "likelihood": "About as likely as not",
+      "confidence": "High"
+     }
+    }
+   },
+   "Waterbirds": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Medium"
+    },
+    "pub": {
+     "BP2024": "PBP Maintained",
+     "BPFI": "PBP Maintained",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Moderate Improvement",
+      "Hotter and Much Drier 2.0 C": "Minor Improvement",
+      "Warmer and Drier 1.5 C": "PBP Maintained",
+      "Hotter and Drier 2.0 C": "PBP Maintained",
+      "Warmer and Wetter 1.5 C": "PBP Maintained",
+      "Hotter and Wetter 2.0 C": "PBP Maintained"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Medium"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     }
+    }
+   },
+   "Native Fish": {
+    "cond": {
+     "g": "Poor",
+     "c": "Medium"
+    },
+    "pub": {
+     "BP2024": "Major Improvement",
+     "BPFI": "Major Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Moderate Improvement",
+      "Hotter and Much Drier 2.0 C": "Minor Improvement",
+      "Warmer and Drier 1.5 C": "Moderate Improvement",
+      "Hotter and Drier 2.0 C": "Moderate Improvement",
+      "Warmer and Wetter 1.5 C": "Major Improvement",
+      "Hotter and Wetter 2.0 C": "Major Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Poor",
+      "c": "High"
+     },
+     "paucity": {
+      "g": "Poor",
+      "c": "High"
+     },
+     "final": {
+      "g": "Poor",
+      "c": "Medium"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Low"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "Low"
+     }
+    }
+   },
+   "Native Vegetation": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Medium"
+    },
+    "pub": {
+     "BP2024": "Moderate Improvement",
+     "BPFI": "Major Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Minor Improvement",
+      "Hotter and Much Drier 2.0 C": "PBP Maintained",
+      "Warmer and Drier 1.5 C": "Moderate Improvement",
+      "Hotter and Drier 2.0 C": "Moderate Improvement",
+      "Warmer and Wetter 1.5 C": "Major Improvement",
+      "Hotter and Wetter 2.0 C": "Major Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Medium"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "About as likely as not",
+      "confidence": "High"
+     },
+     "LoE2": {
+      "likelihood": "About as likely as not",
+      "confidence": "High"
+     }
+    }
+   },
+   "Other Species": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Medium"
+    },
+    "pub": {
+     "BP2024": "Moderate Improvement",
+     "BPFI": "Moderate Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Minor Improvement",
+      "Hotter and Much Drier 2.0 C": "PBP Maintained",
+      "Warmer and Drier 1.5 C": "Moderate Improvement",
+      "Hotter and Drier 2.0 C": "Moderate Improvement",
+      "Warmer and Wetter 1.5 C": "Moderate Improvement",
+      "Hotter and Wetter 2.0 C": "Moderate Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Medium"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "High"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "High"
+     }
+    }
+   }
+  },
+  "result": "It is likely that the SDL reflects an environmentally sustainable level of take for this unit. The Authority\u2019s initial assessment has also identified a risk that environmental outcomes for flows and connectivity, ecosystem functions and native vegetation are not being met for this Unit. Pattern of flow is the likely leading driver of risk due to the inability to deliver higher in-channel flows and water to the floodplain in the lower Goulburn River. The Authority is proposing further work with the Victorian government through 2026 to consider the most appropriate response to address this risk. This will include an examination of flow drivers and constraints to flow to inform the Authority\u2019s recommendation on response."
+ },
+ "SS7a": {
+  "name": "Campaspe",
+  "themes": {
+   "Flows & Connectivity": {
+    "cond": {
+     "g": "Good",
+     "c": "Medium"
+    },
+    "pub": {
+     "BP2024": "Major Improvement",
+     "BPFI": "Major Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Minor Improvement",
+      "Hotter and Much Drier 2.0 C": "PBP Maintained",
+      "Warmer and Drier 1.5 C": "Major Improvement",
+      "Hotter and Drier 2.0 C": "Moderate Improvement",
+      "Warmer and Wetter 1.5 C": "Major Improvement",
+      "Hotter and Wetter 2.0 C": "Major Improvement"
+     }
+    },
+    "cond_stages": {},
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Low"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "Low"
+     }
+    }
+   },
+   "Ecosystem Functions": {
+    "cond": {
+     "g": "Good",
+     "c": "Medium"
+    },
+    "pub": {
+     "BP2024": "Moderate Improvement",
+     "BPFI": "Moderate Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "NA",
+      "Hotter and Much Drier 2.0 C": "NA",
+      "Warmer and Drier 1.5 C": "Minor Improvement",
+      "Hotter and Drier 2.0 C": "Minor Improvement",
+      "Warmer and Wetter 1.5 C": "Moderate Improvement",
+      "Hotter and Wetter 2.0 C": "Moderate Improvement"
+     }
+    },
+    "cond_stages": {},
+    "final": {
+     "LoE1": {
+      "likelihood": "About as likely as not",
+      "confidence": "Low"
+     },
+     "LoE2": {
+      "likelihood": "About as likely as not",
+      "confidence": "Low"
+     }
+    }
+   },
+   "Waterbirds": {
+    "cond": {
+     "g": "NA",
+     "c": "NA"
+    },
+    "pub": {
+     "BP2024": "NA",
+     "BPFI": "NA",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Moderate Improvement",
+      "Hotter and Much Drier 2.0 C": "Minor Improvement",
+      "Warmer and Drier 1.5 C": "NA",
+      "Hotter and Drier 2.0 C": "NA",
+      "Warmer and Wetter 1.5 C": "NA",
+      "Hotter and Wetter 2.0 C": "NA"
+     }
+    },
+    "cond_stages": {},
+    "final": null
+   },
+   "Native Fish": {
+    "cond": {
+     "g": "Poor",
+     "c": "Medium"
+    },
+    "pub": {
+     "BP2024": "Moderate Improvement",
+     "BPFI": "Moderate Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Moderate Improvement",
+      "Hotter and Much Drier 2.0 C": "Moderate Improvement",
+      "Warmer and Drier 1.5 C": "Moderate Improvement",
+      "Hotter and Drier 2.0 C": "Moderate Improvement",
+      "Warmer and Wetter 1.5 C": "Moderate Improvement",
+      "Hotter and Wetter 2.0 C": "Moderate Improvement"
+     }
+    },
+    "cond_stages": {},
+    "final": {
+     "LoE1": {
+      "likelihood": "Unlikely",
+      "confidence": "Low"
+     },
+     "LoE2": {
+      "likelihood": "Unlikely",
+      "confidence": "Low"
+     }
+    }
+   },
+   "Native Vegetation": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Medium"
+    },
+    "pub": {
+     "BP2024": "Major Improvement",
+     "BPFI": "Major Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Significant Improvement",
+      "Hotter and Much Drier 2.0 C": "Significant Improvement",
+      "Warmer and Drier 1.5 C": "Major Improvement",
+      "Hotter and Drier 2.0 C": "Moderate Improvement",
+      "Warmer and Wetter 1.5 C": "Major Improvement",
+      "Hotter and Wetter 2.0 C": "Major Improvement"
+     }
+    },
+    "cond_stages": {},
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Low"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "Low"
+     }
+    }
+   },
+   "Other Species": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Data Deficient"
+    },
+    "pub": {
+     "BP2024": "Significant Improvement",
+     "BPFI": "Significant Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Significant Improvement",
+      "Hotter and Much Drier 2.0 C": "Significant Improvement",
+      "Warmer and Drier 1.5 C": "Significant Improvement",
+      "Hotter and Drier 2.0 C": "Significant Improvement",
+      "Warmer and Wetter 1.5 C": "Significant Improvement",
+      "Hotter and Wetter 2.0 C": "Significant Improvement"
+     }
+    },
+    "cond_stages": {},
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Low"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "Low"
+     }
+    }
+   }
+  },
+  "result": "The Authority is confident that the SDL continues to reflect an environmentally sustainable level of take and proposes the SDL is maintained. It is recognised that the extent, nature of and planning for continued monitoring, evaluation and assessment is tailored by the Victorian government for the management of local and site- specific areas of concern to maintain environmental outcomes. It is important that the impacts of a changing climate continue to be actively considered for this Unit."
+ },
+ "SS7b": {
+  "name": "Coliban",
+  "themes": {
+   "Flows & Connectivity": {
+    "cond": {
+     "g": "Good",
+     "c": "Medium"
+    },
+    "pub": {
+     "BP2024": "Moderate Decline",
+     "BPFI": "Moderate Decline",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Major Decline",
+      "Hotter and Much Drier 2.0 C": "Major Decline",
+      "Warmer and Drier 1.5 C": "Moderate Decline",
+      "Hotter and Drier 2.0 C": "Moderate Decline",
+      "Warmer and Wetter 1.5 C": "Moderate Decline",
+      "Hotter and Wetter 2.0 C": "Moderate Decline"
+     }
+    },
+    "cond_stages": {},
+    "final": null
+   },
+   "Ecosystem Functions": {
+    "cond": {
+     "g": "Good",
+     "c": "Medium"
+    },
+    "pub": {
+     "BP2024": "Major Decline",
+     "BPFI": "Major Decline",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "NA",
+      "Hotter and Much Drier 2.0 C": "NA",
+      "Warmer and Drier 1.5 C": "Major Decline",
+      "Hotter and Drier 2.0 C": "Major Decline",
+      "Warmer and Wetter 1.5 C": "Major Decline",
+      "Hotter and Wetter 2.0 C": "Major Decline"
+     }
+    },
+    "cond_stages": {},
+    "final": null
+   },
+   "Waterbirds": {
+    "cond": {
+     "g": "NA",
+     "c": "NA"
+    },
+    "pub": {
+     "BP2024": "NA",
+     "BPFI": "NA",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Major Decline",
+      "Hotter and Much Drier 2.0 C": "Major Decline",
+      "Warmer and Drier 1.5 C": "NA",
+      "Hotter and Drier 2.0 C": "NA",
+      "Warmer and Wetter 1.5 C": "NA",
+      "Hotter and Wetter 2.0 C": "NA"
+     }
+    },
+    "cond_stages": {},
+    "final": null
+   },
+   "Native Fish": {
+    "cond": {
+     "g": "Poor",
+     "c": "Medium"
+    },
+    "pub": {
+     "BP2024": "Major Decline",
+     "BPFI": "Major Decline",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Significant Decline",
+      "Hotter and Much Drier 2.0 C": "Significant Decline",
+      "Warmer and Drier 1.5 C": "Major Decline",
+      "Hotter and Drier 2.0 C": "Major Decline",
+      "Warmer and Wetter 1.5 C": "Major Decline",
+      "Hotter and Wetter 2.0 C": "Major Decline"
+     }
+    },
+    "cond_stages": {},
+    "final": null
+   },
+   "Native Vegetation": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Medium"
+    },
+    "pub": {
+     "BP2024": "Significant Decline",
+     "BPFI": "Significant Decline",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Major Decline",
+      "Hotter and Much Drier 2.0 C": "Significant Decline",
+      "Warmer and Drier 1.5 C": "Significant Decline",
+      "Hotter and Drier 2.0 C": "Significant Decline",
+      "Warmer and Wetter 1.5 C": "Significant Decline",
+      "Hotter and Wetter 2.0 C": "Significant Decline"
+     }
+    },
+    "cond_stages": {},
+    "final": null
+   },
+   "Other Species": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Data Deficient"
+    },
+    "pub": {
+     "BP2024": "Major Decline",
+     "BPFI": "Major Decline",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Major Decline",
+      "Warmer and Drier 1.5 C": "Major Decline",
+      "Warmer and Wetter 1.5 C": "Major Decline"
+     }
+    },
+    "cond_stages": {},
+    "final": null
+   }
+  },
+  "result": "The Authority is confident that the SDL continues to reflect an environmentally sustainable level of take and proposes the SDL is maintained. It is recognised that the extent, nature of and planning for continued monitoring, evaluation and assessment is tailored by the Victorian government for the management of local and site- specific areas of concern to maintain environmental outcomes. It is important that the impacts of a changing climate continue to be actively considered for this Unit."
+ },
+ "SS8": {
+  "name": "Loddon",
+  "themes": {
+   "Flows & Connectivity": {
+    "cond": {
+     "g": "Good",
+     "c": "Medium"
+    },
+    "pub": {
+     "BP2024": "Minor Improvement",
+     "BPFI": "Minor Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Significant Improvement",
+      "Hotter and Much Drier 2.0 C": "Significant Improvement",
+      "Warmer and Drier 1.5 C": "Minor Improvement",
+      "Hotter and Drier 2.0 C": "Minor Improvement",
+      "Warmer and Wetter 1.5 C": "Moderate Improvement",
+      "Hotter and Wetter 2.0 C": "Minor Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Good",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Good",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Good",
+      "c": "Medium"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "About as likely as not",
+      "confidence": "Low"
+     },
+     "LoE2": {
+      "likelihood": "About as likely as not",
+      "confidence": "Low"
+     }
+    }
+   },
+   "Ecosystem Functions": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Medium"
+    },
+    "pub": {
+     "BP2024": "Significant Improvement",
+     "BPFI": "Significant Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "PBP Maintained",
+      "Hotter and Much Drier 2.0 C": "PBP Maintained",
+      "Warmer and Drier 1.5 C": "Significant Improvement",
+      "Hotter and Drier 2.0 C": "Significant Improvement",
+      "Warmer and Wetter 1.5 C": "Significant Improvement",
+      "Hotter and Wetter 2.0 C": "Significant Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Medium"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "About as likely as not",
+      "confidence": "Low"
+     },
+     "LoE2": {
+      "likelihood": "About as likely as not",
+      "confidence": "Low"
+     }
+    }
+   },
+   "Waterbirds": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Low"
+    },
+    "pub": {
+     "BP2024": "PBP Maintained",
+     "BPFI": "PBP Maintained",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Significant Improvement",
+      "Hotter and Much Drier 2.0 C": "Significant Improvement",
+      "Warmer and Drier 1.5 C": "PBP Maintained",
+      "Hotter and Drier 2.0 C": "PBP Maintained",
+      "Warmer and Wetter 1.5 C": "PBP Maintained",
+      "Hotter and Wetter 2.0 C": "PBP Maintained"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Low"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Low"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Low"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Low"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "Low"
+     }
+    }
+   },
+   "Native Fish": {
+    "cond": {
+     "g": "Poor",
+     "c": "Medium"
+    },
+    "pub": {
+     "BP2024": "Significant Improvement",
+     "BPFI": "Significant Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Significant Improvement",
+      "Hotter and Much Drier 2.0 C": "Significant Improvement",
+      "Warmer and Drier 1.5 C": "Significant Improvement",
+      "Hotter and Drier 2.0 C": "Significant Improvement",
+      "Warmer and Wetter 1.5 C": "Significant Improvement",
+      "Hotter and Wetter 2.0 C": "Significant Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Poor",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Poor",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Poor",
+      "c": "Medium"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Low"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "Low"
+     }
+    }
+   },
+   "Native Vegetation": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Medium"
+    },
+    "pub": {
+     "BP2024": "Significant Improvement",
+     "BPFI": "Significant Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Significant Improvement",
+      "Hotter and Much Drier 2.0 C": "Major Improvement",
+      "Warmer and Drier 1.5 C": "Significant Improvement",
+      "Hotter and Drier 2.0 C": "Significant Improvement",
+      "Warmer and Wetter 1.5 C": "Significant Improvement",
+      "Hotter and Wetter 2.0 C": "Significant Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Medium"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "About as likely as not",
+      "confidence": "Low"
+     },
+     "LoE2": {
+      "likelihood": "About as likely as not",
+      "confidence": "Low"
+     }
+    }
+   },
+   "Other Species": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Medium"
+    },
+    "pub": {
+     "BP2024": "Significant Improvement",
+     "BPFI": "Significant Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Significant Improvement",
+      "Hotter and Much Drier 2.0 C": "Major Improvement",
+      "Warmer and Drier 1.5 C": "Significant Improvement",
+      "Hotter and Drier 2.0 C": "Significant Improvement",
+      "Warmer and Wetter 1.5 C": "Significant Improvement",
+      "Hotter and Wetter 2.0 C": "Significant Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Medium"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Low"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "Low"
+     }
+    }
+   }
+  },
+  "result": "The Authority is confident that the SDL continues to reflect an environmentally sustainable level of take and proposes the SDL is maintained. It is recognised that the extent, nature of and planning for continued monitoring, evaluation and assessment is tailored by the Victorian government for the management of local and site-specific areas of concern to maintain environmental outcomes. It is important that the impacts of a changing climate continue to be actively considered for this Unit."
+ },
+ "SS9": {
+  "name": "Wimmera",
+  "themes": {
+   "Flows & Connectivity": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Medium"
+    },
+    "pub": {
+     "BP2024": "PBP Maintained",
+     "BPFI": "PBP Maintained",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Minor Decline",
+      "Hotter and Much Drier 2.0 C": "Moderate Decline",
+      "Warmer and Drier 1.5 C": "PBP Maintained",
+      "Hotter and Drier 2.0 C": "Minor Decline",
+      "Warmer and Wetter 1.5 C": "PBP Maintained",
+      "Hotter and Wetter 2.0 C": "PBP Maintained"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Medium"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "About as likely as not",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "About as likely as not",
+      "confidence": "Medium"
+     }
+    }
+   },
+   "Ecosystem Functions": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Low"
+    },
+    "pub": {
+     "BP2024": "Minor Improvement",
+     "BPFI": "Minor Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Moderate Decline",
+      "Hotter and Much Drier 2.0 C": "Major Decline",
+      "Warmer and Drier 1.5 C": "PBP Maintained",
+      "Hotter and Drier 2.0 C": "Minor Decline",
+      "Warmer and Wetter 1.5 C": "Minor Improvement",
+      "Hotter and Wetter 2.0 C": "Minor Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Low"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Low"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Low"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     }
+    }
+   },
+   "Waterbirds": {
+    "cond": {
+     "g": "Poor",
+     "c": "Low"
+    },
+    "pub": {
+     "BP2024": "PBP Maintained",
+     "BPFI": "PBP Maintained",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Minor Improvement",
+      "Hotter and Much Drier 2.0 C": "Minor Improvement",
+      "Warmer and Drier 1.5 C": "Minor Decline",
+      "Hotter and Drier 2.0 C": "Moderate Decline",
+      "Warmer and Wetter 1.5 C": "PBP Maintained",
+      "Hotter and Wetter 2.0 C": "PBP Maintained"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Poor",
+      "c": "Low"
+     },
+     "paucity": {
+      "g": "Poor",
+      "c": "Low"
+     },
+     "final": {
+      "g": "Poor",
+      "c": "Low"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "Unlikely",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "Unlikely",
+      "confidence": "Medium"
+     }
+    }
+   },
+   "Native Fish": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Medium"
+    },
+    "pub": {
+     "BP2024": "Moderate Improvement",
+     "BPFI": "Moderate Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Moderate Decline",
+      "Hotter and Much Drier 2.0 C": "Major Decline",
+      "Warmer and Drier 1.5 C": "Minor Improvement",
+      "Hotter and Drier 2.0 C": "Minor Improvement",
+      "Warmer and Wetter 1.5 C": "Moderate Improvement",
+      "Hotter and Wetter 2.0 C": "Moderate Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Medium"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "High"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "High"
+     }
+    }
+   },
+   "Native Vegetation": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Medium"
+    },
+    "pub": {
+     "BP2024": "Moderate Decline",
+     "BPFI": "Moderate Decline",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Moderate Improvement",
+      "Hotter and Much Drier 2.0 C": "Minor Improvement",
+      "Warmer and Drier 1.5 C": "Moderate Decline",
+      "Hotter and Drier 2.0 C": "Moderate Decline",
+      "Warmer and Wetter 1.5 C": "Moderate Decline",
+      "Hotter and Wetter 2.0 C": "Moderate Decline"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Medium"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "Unlikely",
+      "confidence": "Low"
+     },
+     "LoE2": {
+      "likelihood": "Unlikely",
+      "confidence": "Low"
+     }
+    }
+   },
+   "Other Species": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Low"
+    },
+    "pub": {
+     "BP2024": "Major Improvement",
+     "BPFI": "Major Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Moderate Improvement",
+      "Hotter and Much Drier 2.0 C": "Minor Improvement",
+      "Warmer and Drier 1.5 C": "Moderate Improvement",
+      "Hotter and Drier 2.0 C": "Moderate Improvement",
+      "Warmer and Wetter 1.5 C": "Major Improvement",
+      "Hotter and Wetter 2.0 C": "Major Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Low"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Low"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Low"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "High"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "High"
+     }
+    }
+   }
+  },
+  "result": "The Authority is confident that the SDL reflects an environmentally sustainable level of take for this Unit and proposes the SDL is maintained. It is recognised that the extent, nature of and planning for continued monitoring, evaluation and assessment is tailored by the Victorian government for the management of local and site- specific areas of concern to maintain environmental outcomes. It is important that the impacts of a changing climate continue to be actively considered for this Unit."
+ },
+ "SS11a": {
+  "name": "SA Murray (IC&FP)",
+  "themes": {
+   "Flows & Connectivity": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Medium"
+    },
+    "pub": {
+     "BP2024": "PBP Maintained",
+     "BPFI": "Minor Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Minor Decline",
+      "Hotter and Much Drier 2.0 C": "Minor Decline",
+      "Warmer and Drier 1.5 C": "PBP Maintained",
+      "Hotter and Drier 2.0 C": "PBP Maintained",
+      "Warmer and Wetter 1.5 C": "Minor Improvement",
+      "Hotter and Wetter 2.0 C": "Minor Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Medium"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "About as likely as not",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "About as likely as not",
+      "confidence": "Medium"
+     }
+    }
+   },
+   "Ecosystem Functions": {
+    "cond": {
+     "g": "Poor",
+     "c": "Medium"
+    },
+    "pub": {
+     "BP2024": "Minor Improvement",
+     "BPFI": "Minor Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Minor Decline",
+      "Hotter and Much Drier 2.0 C": "Moderate Decline",
+      "Warmer and Drier 1.5 C": "PBP Maintained",
+      "Hotter and Drier 2.0 C": "PBP Maintained",
+      "Warmer and Wetter 1.5 C": "Minor Improvement",
+      "Hotter and Wetter 2.0 C": "Moderate Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Poor to Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Poor to Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Poor",
+      "c": "Medium"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "About as likely as not",
+      "confidence": "Low"
+     },
+     "LoE2": {
+      "likelihood": "About as likely as not",
+      "confidence": "Low"
+     }
+    }
+   },
+   "Waterbirds": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Medium"
+    },
+    "pub": {
+     "BP2024": "Minor Improvement",
+     "BPFI": "Moderate Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Minor Decline",
+      "Hotter and Much Drier 2.0 C": "Minor Decline",
+      "Warmer and Drier 1.5 C": "PBP Maintained",
+      "Hotter and Drier 2.0 C": "Minor Decline",
+      "Warmer and Wetter 1.5 C": "Moderate Improvement",
+      "Hotter and Wetter 2.0 C": "Moderate Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Medium"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "Likely",
+      "confidence": "High"
+     }
+    }
+   },
+   "Native Fish": {
+    "cond": {
+     "g": "Poor",
+     "c": "Medium"
+    },
+    "pub": {
+     "BP2024": "Minor Improvement",
+     "BPFI": "Moderate Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Minor Decline",
+      "Hotter and Much Drier 2.0 C": "Moderate Decline",
+      "Warmer and Drier 1.5 C": "PBP Maintained",
+      "Hotter and Drier 2.0 C": "Minor Decline",
+      "Warmer and Wetter 1.5 C": "Moderate Improvement",
+      "Hotter and Wetter 2.0 C": "Moderate Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Poor",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Poor",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Poor",
+      "c": "Medium"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "About as likely as not",
+      "confidence": "Low"
+     },
+     "LoE2": {
+      "likelihood": "About as likely as not",
+      "confidence": "Low"
+     }
+    }
+   },
+   "Native Vegetation": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Medium"
+    },
+    "pub": {
+     "BP2024": "Minor Improvement",
+     "BPFI": "Moderate Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Minor Decline",
+      "Hotter and Much Drier 2.0 C": "Moderate Decline",
+      "Warmer and Drier 1.5 C": "PBP Maintained",
+      "Hotter and Drier 2.0 C": "Minor Decline",
+      "Warmer and Wetter 1.5 C": "Moderate Improvement",
+      "Hotter and Wetter 2.0 C": "Moderate Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Medium"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "Likely",
+      "confidence": "High"
+     }
+    }
+   },
+   "Other Species": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Low"
+    },
+    "pub": {
+     "BP2024": "Minor Improvement",
+     "BPFI": "Moderate Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Minor Decline",
+      "Hotter and Much Drier 2.0 C": "Moderate Decline",
+      "Warmer and Drier 1.5 C": "PBP Maintained",
+      "Hotter and Drier 2.0 C": "Minor Decline",
+      "Warmer and Wetter 1.5 C": "Moderate Improvement",
+      "Hotter and Wetter 2.0 C": "Moderate Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Low"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Low"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Low"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "Likely",
+      "confidence": "High"
+     }
+    }
+   }
+  },
+  "result": "The Authority has identified a risk that environmental outcomes are not being met for this Unit. Further work is required to assess whether the SDL reflects an environmentally sustainable level of take. The initial assessment of this risk indicates that flows and connectivity, ecosystem functions, native fish and waterbird outcomes are not being met in this Unit. Pattern of flow is a likely leading driver of risk due to constraints. Sufficiency of flow has also been identified as a potential factor. The Authority is proposing further work with Basin governments through 2026 to further explore these risks and to consider the most appropriate response. This will include an examination of flow drivers and constraints to flow to inform the Authority\u2019s recommendation on response."
+ },
+ "SS11b": {
+  "name": "SA Murray (CLLMM)",
+  "themes": {
+   "Flows & Connectivity": {
+    "cond": {
+     "g": "Moderate",
+     "c": "High"
+    },
+    "pub": {
+     "BP2024": "Moderate Improvement",
+     "BPFI": "Moderate Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Minor Improvement",
+      "Hotter and Much Drier 2.0 C": "Minor Improvement",
+      "Warmer and Drier 1.5 C": "Minor Improvement",
+      "Hotter and Drier 2.0 C": "Significant Improvement",
+      "Warmer and Wetter 1.5 C": "Moderate Improvement",
+      "Hotter and Wetter 2.0 C": "Moderate Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "High"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "High"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "High"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "About as likely as not",
+      "confidence": "High"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "High"
+     }
+    }
+   },
+   "Ecosystem Functions": {
+    "cond": {
+     "g": "Poor",
+     "c": "High"
+    },
+    "pub": {
+     "BP2024": "Major Improvement",
+     "BPFI": "Major Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "PBP Maintained",
+      "Hotter and Much Drier 2.0 C": "Minor Improvement",
+      "Warmer and Drier 1.5 C": "Minor Improvement",
+      "Hotter and Drier 2.0 C": "Moderate Improvement",
+      "Warmer and Wetter 1.5 C": "Major Improvement",
+      "Hotter and Wetter 2.0 C": "Major Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Poor",
+      "c": "High"
+     },
+     "paucity": {
+      "g": "Poor",
+      "c": "High"
+     },
+     "final": {
+      "g": "Poor",
+      "c": "High"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "About as likely as not",
+      "confidence": "Low"
+     },
+     "LoE2": {
+      "likelihood": "About as likely as not",
+      "confidence": "Low"
+     }
+    }
+   },
+   "Waterbirds": {
+    "cond": {
+     "g": "Poor",
+     "c": "High"
+    },
+    "pub": {
+     "BP2024": "Major Improvement",
+     "BPFI": "Significant Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Minor Improvement",
+      "Hotter and Much Drier 2.0 C": "Minor Improvement",
+      "Warmer and Drier 1.5 C": "Minor Improvement",
+      "Hotter and Drier 2.0 C": "Moderate Improvement",
+      "Warmer and Wetter 1.5 C": "Significant Improvement",
+      "Hotter and Wetter 2.0 C": "Significant Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Poor",
+      "c": "High"
+     },
+     "paucity": {
+      "g": "Poor",
+      "c": "High"
+     },
+     "final": {
+      "g": "Poor",
+      "c": "High"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "About as likely as not",
+      "confidence": "Low"
+     },
+     "LoE2": {
+      "likelihood": "About as likely as not",
+      "confidence": "Low"
+     }
+    }
+   },
+   "Native Fish": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Medium"
+    },
+    "pub": {
+     "BP2024": "Major Improvement",
+     "BPFI": "Major Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "PBP Maintained",
+      "Hotter and Much Drier 2.0 C": "Minor Improvement",
+      "Warmer and Drier 1.5 C": "Minor Improvement",
+      "Hotter and Drier 2.0 C": "Moderate Improvement",
+      "Warmer and Wetter 1.5 C": "Major Improvement",
+      "Hotter and Wetter 2.0 C": "Major Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Medium"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "Likely",
+      "confidence": "High"
+     },
+     "LoE2": {
+      "likelihood": "Likely",
+      "confidence": "High"
+     }
+    }
+   },
+   "Native Vegetation": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Medium"
+    },
+    "pub": {
+     "BP2024": "Major Improvement",
+     "BPFI": "Major Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Minor Improvement",
+      "Hotter and Much Drier 2.0 C": "Minor Improvement",
+      "Warmer and Drier 1.5 C": "Minor Improvement",
+      "Hotter and Drier 2.0 C": "Moderate Improvement",
+      "Warmer and Wetter 1.5 C": "Significant Improvement",
+      "Hotter and Wetter 2.0 C": "Significant Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Medium"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "Likely",
+      "confidence": "High"
+     },
+     "LoE2": {
+      "likelihood": "Likely",
+      "confidence": "High"
+     }
+    }
+   },
+   "Other Species": {
+    "cond": {
+     "g": "Poor",
+     "c": "Medium"
+    },
+    "pub": {
+     "BP2024": "Major Improvement",
+     "BPFI": "Major Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Minor Improvement",
+      "Warmer and Drier 1.5 C": "Moderate Improvement",
+      "Warmer and Wetter 1.5 C": "Major Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Poor to Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Poor to Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Poor",
+      "c": "Medium"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "About as likely as not",
+      "confidence": "Low"
+     },
+     "LoE2": {
+      "likelihood": "About as likely as not",
+      "confidence": "Low"
+     }
+    }
+   }
+  },
+  "result": "The Authority has identified a risk that environmental outcomes are not being met for this Unit. Further work is required to assess whether the SDL reflects an environmentally sustainable level of take. The initial assessment of this risk indicates that flows and connectivity, ecosystem functions, native fish and waterbird outcomes are not being met in this Unit. Pattern of flow is a likely leading driver of risk due to constraints. Sufficiency of flow has also been identified as a potential factor. The Authority is proposing further work with Basin governments through 2026 to further explore these risks and to consider the most appropriate response. This will include an examination of flow drivers and constraints to flow to inform the Authority\u2019s recommendation on response."
+ },
+ "SS14": {
+  "name": "NSW Murray",
+  "themes": {
+   "Flows & Connectivity": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Medium"
+    },
+    "pub": {
+     "BP2024": "Minor Improvement",
+     "BPFI": "Minor Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Minor Decline",
+      "Hotter and Much Drier 2.0 C": "Major Decline",
+      "Warmer and Drier 1.5 C": "Minor Improvement",
+      "Hotter and Drier 2.0 C": "Minor Improvement",
+      "Warmer and Wetter 1.5 C": "Minor Improvement",
+      "Hotter and Wetter 2.0 C": "Minor Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Medium"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "About as likely as not",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "About as likely as not",
+      "confidence": "Medium"
+     }
+    }
+   },
+   "Ecosystem Functions": {
+    "cond": {
+     "g": "Poor",
+     "c": "Low"
+    },
+    "pub": {
+     "BP2024": "Moderate Improvement",
+     "BPFI": "Moderate Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Moderate Decline",
+      "Hotter and Much Drier 2.0 C": "Major Decline",
+      "Warmer and Drier 1.5 C": "Minor Improvement",
+      "Hotter and Drier 2.0 C": "PBP Maintained",
+      "Warmer and Wetter 1.5 C": "Moderate Improvement",
+      "Hotter and Wetter 2.0 C": "Moderate Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Poor to Moderate",
+      "c": "Low"
+     },
+     "paucity": {
+      "g": "Poor to Moderate",
+      "c": "Low"
+     },
+     "final": {
+      "g": "Poor",
+      "c": "Low"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "About as likely as not",
+      "confidence": "Low"
+     },
+     "LoE2": {
+      "likelihood": "About as likely as not",
+      "confidence": "Low"
+     }
+    }
+   },
+   "Waterbirds": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Low"
+    },
+    "pub": {
+     "BP2024": "Minor Improvement",
+     "BPFI": "Minor Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Minor Decline",
+      "Hotter and Much Drier 2.0 C": "Major Decline",
+      "Warmer and Drier 1.5 C": "Minor Decline",
+      "Hotter and Drier 2.0 C": "Minor Decline",
+      "Warmer and Wetter 1.5 C": "Moderate Improvement",
+      "Hotter and Wetter 2.0 C": "Moderate Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Low"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     }
+    }
+   },
+   "Native Fish": {
+    "cond": {
+     "g": "Poor",
+     "c": "High"
+    },
+    "pub": {
+     "BP2024": "Moderate Improvement",
+     "BPFI": "Moderate Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Minor Decline",
+      "Hotter and Much Drier 2.0 C": "Major Decline",
+      "Warmer and Drier 1.5 C": "Minor Improvement",
+      "Hotter and Drier 2.0 C": "PBP Maintained",
+      "Warmer and Wetter 1.5 C": "Moderate Improvement",
+      "Hotter and Wetter 2.0 C": "Moderate Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Poor",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Poor",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Poor",
+      "c": "High"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "About as likely as not",
+      "confidence": "Low"
+     },
+     "LoE2": {
+      "likelihood": "About as likely as not",
+      "confidence": "Low"
+     }
+    }
+   },
+   "Native Vegetation": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Medium"
+    },
+    "pub": {
+     "BP2024": "Minor Improvement",
+     "BPFI": "Moderate Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Minor Decline",
+      "Hotter and Much Drier 2.0 C": "Major Decline",
+      "Warmer and Drier 1.5 C": "PBP Maintained",
+      "Hotter and Drier 2.0 C": "Minor Decline",
+      "Warmer and Wetter 1.5 C": "Moderate Improvement",
+      "Hotter and Wetter 2.0 C": "Moderate Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Medium"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "High"
+     }
+    }
+   },
+   "Other Species": {
+    "cond": {
+     "g": "Poor",
+     "c": "Low"
+    },
+    "pub": {
+     "BP2024": "Minor Improvement",
+     "BPFI": "Moderate Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Minor Decline",
+      "Hotter and Much Drier 2.0 C": "Major Decline",
+      "Warmer and Drier 1.5 C": "PBP Maintained",
+      "Hotter and Drier 2.0 C": "Minor Decline",
+      "Warmer and Wetter 1.5 C": "Moderate Improvement",
+      "Hotter and Wetter 2.0 C": "Moderate Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Poor to Moderate",
+      "c": "Low"
+     },
+     "paucity": {
+      "g": "Poor to Moderate",
+      "c": "Low"
+     },
+     "final": {
+      "g": "Poor",
+      "c": "Low"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Low"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "Low"
+     }
+    }
+   }
+  },
+  "result": "It is likely that the SDL reflects an environmentally sustainable level of take for this unit. The Authority\u2019s initial assessment has also identified a risk that environmental outcomes for flows and connectivity, ecosystem functions and native fish are not being met for this Unit. Pattern of flow is the likely leading driver of risk due to the inability to deliver water to the floodplains. The Authority is proposing further work with the New South Wales government through 2026 to consider the most appropriate response to address this risk. This will include an examination of flow drivers and constraints to flow to inform the Authority\u2019s recommendation on response."
+ },
+ "SS15": {
+  "name": "Murrumbidgee",
+  "themes": {
+   "Flows & Connectivity": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Low"
+    },
+    "pub": {
+     "BP2024": "PBP Maintained",
+     "BPFI": "Minor Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Moderate Decline",
+      "Hotter and Much Drier 2.0 C": "Significant Decline",
+      "Warmer and Drier 1.5 C": "Minor Decline",
+      "Hotter and Drier 2.0 C": "Minor Decline",
+      "Warmer and Wetter 1.5 C": "PBP Maintained",
+      "Hotter and Wetter 2.0 C": "Minor Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate to Good",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate to Good",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Low"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "About as likely as not",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "About as likely as not",
+      "confidence": "Medium"
+     }
+    }
+   },
+   "Ecosystem Functions": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Low"
+    },
+    "pub": {
+     "BP2024": "Minor Decline",
+     "BPFI": "PBP Maintained",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Minor Decline",
+      "Hotter and Much Drier 2.0 C": "Moderate Decline",
+      "Warmer and Drier 1.5 C": "Moderate Decline",
+      "Hotter and Drier 2.0 C": "Moderate Decline",
+      "Warmer and Wetter 1.5 C": "PBP Maintained",
+      "Hotter and Wetter 2.0 C": "PBP Maintained"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Low"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Low"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Low"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "About as likely as not",
+      "confidence": "Low"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     }
+    }
+   },
+   "Waterbirds": {
+    "cond": {
+     "g": "Moderate",
+     "c": "High"
+    },
+    "pub": {
+     "BP2024": "Minor Improvement",
+     "BPFI": "Moderate Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Major Decline",
+      "Hotter and Much Drier 2.0 C": "Significant Decline",
+      "Warmer and Drier 1.5 C": "PBP Maintained",
+      "Hotter and Drier 2.0 C": "PBP Maintained",
+      "Warmer and Wetter 1.5 C": "Minor Improvement",
+      "Hotter and Wetter 2.0 C": "Minor Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "High"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "High"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "High"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "Likely",
+      "confidence": "High"
+     }
+    }
+   },
+   "Native Fish": {
+    "cond": {
+     "g": "Poor",
+     "c": "Medium"
+    },
+    "pub": {
+     "BP2024": "Minor Decline",
+     "BPFI": "PBP Maintained",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Moderate Decline",
+      "Hotter and Much Drier 2.0 C": "Major Decline",
+      "Warmer and Drier 1.5 C": "Moderate Decline",
+      "Hotter and Drier 2.0 C": "Major Decline",
+      "Warmer and Wetter 1.5 C": "PBP Maintained",
+      "Hotter and Wetter 2.0 C": "PBP Maintained"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Poor",
+      "c": "High"
+     },
+     "paucity": {
+      "g": "Poor",
+      "c": "High"
+     },
+     "final": {
+      "g": "Poor",
+      "c": "Medium"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "Unlikely",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "Unlikely",
+      "confidence": "Medium"
+     }
+    }
+   },
+   "Native Vegetation": {
+    "cond": {
+     "g": "Poor",
+     "c": "Low"
+    },
+    "pub": {
+     "BP2024": "Minor Improvement",
+     "BPFI": "Minor Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Minor Decline",
+      "Hotter and Much Drier 2.0 C": "Moderate Decline",
+      "Warmer and Drier 1.5 C": "PBP Maintained",
+      "Hotter and Drier 2.0 C": "Minor Decline",
+      "Warmer and Wetter 1.5 C": "Minor Improvement",
+      "Hotter and Wetter 2.0 C": "Moderate Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Poor",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Poor",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Poor",
+      "c": "Low"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "About as likely as not",
+      "confidence": "Low"
+     },
+     "LoE2": {
+      "likelihood": "About as likely as not",
+      "confidence": "Low"
+     }
+    }
+   },
+   "Other Species": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Low"
+    },
+    "pub": {
+     "BP2024": "Minor Improvement",
+     "BPFI": "Moderate Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Minor Decline",
+      "Hotter and Much Drier 2.0 C": "Moderate Decline",
+      "Warmer and Drier 1.5 C": "PBP Maintained",
+      "Hotter and Drier 2.0 C": "PBP Maintained",
+      "Warmer and Wetter 1.5 C": "Moderate Improvement",
+      "Hotter and Wetter 2.0 C": "Moderate Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Low"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Low"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Low"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "Likely",
+      "confidence": "High"
+     }
+    }
+   }
+  },
+  "result": "It is likely that the SDL reflects an environmentally sustainable level of take for this unit. The Authority\u2019s initial assessment has also identified a risk that environmental outcomes for native fish, flows and connectivity, and native vegetation are not being met for this Unit. Pattern of flow is the likely leading driver of risk. The Authority is proposing further work with the New South Wales government through 2026 to consider the most appropriate response to address this risk. This will include an examination of flow drivers and constraints to flow to inform the Authority\u2019s recommendation on response."
+ },
+ "SS16": {
+  "name": "Lachlan",
+  "themes": {
+   "Flows & Connectivity": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Low"
+    },
+    "pub": {
+     "BP2024": "Minor Improvement",
+     "BPFI": "Minor Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Moderate Decline",
+      "Hotter and Much Drier 2.0 C": "Major Decline",
+      "Warmer and Drier 1.5 C": "PBP Maintained",
+      "Hotter and Drier 2.0 C": "Minor Decline",
+      "Warmer and Wetter 1.5 C": "Minor Improvement",
+      "Hotter and Wetter 2.0 C": "Minor Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Low"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     }
+    }
+   },
+   "Ecosystem Functions": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Low"
+    },
+    "pub": {
+     "BP2024": "Minor Improvement",
+     "BPFI": "Minor Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Major Decline",
+      "Hotter and Much Drier 2.0 C": "Significant Decline",
+      "Warmer and Drier 1.5 C": "Minor Decline",
+      "Hotter and Drier 2.0 C": "Minor Decline",
+      "Warmer and Wetter 1.5 C": "Minor Improvement",
+      "Hotter and Wetter 2.0 C": "Minor Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Low"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Low"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Low"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "About as likely as not",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "About as likely as not",
+      "confidence": "Medium"
+     }
+    }
+   },
+   "Waterbirds": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Medium"
+    },
+    "pub": {
+     "BP2024": "Minor Improvement",
+     "BPFI": "Minor Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "PBP Maintained",
+      "Hotter and Much Drier 2.0 C": "Minor Decline",
+      "Warmer and Drier 1.5 C": "Moderate Decline",
+      "Hotter and Drier 2.0 C": "Moderate Decline",
+      "Warmer and Wetter 1.5 C": "Minor Improvement",
+      "Hotter and Wetter 2.0 C": "Minor Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Medium"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     }
+    }
+   },
+   "Native Fish": {
+    "cond": {
+     "g": "Poor",
+     "c": "High"
+    },
+    "pub": {
+     "BP2024": "Minor Improvement",
+     "BPFI": "Minor Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Minor Decline",
+      "Hotter and Much Drier 2.0 C": "Moderate Decline",
+      "Warmer and Drier 1.5 C": "PBP Maintained",
+      "Hotter and Drier 2.0 C": "PBP Maintained",
+      "Warmer and Wetter 1.5 C": "Minor Improvement",
+      "Hotter and Wetter 2.0 C": "Minor Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Poor",
+      "c": "High"
+     },
+     "paucity": {
+      "g": "Poor",
+      "c": "High"
+     },
+     "final": {
+      "g": "Poor",
+      "c": "High"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "About as likely as not",
+      "confidence": "Low"
+     },
+     "LoE2": {
+      "likelihood": "About as likely as not",
+      "confidence": "Low"
+     }
+    }
+   },
+   "Native Vegetation": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Low"
+    },
+    "pub": {
+     "BP2024": "Minor Improvement",
+     "BPFI": "Minor Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Moderate Decline",
+      "Hotter and Much Drier 2.0 C": "Moderate Decline",
+      "Warmer and Drier 1.5 C": "Minor Decline",
+      "Hotter and Drier 2.0 C": "Minor Decline",
+      "Warmer and Wetter 1.5 C": "Minor Improvement",
+      "Hotter and Wetter 2.0 C": "Minor Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Low"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     }
+    }
+   },
+   "Other Species": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Low"
+    },
+    "pub": {
+     "BP2024": "Minor Improvement",
+     "BPFI": "Minor Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Moderate Decline",
+      "Warmer and Drier 1.5 C": "Minor Decline",
+      "Warmer and Wetter 1.5 C": "Minor Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Low"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Data deficient"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Data deficient"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "About as likely as not",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "About as likely as not",
+      "confidence": "Medium"
+     }
+    }
+   }
+  },
+  "result": "The Authority is confident that the SDL continues to reflect an environmentally sustainable level of take and proposes the SDL is maintained. It is recognised that the extent, nature of and planning for continued monitoring, evaluation and assessment is tailored by the New South Wales (NSW) government for the management of local and site-specific areas of concern to maintain environmental outcomes. It is important that the impacts of a changing climate continue to be actively considered for this Unit."
+ },
+ "SS17": {
+  "name": "Intersecting Streams",
+  "themes": {
+   "Flows & Connectivity": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Medium"
+    },
+    "pub": {
+     "BP2024": "PBP Maintained",
+     "BPFI": "PBP Maintained",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Moderate Decline",
+      "Hotter and Much Drier 2.0 C": "Major Decline",
+      "Warmer and Drier 1.5 C": "Minor Decline",
+      "Hotter and Drier 2.0 C": "Minor Decline",
+      "Warmer and Wetter 1.5 C": "Moderate Improvement",
+      "Hotter and Wetter 2.0 C": "Moderate Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Medium"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     }
+    }
+   },
+   "Ecosystem Functions": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Low"
+    },
+    "pub": {
+     "BP2024": "Minor Improvement",
+     "BPFI": "Minor Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Moderate Decline",
+      "Hotter and Much Drier 2.0 C": "Major Decline",
+      "Warmer and Drier 1.5 C": "Minor Improvement",
+      "Hotter and Drier 2.0 C": "Minor Improvement",
+      "Warmer and Wetter 1.5 C": "Significant Improvement",
+      "Hotter and Wetter 2.0 C": "Significant Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Low"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Low"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Low"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     }
+    }
+   },
+   "Waterbirds": {
+    "cond": {
+     "g": "Poor",
+     "c": "Low"
+    },
+    "pub": {
+     "BP2024": "Minor Improvement",
+     "BPFI": "Moderate Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Minor Decline",
+      "Hotter and Much Drier 2.0 C": "Moderate Decline",
+      "Warmer and Drier 1.5 C": "Minor Improvement",
+      "Hotter and Drier 2.0 C": "Minor Improvement",
+      "Warmer and Wetter 1.5 C": "Major Improvement",
+      "Hotter and Wetter 2.0 C": "Significant Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Poor to Moderate",
+      "c": "Low"
+     },
+     "paucity": {
+      "g": "Poor to Moderate",
+      "c": "Low"
+     },
+     "final": {
+      "g": "Poor",
+      "c": "Low"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "About as likely as not",
+      "confidence": "Low"
+     },
+     "LoE2": {
+      "likelihood": "Likely",
+      "confidence": "Low"
+     }
+    }
+   },
+   "Native Fish": {
+    "cond": {
+     "g": "Poor",
+     "c": "Low"
+    },
+    "pub": {
+     "BP2024": "Minor Improvement",
+     "BPFI": "Moderate Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Minor Decline",
+      "Hotter and Much Drier 2.0 C": "Moderate Decline",
+      "Warmer and Drier 1.5 C": "Minor Improvement",
+      "Hotter and Drier 2.0 C": "Minor Improvement",
+      "Warmer and Wetter 1.5 C": "Significant Improvement",
+      "Hotter and Wetter 2.0 C": "Significant Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Poor",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Poor",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Poor",
+      "c": "Low"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "About as likely as not",
+      "confidence": "Low"
+     },
+     "LoE2": {
+      "likelihood": "Likely",
+      "confidence": "Low"
+     }
+    }
+   },
+   "Native Vegetation": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Low"
+    },
+    "pub": {
+     "BP2024": "Minor Improvement",
+     "BPFI": "Minor Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Minor Decline",
+      "Hotter and Much Drier 2.0 C": "Moderate Decline",
+      "Warmer and Drier 1.5 C": "Minor Improvement",
+      "Hotter and Drier 2.0 C": "Minor Improvement",
+      "Warmer and Wetter 1.5 C": "Major Improvement",
+      "Hotter and Wetter 2.0 C": "Significant Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Low"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Low"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "Low"
+     }
+    }
+   },
+   "Other Species": {
+    "cond": {
+     "g": "Not Assessed",
+     "c": "Data Paucity"
+    },
+    "pub": {
+     "BP2024": "NA",
+     "BPFI": "NA",
+     "LoE3": {}
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Low"
+     },
+     "paucity": {
+      "g": "Not assessed",
+      "c": "NA"
+     },
+     "final": {
+      "g": "Not assessed",
+      "c": "NA"
+     }
+    },
+    "final": null
+   }
+  },
+  "result": "The Authority is confident that the SDL continues to reflect an environmentally sustainable level of take and proposes the SDL is maintained. It is recognised that the extent, nature of and planning for continued monitoring, evaluation and assessment is tailored by the New South Wales (NSW) government for the management of local and site-specific areas of concern to maintain environmental outcomes. It is important that the impacts of a changing climate continue to be actively considered for this Unit."
+ },
+ "SS18": {
+  "name": "Lower Darling",
+  "themes": {
+   "Flows & Connectivity": {
+    "cond": {
+     "g": "Poor",
+     "c": "High"
+    },
+    "pub": {
+     "BP2024": "PBP Maintained",
+     "BPFI": "PBP Maintained",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Minor Decline",
+      "Hotter and Much Drier 2.0 C": "Moderate Decline",
+      "Warmer and Drier 1.5 C": "Minor Improvement",
+      "Hotter and Drier 2.0 C": "PBP Maintained",
+      "Warmer and Wetter 1.5 C": "Moderate Improvement",
+      "Hotter and Wetter 2.0 C": "Moderate Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Poor",
+      "c": "High"
+     },
+     "paucity": {
+      "g": "Poor",
+      "c": "High"
+     },
+     "final": {
+      "g": "Poor",
+      "c": "High"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "Unlikely",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "Unlikely",
+      "confidence": "Medium"
+     }
+    }
+   },
+   "Ecosystem Functions": {
+    "cond": {
+     "g": "Poor",
+     "c": "Medium"
+    },
+    "pub": {
+     "BP2024": "Minor Improvement",
+     "BPFI": "Minor Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Minor Decline",
+      "Hotter and Much Drier 2.0 C": "Minor Decline",
+      "Warmer and Drier 1.5 C": "Minor Improvement",
+      "Hotter and Drier 2.0 C": "PBP Maintained",
+      "Warmer and Wetter 1.5 C": "Moderate Improvement",
+      "Hotter and Wetter 2.0 C": "Moderate Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Poor",
+      "c": "Low"
+     },
+     "paucity": {
+      "g": "Poor",
+      "c": "Low"
+     },
+     "final": {
+      "g": "Poor",
+      "c": "Medium"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "Unlikely",
+      "confidence": "Low"
+     },
+     "LoE2": {
+      "likelihood": "Unlikely",
+      "confidence": "Medium"
+     }
+    }
+   },
+   "Waterbirds": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Medium"
+    },
+    "pub": {
+     "BP2024": "Minor Improvement",
+     "BPFI": "Minor Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Minor Decline",
+      "Hotter and Much Drier 2.0 C": "Moderate Decline",
+      "Warmer and Drier 1.5 C": "PBP Maintained",
+      "Hotter and Drier 2.0 C": "PBP Maintained",
+      "Warmer and Wetter 1.5 C": "Moderate Improvement",
+      "Hotter and Wetter 2.0 C": "Major Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Medium"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     }
+    }
+   },
+   "Native Fish": {
+    "cond": {
+     "g": "Poor",
+     "c": "Medium"
+    },
+    "pub": {
+     "BP2024": "Minor Improvement",
+     "BPFI": "Minor Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Minor Decline",
+      "Hotter and Much Drier 2.0 C": "Moderate Decline",
+      "Warmer and Drier 1.5 C": "Minor Improvement",
+      "Hotter and Drier 2.0 C": "Minor Improvement",
+      "Warmer and Wetter 1.5 C": "Moderate Improvement",
+      "Hotter and Wetter 2.0 C": "Moderate Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Poor",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Poor",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Poor",
+      "c": "Medium"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "About as likely as not",
+      "confidence": "Low"
+     },
+     "LoE2": {
+      "likelihood": "About as likely as not",
+      "confidence": "Low"
+     }
+    }
+   },
+   "Native Vegetation": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Medium"
+    },
+    "pub": {
+     "BP2024": "Minor Improvement",
+     "BPFI": "PBP Maintained",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Minor Decline",
+      "Hotter and Much Drier 2.0 C": "Moderate Decline",
+      "Warmer and Drier 1.5 C": "PBP Maintained",
+      "Hotter and Drier 2.0 C": "PBP Maintained",
+      "Warmer and Wetter 1.5 C": "Moderate Improvement",
+      "Hotter and Wetter 2.0 C": "Moderate Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Medium"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     }
+    }
+   },
+   "Other Species": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Data Deficient"
+    },
+    "pub": {
+     "BP2024": "PBP Maintained",
+     "BPFI": "PBP Maintained",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Minor Decline",
+      "Hotter and Much Drier 2.0 C": "Moderate Decline",
+      "Warmer and Drier 1.5 C": "PBP Maintained",
+      "Hotter and Drier 2.0 C": "PBP Maintained",
+      "Warmer and Wetter 1.5 C": "Minor Improvement",
+      "Hotter and Wetter 2.0 C": "Moderate Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Low"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Data deficient"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Data deficient"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     }
+    }
+   }
+  },
+  "result": "The Authority has identified a risk that environmental outcomes are not being met for this Unit. Further work is required to assess whether the SDL reflects an environmentally sustainable level of take. The initial assessment indicates that flows and connectivity, ecosystem function and native fish outcomes are at risk in this Unit. Pattern of flow is the likely leading driver of risk. The Authority is proposing to work further with Basin governments through 2026 to understand contributing factors and consider the most appropriate response to address these risks. This work will include an examination of flow drivers and water management settings to inform the Authority\u2019s recommendation on response."
+ },
+ "SS19": {
+  "name": "SS19 \u2013 Barwon\u2013Darling",
+  "themes": {
+   "Flows & Connectivity": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Medium"
+    },
+    "pub": {
+     "BP2024": "Minor Improvement",
+     "BPFI": "Minor Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Minor Decline",
+      "Hotter and Much Drier 2.0 C": "Moderate Decline",
+      "Warmer and Drier 1.5 C": "Minor Improvement",
+      "Hotter and Drier 2.0 C": "PBP Maintained",
+      "Warmer and Wetter 1.5 C": "Moderate Improvement",
+      "Hotter and Wetter 2.0 C": "Major Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Medium"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "Likely",
+      "confidence": "Medium"
+     }
+    }
+   },
+   "Ecosystem Functions": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Low"
+    },
+    "pub": {
+     "BP2024": "Minor Improvement",
+     "BPFI": "Minor Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Minor Decline",
+      "Hotter and Much Drier 2.0 C": "Moderate Decline",
+      "Warmer and Drier 1.5 C": "Minor Improvement",
+      "Hotter and Drier 2.0 C": "PBP Maintained",
+      "Warmer and Wetter 1.5 C": "Major Improvement",
+      "Hotter and Wetter 2.0 C": "Major Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Low"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "About as likely as not",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     }
+    }
+   },
+   "Waterbirds": {
+    "cond": {
+     "g": "Poor",
+     "c": "Low"
+    },
+    "pub": {
+     "BP2024": "PBP Maintained",
+     "BPFI": "PBP Maintained",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Minor Decline",
+      "Hotter and Much Drier 2.0 C": "Moderate Decline",
+      "Warmer and Drier 1.5 C": "PBP Maintained",
+      "Hotter and Drier 2.0 C": "PBP Maintained",
+      "Warmer and Wetter 1.5 C": "Moderate Improvement",
+      "Hotter and Wetter 2.0 C": "Moderate Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Poor to Moderate",
+      "c": "Low"
+     },
+     "paucity": {
+      "g": "Poor to Moderate",
+      "c": "Low"
+     },
+     "final": {
+      "g": "Poor",
+      "c": "Low"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "Unlikely",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "Unlikely",
+      "confidence": "Medium"
+     }
+    }
+   },
+   "Native Fish": {
+    "cond": {
+     "g": "Poor",
+     "c": "Medium"
+    },
+    "pub": {
+     "BP2024": "Minor Improvement",
+     "BPFI": "Moderate Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Moderate Decline",
+      "Hotter and Much Drier 2.0 C": "Major Decline",
+      "Warmer and Drier 1.5 C": "Minor Improvement",
+      "Hotter and Drier 2.0 C": "PBP Maintained",
+      "Warmer and Wetter 1.5 C": "Major Improvement",
+      "Hotter and Wetter 2.0 C": "Major Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Poor",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Poor",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Poor",
+      "c": "Medium"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "About as likely as not",
+      "confidence": "Low"
+     },
+     "LoE2": {
+      "likelihood": "Likely",
+      "confidence": "Low"
+     }
+    }
+   },
+   "Native Vegetation": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Medium"
+    },
+    "pub": {
+     "BP2024": "PBP Maintained",
+     "BPFI": "PBP Maintained",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "NA",
+      "Hotter and Much Drier 2.0 C": "Major Decline",
+      "Warmer and Drier 1.5 C": "PBP Maintained",
+      "Hotter and Drier 2.0 C": "Minor Decline",
+      "Warmer and Wetter 1.5 C": "Moderate Improvement",
+      "Hotter and Wetter 2.0 C": "Major Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Medium"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     }
+    }
+   },
+   "Other Species": {
+    "cond": {
+     "g": "Not Assessed",
+     "c": "NA"
+    },
+    "pub": {
+     "BP2024": "NA",
+     "BPFI": "NA",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "NA",
+      "Warmer and Drier 1.5 C": "NA",
+      "Warmer and Wetter 1.5 C": "NA"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Poor",
+      "c": "Low"
+     },
+     "paucity": {
+      "g": "Not assessed",
+      "c": "NA"
+     },
+     "final": {
+      "g": "Not assessed",
+      "c": "NA"
+     }
+    },
+    "final": null
+   }
+  },
+  "result": "The Authority has identified a risk that environmental outcomes are not being met for this Unit. Further work is required to assess whether the SDL reflects an environmentally sustainable level of take. The initial assessment indicates that ecosystem function and native fish outcomes are at risk in this Unit. Pattern of flow is the likely leading driver of risk. The Authority is proposing to work further with the New South Wales and Queensland governments through 2026 to understand contributing factors and consider the most appropriate response to address these risks. This work will include an examination of flow drivers and water management settings to inform the Authority\u2019s recommendation on response."
+ },
+ "SS20": {
+  "name": "SDLRU SS20",
+  "themes": {
+   "Flows & Connectivity": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Low"
+    },
+    "pub": {
+     "BP2024": "Moderate Improvement",
+     "BPFI": "Moderate Improvement",
+     "LoE3": {}
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Low"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "Likely",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "Likely",
+      "confidence": "Medium"
+     }
+    }
+   },
+   "Ecosystem Functions": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Low"
+    },
+    "pub": {
+     "BP2024": "Moderate Improvement",
+     "BPFI": "Moderate Improvement",
+     "LoE3": {}
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Low"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "Likely",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "Likely",
+      "confidence": "Medium"
+     }
+    }
+   },
+   "Waterbirds": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Medium"
+    },
+    "pub": {
+     "BP2024": "Moderate Improvement",
+     "BPFI": "Moderate Improvement",
+     "LoE3": {}
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Medium"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "Likely",
+      "confidence": "High"
+     },
+     "LoE2": {
+      "likelihood": "Likely",
+      "confidence": "High"
+     }
+    }
+   },
+   "Native Fish": {
+    "cond": {
+     "g": "Poor",
+     "c": "High"
+    },
+    "pub": {
+     "BP2024": "Moderate Improvement",
+     "BPFI": "Moderate Improvement",
+     "LoE3": {}
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Poor",
+      "c": "High"
+     },
+     "paucity": {
+      "g": "Poor",
+      "c": "High"
+     },
+     "final": {
+      "g": "Poor",
+      "c": "High"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Low"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "Low"
+     }
+    }
+   },
+   "Native Vegetation": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Low"
+    },
+    "pub": {
+     "BP2024": "Minor Improvement",
+     "BPFI": "Minor Improvement",
+     "LoE3": {}
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Low"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     }
+    }
+   },
+   "Other Species": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Low"
+    },
+    "pub": {
+     "BP2024": "Moderate Improvement",
+     "BPFI": "Moderate Improvement",
+     "LoE3": {}
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Low"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Low"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Low"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "Likely",
+      "confidence": "High"
+     },
+     "LoE2": {
+      "likelihood": "Likely",
+      "confidence": "High"
+     }
+    }
+   }
+  },
+  "result": "The Authority is confident that the SDL continues to reflect an environmentally sustainable level of take and proposes the SDL is maintained. It is recognised that the extent, nature of and planning for continued monitoring, evaluation and assessment is tailored by the New South Wales government for the management of local and site-specific areas of concern to maintain environmental outcomes. It is important that the impacts of a changing climate continue to be actively considered for this Unit."
+ },
+ "SS21": {
+  "name": "Namoi",
+  "themes": {
+   "Flows & Connectivity": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Low"
+    },
+    "pub": {
+     "BP2024": "PBP Maintained",
+     "BPFI": "PBP Maintained",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Moderate Decline",
+      "Hotter and Much Drier 2.0 C": "Moderate Decline",
+      "Warmer and Drier 1.5 C": "PBP Maintained",
+      "Hotter and Drier 2.0 C": "PBP Maintained",
+      "Warmer and Wetter 1.5 C": "Minor Improvement",
+      "Hotter and Wetter 2.0 C": "Minor Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Low"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     }
+    }
+   },
+   "Ecosystem Functions": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Low"
+    },
+    "pub": {
+     "BP2024": "PBP Maintained",
+     "BPFI": "PBP Maintained",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Moderate Decline",
+      "Hotter and Much Drier 2.0 C": "Moderate Decline",
+      "Warmer and Drier 1.5 C": "PBP Maintained",
+      "Hotter and Drier 2.0 C": "PBP Maintained",
+      "Warmer and Wetter 1.5 C": "Moderate Improvement",
+      "Hotter and Wetter 2.0 C": "Moderate Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Low"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Low"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Low"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     }
+    }
+   },
+   "Waterbirds": {
+    "cond": {
+     "g": "Poor",
+     "c": "Low"
+    },
+    "pub": {
+     "BP2024": "PBP Maintained",
+     "BPFI": "PBP Maintained",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Minor Decline",
+      "Hotter and Much Drier 2.0 C": "Minor Decline",
+      "Warmer and Drier 1.5 C": "PBP Maintained",
+      "Hotter and Drier 2.0 C": "PBP Maintained",
+      "Warmer and Wetter 1.5 C": "Moderate Improvement",
+      "Hotter and Wetter 2.0 C": "Moderate Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Poor to Moderate",
+      "c": "Low"
+     },
+     "paucity": {
+      "g": "Poor to Moderate",
+      "c": "Low"
+     },
+     "final": {
+      "g": "Poor",
+      "c": "Low"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "Unlikely",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "Unlikely",
+      "confidence": "Medium"
+     }
+    }
+   },
+   "Native Fish": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Low"
+    },
+    "pub": {
+     "BP2024": "PBP Maintained",
+     "BPFI": "Minor Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Minor Decline",
+      "Hotter and Much Drier 2.0 C": "Moderate Decline",
+      "Warmer and Drier 1.5 C": "Minor Improvement",
+      "Hotter and Drier 2.0 C": "PBP Maintained",
+      "Warmer and Wetter 1.5 C": "Moderate Improvement",
+      "Hotter and Wetter 2.0 C": "Moderate Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Low"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Low"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "Low"
+     }
+    }
+   },
+   "Native Vegetation": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Low"
+    },
+    "pub": {
+     "BP2024": "PBP Maintained",
+     "BPFI": "PBP Maintained",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Minor Decline",
+      "Hotter and Much Drier 2.0 C": "Moderate Decline",
+      "Warmer and Drier 1.5 C": "PBP Maintained",
+      "Hotter and Drier 2.0 C": "PBP Maintained",
+      "Warmer and Wetter 1.5 C": "Moderate Improvement",
+      "Hotter and Wetter 2.0 C": "Moderate Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "High"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "High"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Low"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     }
+    }
+   },
+   "Other Species": {
+    "cond": {
+     "g": "Not Assessed",
+     "c": "NA"
+    },
+    "pub": {
+     "BP2024": "NA",
+     "BPFI": "NA",
+     "LoE3": {}
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Low"
+     },
+     "paucity": {
+      "g": "Not assessed",
+      "c": "NA"
+     },
+     "final": {
+      "g": "Not assessed",
+      "c": "NA"
+     }
+    },
+    "final": null
+   }
+  },
+  "result": "The Authority is confident that the SDL reflects an environmentally sustainable level of take for this Unit and proposes the SDL is maintained. It is recognised that the extent, nature of and planning for continued monitoring, evaluation and assessment is tailored by the New South Wales government for the management of local and site-specific areas of concern to maintain environmental outcomes. It is important that the impacts of a changing climate continue to be actively considered for this Unit."
+ },
+ "SS22": {
+  "name": "Gwydir",
+  "themes": {
+   "Flows & Connectivity": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Low"
+    },
+    "pub": {
+     "BP2024": "PBP Maintained",
+     "BPFI": "PBP Maintained",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Minor Decline",
+      "Hotter and Much Drier 2.0 C": "Moderate Decline",
+      "Warmer and Drier 1.5 C": "PBP Maintained",
+      "Hotter and Drier 2.0 C": "Minor Decline",
+      "Warmer and Wetter 1.5 C": "Minor Improvement",
+      "Hotter and Wetter 2.0 C": "Minor Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "High"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "High"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Low"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     }
+    }
+   },
+   "Ecosystem Functions": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Low"
+    },
+    "pub": {
+     "BP2024": "PBP Maintained",
+     "BPFI": "PBP Maintained",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Moderate Decline",
+      "Hotter and Much Drier 2.0 C": "Moderate Decline",
+      "Warmer and Drier 1.5 C": "PBP Maintained",
+      "Hotter and Drier 2.0 C": "PBP Maintained",
+      "Warmer and Wetter 1.5 C": "Minor Improvement",
+      "Hotter and Wetter 2.0 C": "Moderate Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Low"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Low"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Low"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     }
+    }
+   },
+   "Waterbirds": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Medium"
+    },
+    "pub": {
+     "BP2024": "Minor Decline",
+     "BPFI": "Minor Decline",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Moderate Decline",
+      "Hotter and Much Drier 2.0 C": "Major Decline",
+      "Warmer and Drier 1.5 C": "Minor Decline",
+      "Hotter and Drier 2.0 C": "Minor Decline",
+      "Warmer and Wetter 1.5 C": "PBP Maintained",
+      "Hotter and Wetter 2.0 C": "Minor Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate to Good",
+      "c": "High"
+     },
+     "paucity": {
+      "g": "Moderate to Good",
+      "c": "High"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Medium"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "About as likely as not",
+      "confidence": "Low"
+     },
+     "LoE2": {
+      "likelihood": "About as likely as not",
+      "confidence": "Low"
+     }
+    }
+   },
+   "Native Fish": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Low"
+    },
+    "pub": {
+     "BP2024": "PBP Maintained",
+     "BPFI": "PBP Maintained",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Moderate Decline",
+      "Hotter and Much Drier 2.0 C": "Major Decline",
+      "Warmer and Drier 1.5 C": "Minor Decline",
+      "Hotter and Drier 2.0 C": "Minor Decline",
+      "Warmer and Wetter 1.5 C": "Minor Improvement",
+      "Hotter and Wetter 2.0 C": "Minor Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Low"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Low"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "Low"
+     }
+    }
+   },
+   "Native Vegetation": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Low"
+    },
+    "pub": {
+     "BP2024": "Minor Improvement",
+     "BPFI": "PBP Maintained",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Moderate Decline",
+      "Hotter and Much Drier 2.0 C": "Moderate Decline",
+      "Warmer and Drier 1.5 C": "PBP Maintained",
+      "Hotter and Drier 2.0 C": "PBP Maintained",
+      "Warmer and Wetter 1.5 C": "Moderate Improvement",
+      "Hotter and Wetter 2.0 C": "Moderate Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Low"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     }
+    }
+   },
+   "Other Species": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Low"
+    },
+    "pub": {
+     "BP2024": "PBP Maintained",
+     "BPFI": "Minor Decline",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Moderate Decline",
+      "Hotter and Much Drier 2.0 C": "Moderate Decline",
+      "Warmer and Drier 1.5 C": "Minor Decline",
+      "Hotter and Drier 2.0 C": "PBP Maintained",
+      "Warmer and Wetter 1.5 C": "Minor Improvement",
+      "Hotter and Wetter 2.0 C": "Minor Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Low"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     }
+    }
+   }
+  },
+  "result": "It is likely that the SDL reflects an environmentally sustainable level of take for this unit. The Authority\u2019s initial assessment has also identified a risk that environmental outcomes for waterbirds may not being met for this Unit. Pattern of flow is the likely leading driver of risk due to the limitations in the delivery of water to the Gwydir Wetlands. The Authority is proposing further work with the New South Wales government through 2026 to consider the most appropriate response to address this risk. This will include an examination of flow drivers and constraints to flow to inform the Authority\u2019s recommendation on response. Figure 1: Gwydir SDL Resource Unit"
+ },
+ "SS23": {
+  "name": "NSW Border Rivers",
+  "themes": {
+   "Flows & Connectivity": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Low"
+    },
+    "pub": {
+     "BP2024": "PBP Maintained",
+     "BPFI": "PBP Maintained",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Moderate Decline",
+      "Hotter and Much Drier 2.0 C": "Major Decline",
+      "Warmer and Drier 1.5 C": "PBP Maintained",
+      "Hotter and Drier 2.0 C": "PBP Maintained",
+      "Warmer and Wetter 1.5 C": "Minor Improvement",
+      "Hotter and Wetter 2.0 C": "Moderate Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Low"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     }
+    }
+   },
+   "Ecosystem Functions": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Low"
+    },
+    "pub": {
+     "BP2024": "PBP Maintained",
+     "BPFI": "PBP Maintained",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Moderate Decline",
+      "Hotter and Much Drier 2.0 C": "Major Decline",
+      "Warmer and Drier 1.5 C": "PBP Maintained",
+      "Hotter and Drier 2.0 C": "PBP Maintained",
+      "Warmer and Wetter 1.5 C": "Moderate Improvement",
+      "Hotter and Wetter 2.0 C": "Major Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Low"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     }
+    }
+   },
+   "Waterbirds": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Low"
+    },
+    "pub": {
+     "BP2024": "PBP Maintained",
+     "BPFI": "PBP Maintained",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Moderate Decline",
+      "Hotter and Much Drier 2.0 C": "Major Decline",
+      "Warmer and Drier 1.5 C": "PBP Maintained",
+      "Hotter and Drier 2.0 C": "PBP Maintained",
+      "Warmer and Wetter 1.5 C": "Moderate Improvement",
+      "Hotter and Wetter 2.0 C": "Major Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Low"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     }
+    }
+   },
+   "Native Fish": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Low"
+    },
+    "pub": {
+     "BP2024": "PBP Maintained",
+     "BPFI": "PBP Maintained",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Moderate Decline",
+      "Hotter and Much Drier 2.0 C": "Major Decline",
+      "Warmer and Drier 1.5 C": "PBP Maintained",
+      "Hotter and Drier 2.0 C": "Minor Decline",
+      "Warmer and Wetter 1.5 C": "Major Improvement",
+      "Hotter and Wetter 2.0 C": "Significant Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Low"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     }
+    }
+   },
+   "Native Vegetation": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Low"
+    },
+    "pub": {
+     "BP2024": "PBP Maintained",
+     "BPFI": "PBP Maintained",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Moderate Decline",
+      "Hotter and Much Drier 2.0 C": "Major Decline",
+      "Warmer and Drier 1.5 C": "PBP Maintained",
+      "Hotter and Drier 2.0 C": "PBP Maintained",
+      "Warmer and Wetter 1.5 C": "Major Improvement",
+      "Hotter and Wetter 2.0 C": "Significant Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Low"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     }
+    }
+   },
+   "Other Species": {
+    "cond": {
+     "g": "Not Assessed",
+     "c": "NA"
+    },
+    "pub": {
+     "BP2024": "NA",
+     "BPFI": "NA",
+     "LoE3": {}
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Low"
+     },
+     "paucity": {
+      "g": "Not assessed",
+      "c": "NA"
+     },
+     "final": {
+      "g": "Not assessed",
+      "c": "NA"
+     }
+    },
+    "final": null
+   }
+  },
+  "result": "The Authority is confident that the SDL continues to reflect an environmentally sustainable level of take and proposes the SDL is maintained. It is recognised that the extent, nature of and planning for continued monitoring, evaluation and assessment is tailored by the New South Wales government for the management of local and site-specific areas of concern to maintain environmental outcomes. It is important that the impacts of a changing climate continue to be actively considered for this Unit."
+ },
+ "SS24": {
+  "name": "SS24 QLD Border Rivers",
+  "themes": {
+   "Flows & Connectivity": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Low"
+    },
+    "pub": {
+     "BP2024": "PBP Maintained",
+     "BPFI": "PBP Maintained",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Moderate Decline",
+      "Hotter and Much Drier 2.0 C": "Major Decline",
+      "Warmer and Drier 1.5 C": "PBP Maintained",
+      "Hotter and Drier 2.0 C": "PBP Maintained",
+      "Warmer and Wetter 1.5 C": "Minor Improvement",
+      "Hotter and Wetter 2.0 C": "Moderate Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Good",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Good",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Low"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     }
+    }
+   },
+   "Ecosystem Functions": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Low"
+    },
+    "pub": {
+     "BP2024": "PBP Maintained",
+     "BPFI": "PBP Maintained",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Moderate Decline",
+      "Hotter and Much Drier 2.0 C": "Major Decline",
+      "Warmer and Drier 1.5 C": "PBP Maintained",
+      "Hotter and Drier 2.0 C": "PBP Maintained",
+      "Warmer and Wetter 1.5 C": "Moderate Improvement",
+      "Hotter and Wetter 2.0 C": "Major Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Low"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     }
+    }
+   },
+   "Waterbirds": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Low"
+    },
+    "pub": {
+     "BP2024": "PBP Maintained",
+     "BPFI": "PBP Maintained",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Moderate Decline",
+      "Hotter and Much Drier 2.0 C": "Major Decline",
+      "Warmer and Drier 1.5 C": "PBP Maintained",
+      "Hotter and Drier 2.0 C": "PBP Maintained",
+      "Warmer and Wetter 1.5 C": "Moderate Improvement",
+      "Hotter and Wetter 2.0 C": "Major Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Low"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Low"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Low"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     }
+    }
+   },
+   "Native Fish": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Low"
+    },
+    "pub": {
+     "BP2024": "PBP Maintained",
+     "BPFI": "PBP Maintained",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Moderate Decline",
+      "Hotter and Much Drier 2.0 C": "Major Decline",
+      "Warmer and Drier 1.5 C": "PBP Maintained",
+      "Hotter and Drier 2.0 C": "PBP Maintained",
+      "Warmer and Wetter 1.5 C": "Major Improvement",
+      "Hotter and Wetter 2.0 C": "Significant Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Good",
+      "c": "Low"
+     },
+     "paucity": {
+      "g": "Good",
+      "c": "Low"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Low"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     }
+    }
+   },
+   "Native Vegetation": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Low"
+    },
+    "pub": {
+     "BP2024": "PBP Maintained",
+     "BPFI": "PBP Maintained",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Moderate Decline",
+      "Hotter and Much Drier 2.0 C": "Major Decline",
+      "Warmer and Drier 1.5 C": "PBP Maintained",
+      "Hotter and Drier 2.0 C": "PBP Maintained",
+      "Warmer and Wetter 1.5 C": "Major Improvement",
+      "Hotter and Wetter 2.0 C": "Significant Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate to Good",
+      "c": "Low"
+     },
+     "paucity": {
+      "g": "Moderate to Good",
+      "c": "Low"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Low"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     }
+    }
+   },
+   "Other Species": {
+    "cond": {
+     "g": "Not Assessed",
+     "c": "NA"
+    },
+    "pub": {
+     "BP2024": "NA",
+     "BPFI": "NA",
+     "LoE3": {}
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Low"
+     },
+     "paucity": {
+      "g": "Not assessed",
+      "c": "NA"
+     },
+     "final": {
+      "g": "Not assessed",
+      "c": "NA"
+     }
+    },
+    "final": null
+   }
+  },
+  "result": "The Authority is confident that the SDL continues to reflect an environmentally sustainable level of take and proposes the SDL is maintained. It is recognised that the extent, nature of and planning for continued monitoring, evaluation and assessment is tailored by the Queensland government for the management of local and site-specific areas of concern to maintain environmental outcomes. It is important that the impacts of a changing climate continue to be actively considered for this Unit."
+ },
+ "SS26": {
+  "name": "Condamine-Balonne",
+  "themes": {
+   "Flows & Connectivity": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Low"
+    },
+    "pub": {
+     "BP2024": "Minor Improvement",
+     "BPFI": "Minor Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Minor Decline",
+      "Hotter and Much Drier 2.0 C": "Moderate Decline",
+      "Warmer and Drier 1.5 C": "Minor Improvement",
+      "Hotter and Drier 2.0 C": "Minor Improvement",
+      "Warmer and Wetter 1.5 C": "Moderate Improvement",
+      "Hotter and Wetter 2.0 C": "Moderate Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Low"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Low"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "Low"
+     }
+    }
+   },
+   "Ecosystem Functions": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Low"
+    },
+    "pub": {
+     "BP2024": "PBP Maintained",
+     "BPFI": "PBP Maintained",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Moderate Improvement",
+      "Hotter and Much Drier 2.0 C": "PBP Maintained",
+      "Warmer and Drier 1.5 C": "PBP Maintained",
+      "Hotter and Drier 2.0 C": "PBP Maintained",
+      "Warmer and Wetter 1.5 C": "Moderate Improvement",
+      "Hotter and Wetter 2.0 C": "Major Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Low"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Low"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "Low"
+     }
+    }
+   },
+   "Waterbirds": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Low"
+    },
+    "pub": {
+     "BP2024": "Major Improvement",
+     "BPFI": "Significant Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "Minor Decline",
+      "Hotter and Much Drier 2.0 C": "Moderate Decline",
+      "Warmer and Drier 1.5 C": "Major Improvement",
+      "Hotter and Drier 2.0 C": "Major Improvement",
+      "Warmer and Wetter 1.5 C": "Significant Improvement",
+      "Hotter and Wetter 2.0 C": "Significant Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Low"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "Likely",
+      "confidence": "High"
+     },
+     "LoE2": {
+      "likelihood": "Likely",
+      "confidence": "High"
+     }
+    }
+   },
+   "Native Fish": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Low"
+    },
+    "pub": {
+     "BP2024": "PBP Maintained",
+     "BPFI": "Minor Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "PBP Maintained",
+      "Hotter and Much Drier 2.0 C": "Minor Decline",
+      "Warmer and Drier 1.5 C": "Minor Improvement",
+      "Hotter and Drier 2.0 C": "PBP Maintained",
+      "Warmer and Wetter 1.5 C": "Moderate Improvement",
+      "Hotter and Wetter 2.0 C": "Moderate Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "High"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "High"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Low"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     },
+     "LoE2": {
+      "likelihood": "More likely than not",
+      "confidence": "Medium"
+     }
+    }
+   },
+   "Native Vegetation": {
+    "cond": {
+     "g": "Moderate",
+     "c": "Medium"
+    },
+    "pub": {
+     "BP2024": "PBP Maintained",
+     "BPFI": "Major Improvement",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "NA",
+      "Hotter and Much Drier 2.0 C": "NA",
+      "Warmer and Drier 1.5 C": "Moderate Improvement",
+      "Hotter and Drier 2.0 C": "Moderate Improvement",
+      "Warmer and Wetter 1.5 C": "Significant Improvement",
+      "Hotter and Wetter 2.0 C": "Significant Improvement"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "paucity": {
+      "g": "Moderate",
+      "c": "Medium"
+     },
+     "final": {
+      "g": "Moderate",
+      "c": "Medium"
+     }
+    },
+    "final": {
+     "LoE1": {
+      "likelihood": "More likely than not",
+      "confidence": "Low"
+     },
+     "LoE2": {
+      "likelihood": "Likely",
+      "confidence": "Low"
+     }
+    }
+   },
+   "Other Species": {
+    "cond": {
+     "g": "Not Assessed",
+     "c": "NA"
+    },
+    "pub": {
+     "BP2024": "NA",
+     "BPFI": "NA",
+     "LoE3": {
+      "Warmer and Much Drier 1.5 C": "NA",
+      "Hotter and Much Drier 2.0 C": "NA",
+      "Warmer and Drier 1.5 C": "NA",
+      "Hotter and Drier 2.0 C": "NA",
+      "Warmer and Wetter 1.5 C": "NA",
+      "Hotter and Wetter 2.0 C": "NA"
+     }
+    },
+    "cond_stages": {
+     "elicitation": {
+      "g": "Moderate",
+      "c": "Low"
+     },
+     "paucity": {
+      "g": "Not assessed",
+      "c": "NA"
+     },
+     "final": {
+      "g": "Not assessed",
+      "c": "NA"
+     }
+    },
+    "final": null
+   }
+  },
+  "result": "The Authority is confident that the SDL continues to reflect an environmentally sustainable level of take and proposes the SDL is maintained. It is recognised that the extent, nature of and planning for continued monitoring, evaluation and assessment is tailored by the Queensland government for the management of local and site-specific areas of concern to maintain environmental outcomes. It is important that the impacts of a changing climate continue to be actively considered for this Unit."
+ }
+}
